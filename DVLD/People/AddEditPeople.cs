@@ -25,5 +25,10 @@ namespace DVLD.People
         {
 
         }
+
+        private void AddEditPeople_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

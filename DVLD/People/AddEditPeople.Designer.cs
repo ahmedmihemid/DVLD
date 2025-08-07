@@ -84,6 +84,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddEditPeople";
             this.Text = "AddEditPeople";
+            this.Load += new System.EventHandler(this.AddEditPeople_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

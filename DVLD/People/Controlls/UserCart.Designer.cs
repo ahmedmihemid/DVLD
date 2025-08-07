@@ -372,6 +372,7 @@
             this.Controls.Add(this.LastNameTB);
             this.Name = "UserCart";
             this.Size = new System.Drawing.Size(923, 427);
+            this.Load += new System.EventHandler(this.UserCart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PersonImagePB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

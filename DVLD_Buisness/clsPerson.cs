@@ -36,7 +36,7 @@ namespace DVLD_Buisness
 
         private string Email { get; set; }  // nullable
 
-        private clsCountry NationalityCountry { get; set; }
+        private int NationalityCountryID { get; set; }
 
         private string ImagePath { get; set; }
 
@@ -55,14 +55,14 @@ namespace DVLD_Buisness
             Address = string.Empty;
             Phone = string.Empty;
             Email = string.Empty;
-            NationalityCountry= null;
+            NationalityCountryID= 0;
             ImagePath = string.Empty;
 
         }
 
         public clsPerson(enMode mode , string nationalNo, string firstName, string secondName, string thirdName,
             string lastName, DateTime dateofBirth, string gender, string address, string phone, string email,
-            clsCountry narionalityCountry, string imagePath)
+            int narionalityCountryID, string imagePath)
         {
             Mode = mode;
             //PersonID = personID;
@@ -76,7 +76,7 @@ namespace DVLD_Buisness
             Address = address;
             Phone = phone;
             Email = email;
-            NationalityCountry = narionalityCountry;
+            NationalityCountryID = narionalityCountryID;
             ImagePath = imagePath;
         }
 

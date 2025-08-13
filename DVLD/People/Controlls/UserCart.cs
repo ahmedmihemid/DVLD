@@ -24,7 +24,7 @@ namespace DVLD.People.Controlls
         //{
         //    return new clsPerson(clsPerson.enMode.AddNewMode, NationalNoTB.Text, FirstNameTB.Text,
         //        SecondNameTB.Text, ThirdNameTB.Text, LastNameTB.Text, DateOfBirthDTP.Value, GetGenderAsString(),
-        //        AddressTB.Text, PhoneTB.Text, EmailTB.Text, CountryCB.SelectedIndex+1,"ImagePath");
+        //        AddressTB.Text, PhoneTB.Text, EmailTB.Text, CountryCB.SelectedIndex + 1, PersonImagePB.Tag.ToString());
         //}
 
         private string GetGenderAsString()
@@ -48,13 +48,6 @@ namespace DVLD.People.Controlls
             CountryCB.SelectedIndex = 168;
         }
 
-
-        private void test()
-        {
-           
-        }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -63,6 +56,30 @@ namespace DVLD.People.Controlls
         private void UserCart_Load(object sender, EventArgs e)
         {
             loadCountries();
+        }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            openFileDialog1.InitialDirectory = @"C:\"; 
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog1.FileName;
+                PersonImagePB.Image = Image.FromFile(filePath);
+                PersonImagePB.Tag = filePath; 
+                MessageBox.Show(PersonImagePB.Tag.ToString());
+            }
+            else
+            {
+                MessageBox.Show("No image selected.");
+            }
+
         }
     }
 }

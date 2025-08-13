@@ -55,9 +55,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.SetImageLL = new System.Windows.Forms.LinkLabel();
             this.PersonImagePB = new System.Windows.Forms.PictureBox();
             this.DateOfBirthDTP = new System.Windows.Forms.DateTimePicker();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.PersonImagePB)).BeginInit();
             this.SuspendLayout();
             // 
@@ -308,16 +310,17 @@
             this.label12.TabIndex = 36;
             this.label12.Text = "Last Name :";
             // 
-            // linkLabel1
+            // SetImageLL
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(783, 269);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(98, 21);
-            this.linkLabel1.TabIndex = 37;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Set Image";
+            this.SetImageLL.AutoSize = true;
+            this.SetImageLL.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SetImageLL.Location = new System.Drawing.Point(783, 269);
+            this.SetImageLL.Name = "SetImageLL";
+            this.SetImageLL.Size = new System.Drawing.Size(98, 21);
+            this.SetImageLL.TabIndex = 37;
+            this.SetImageLL.TabStop = true;
+            this.SetImageLL.Text = "Set Image";
+            this.SetImageLL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // PersonImagePB
             // 
@@ -338,11 +341,20 @@
             this.DateOfBirthDTP.Size = new System.Drawing.Size(162, 28);
             this.DateOfBirthDTP.TabIndex = 18;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
+            // 
             // UserCart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.SetImageLL);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -408,7 +420,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel SetImageLL;
         private System.Windows.Forms.DateTimePicker DateOfBirthDTP;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }

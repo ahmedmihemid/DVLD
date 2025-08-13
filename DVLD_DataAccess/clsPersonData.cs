@@ -58,14 +58,6 @@ namespace DVLD_DataAccess
         {
             DataTable dt = new DataTable();
 
-    //        // ⚠️ تأكد من أن اسم العمود مُعتمد لتفادي SQL Injection
-    //        List<string> allowedColumns = new List<string>
-    //{
-    //    "FirstName", "SecondName", "LastName", "NationalNo", "Phone", "Email", "CountryName"
-    //};
-
-    //        if (!allowedColumns.Contains(columnName))
-    //            throw new ArgumentException("Invalid column name.");
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {

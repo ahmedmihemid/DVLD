@@ -95,6 +95,88 @@ namespace DVLD_DataAccess
             return dt;
         }
 
+        public static bool IdIsExist(string nationalID)
+        {
+            bool exists = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT COUNT(1) FROM People WHERE NationalNo = @NationalNo";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@NationalNo", nationalID);
+
+            try 
+            {
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                exists = count > 0;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return exists;
+
+        }
+
+        public static int AddNewPerson(string nationalNo, string firstName, string secondName, string thirdName,
+            string lastName, DateTime dateofBirth, int gender, string address, string phone, string email,
+            int narionalityCountryID, string imagePath)
+        {
+            int newPersonID = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"INSERT INTO People 
+                        (NationalNo, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath)
+                         VALUES (@NationalNo, @FirstName, @SecondName, @ThirdName, @LastName, @DateOfBirth, @Gendor, @Address, @Phone, @Email, @NationalityCountryID, @ImagePath);
+                         SELECT SCOPE_IDENTITY();";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@NationalNo", nationalNo);
+            command.Parameters.AddWithValue("@FirstName", firstName);
+            command.Parameters.AddWithValue("@SecondName", secondName);
+            command.Parameters.AddWithValue("@ThirdName", thirdName);
+            command.Parameters.AddWithValue("@LastName", lastName);
+            command.Parameters.AddWithValue("@DateOfBirth", dateofBirth);
+            command.Parameters.AddWithValue("@Gendor", gender);
+            command.Parameters.AddWithValue("@Address", address);
+            command.Parameters.AddWithValue("@Phone", phone);
+            command.Parameters.AddWithValue("@Email", email);
+            command.Parameters.AddWithValue("@NationalityCountryID", narionalityCountryID);
+            command.Parameters.AddWithValue("@ImagePath", imagePath);
+
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                    newPersonID = Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return newPersonID;
+
+        }
+
+
+
+       
+
+
+
+
 
     }
 }

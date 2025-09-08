@@ -58,12 +58,6 @@
     <Compile Include="People\AddEditPeople.Designer.cs">
       <DependentUpon>AddEditPeople.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\Controlls\UserCart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="People\Controlls\UserCart.Designer.cs">
-      <DependentUpon>UserCart.cs</DependentUpon>
-    </Compile>
     <Compile Include="People\ManagePeople.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,9 +71,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="People\AddEditPeople.resx">
       <DependentUpon>AddEditPeople.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="People\Controlls\UserCart.resx">
-      <DependentUpon>UserCart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\ManagePeople.resx">
       <DependentUpon>ManagePeople.cs</DependentUpon>
@@ -145,6 +136,12 @@
       <Project>{90f5e0f5-c60a-4619-8dd1-aed31269cad6}</Project>
       <Name>DVLD_Buisness</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Female 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="People\Controlls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

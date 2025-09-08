@@ -84,6 +84,15 @@ namespace DVLD_Buisness
 
 
 
+        private static byte GetGenderAsByte(string strGender)
+        {
+            if(strGender=="Male")
+                return 0;
+            else 
+                return 1;
+        }
+
+
         public static DataTable GetAllPeople()
         {
             return  DVLD_DataAccess.clsPeopleData.GetAllPeople();
@@ -94,7 +103,20 @@ namespace DVLD_Buisness
         {
             return DVLD_DataAccess.clsPeopleData.GetFilteredPeople(columnName, filterValue);
         }
+      
+        public static bool IdIsExist(string nationalNo)
+        {
+            return DVLD_DataAccess.clsPeopleData.IdIsExist(nationalNo);
+        }
 
 
+        public static int  AddNewPerson(clsPerson newPerson)
+        {
+            return DVLD_DataAccess.clsPeopleData.AddNewPerson(newPerson.NationalNo, newPerson.FirstName,
+                newPerson.SecondName, newPerson.ThirdName, newPerson.LastName, newPerson.DateOfBirth,
+                GetGenderAsByte(newPerson.Gender), newPerson.Address, newPerson.Phone,
+                newPerson.Email, newPerson.NationalityCountryID, newPerson.ImagePath);
+
+        }
     }
 }

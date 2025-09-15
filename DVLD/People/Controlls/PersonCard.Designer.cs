@@ -232,6 +232,7 @@
             this.EditLL.TabIndex = 19;
             this.EditLL.TabStop = true;
             this.EditLL.Text = "Edit Person info";
+            this.EditLL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EditLL_LinkClicked);
             // 
             // NameLEB
             // 

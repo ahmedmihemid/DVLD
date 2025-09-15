@@ -210,7 +210,60 @@ namespace DVLD_DataAccess
         }
 
 
+        public static bool UpdatePerson(int personID, string nationalNo, string firstName, string secondName, string thirdName,
+            string lastName, DateTime dateofBirth, int gender, string address, string phone, string email,
+            int narionalityCountryID, string imagePath)
+        {
 
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE People SET 
+                        NationalNo = @NationalNo, 
+                        FirstName = @FirstName, 
+                        SecondName = @SecondName, 
+                        ThirdName = @ThirdName, 
+                        LastName = @LastName, 
+                        DateOfBirth = @DateOfBirth, 
+                        Gendor = @Gendor, 
+                        Address = @Address, 
+                        Phone = @Phone, 
+                        Email = @Email, 
+                        NationalityCountryID = @NationalityCountryID, 
+                        ImagePath = @ImagePath
+                        WHERE PersonID = @PersonID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", personID);
+            command.Parameters.AddWithValue("@NationalNo", nationalNo);
+            command.Parameters.AddWithValue("@FirstName", firstName);
+            command.Parameters.AddWithValue("@SecondName", secondName);
+            command.Parameters.AddWithValue("@ThirdName", thirdName);
+            command.Parameters.AddWithValue("@LastName", lastName);
+            command.Parameters.AddWithValue("@DateOfBirth", dateofBirth);
+            command.Parameters.AddWithValue("@Gendor", gender);
+            command.Parameters.AddWithValue("@Address", address);
+            command.Parameters.AddWithValue("@Phone", phone);
+            command.Parameters.AddWithValue("@Email", email);
+            command.Parameters.AddWithValue("@NationalityCountryID", narionalityCountryID);
+            command.Parameters.AddWithValue("@ImagePath", imagePath);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
 
 
 

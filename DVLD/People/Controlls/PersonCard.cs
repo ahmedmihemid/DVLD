@@ -65,7 +65,25 @@ namespace DVLD.People.Controlls
 
         }
 
+        private void EditLL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(PersonIdLEB.Text == string.Empty)
+            {
+                MessageBox.Show("No person selected to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            clsPerson person = clsPerson.GetPersonByID(int.Parse(PersonIdLEB.Text));
 
+            if(person != null)
+              {
+                AddEditPeople addEditPeople = new AddEditPeople(person);
+                addEditPeople.ShowDialog();
+              }
+            else
+            {
+                MessageBox.Show("Error retrieving person data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

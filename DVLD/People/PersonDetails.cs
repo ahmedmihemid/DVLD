@@ -30,5 +30,7 @@ namespace DVLD.People
             personCard1.LoadPersonData(_personID);
 
         }
+
+       
     }
 }

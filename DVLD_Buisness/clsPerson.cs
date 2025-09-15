@@ -43,7 +43,7 @@ namespace DVLD_Buisness
 
 
 
-        private clsPerson()
+        public clsPerson()
         {
             _Mode = enMode.EmptyMode;
             //PersonID = 0;
@@ -89,7 +89,7 @@ namespace DVLD_Buisness
 
 
         // Properties (getters/setters)
-        public enMode ModeProp
+        public enMode Mode
         {
             get => _Mode;
             set => _Mode = value;
@@ -178,6 +178,18 @@ namespace DVLD_Buisness
             get => $"{_FirstName} {_SecondName} {_ThirdName} {_LastName}";
         }
 
+
+
+        public static bool IsEmpty(clsPerson person)
+        {
+          return( person._Mode == enMode.EmptyMode);
+        }
+
+        public static clsPerson GetNewPersonObject()
+        {
+            return new clsPerson(enMode.AddNewMode,"","", "", "", "", DateTime.MinValue, "", "", "", "", 0, "");
+        }
+
         private static byte GetGenderAsByte(string strGender)
         {
             if(strGender=="Male")
@@ -212,6 +224,18 @@ namespace DVLD_Buisness
                 newPerson._Email, newPerson._NationalityCountryID, newPerson._ImagePath);
 
         }
+
+
+        public static bool UpdatePerson(clsPerson Person)
+        {
+            return DVLD_DataAccess.clsPeopleData.UpdatePerson(Person.Id,Person._NationalNo, Person._FirstName,
+                Person._SecondName, Person._ThirdName, Person._LastName, Person._DateOfBirth,
+                GetGenderAsByte(Person.Gender), Person._Address, Person._Phone,
+                Person._Email, Person._NationalityCountryID, Person._ImagePath);
+
+        }
+
+
 
         public static clsPerson GetPersonByID(int personID)
         {

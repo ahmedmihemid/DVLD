@@ -22,7 +22,7 @@ namespace DVLD.People
         {
            
             PeopleDGV.DataSource = DVLD_Buisness.clsPerson.GetAllPeople();
-
+            RecordsLEB.Text = (PeopleDGV.Rows.Count - 1).ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace DVLD.People
                 FilterValueTB.Text = string.Empty;
             }
 
-
+            RecordsLEB.Text =( PeopleDGV.Rows.Count-1).ToString();
 
         }
 
@@ -87,6 +87,33 @@ namespace DVLD.People
             }
 
 
+        }
+
+        private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddEditPeople addEditPeople = new AddEditPeople();
+            addEditPeople.ShowDialog();
+
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsPerson person = clsPerson.GetPersonByID(Convert.ToInt32(PeopleDGV.CurrentRow.Cells["PersonID"].Value));
+
+            if (person != null) 
+            {
+                AddEditPeople addEditPeople = new AddEditPeople(person);
+                addEditPeople.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Error retrieving person data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

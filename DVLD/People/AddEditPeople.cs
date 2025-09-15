@@ -5,35 +5,109 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 
 namespace DVLD.People
 {
     public partial class AddEditPeople : Form
     {
+         private clsPerson _currentPerson;
+         private string imageFolderPath = "C:\\Users\\MBM\\My_apps_ahmed\\DVLD_People_images";
+
+
         public AddEditPeople()
         {
             InitializeComponent();
+
+            label1.Text = "Add New Person";
+            _currentPerson = clsPerson.GetNewPersonObject();
+            MaleRB.Checked = true;
+            loadCountries();
+            DateOfBirthValidating();
+        }
+
+        public AddEditPeople(clsPerson person)
+        {
+            InitializeComponent();
+            label1.Text = "Edit Person";
+
+            loadCountries();
+            DateOfBirthValidating();
+            LoadPersonData( person);
+            _currentPerson = person;
+            _currentPerson.Mode = clsPerson.enMode.UpdateMode;
+
+
         }
 
 
-        private string imageFolderPath = "C:\\Users\\MBM\\My_apps_ahmed\\DVLD_People_images";
+
 
 
         private clsPerson FillData()
         {
             int countryID = CountryCB.SelectedIndex + 1;
             string imagePath = PersonImagePB.Tag == null ? "" : PersonImagePB.Tag.ToString();
-            return new clsPerson(clsPerson.enMode.AddNewMode, NationalNoTB.Text, FirstNameTB.Text,
-                SecondNameTB.Text, ThirdNameTB.Text, LastNameTB.Text, DateOfBirthDTP.Value, GetGenderAsString(),
-                AddressTB?.Text?? "", PhoneTB.Text, EmailTB.Text, countryID, imagePath);
+
+            _currentPerson.NationalNo = NationalNoTB.Text;
+            _currentPerson.FirstName = FirstNameTB.Text;
+            _currentPerson.SecondName = SecondNameTB.Text;
+            _currentPerson.ThirdName = ThirdNameTB.Text;
+            _currentPerson.LastName = LastNameTB.Text;
+            _currentPerson.DateOfBirth = DateOfBirthDTP.Value;
+            _currentPerson.Gender = GetGenderAsString();
+            _currentPerson.Address = AddressTB?.Text ?? "";
+            _currentPerson.Phone = PhoneTB.Text;
+            _currentPerson.Email = EmailTB.Text;
+            _currentPerson.NationalityCountryID = countryID;
+            _currentPerson.ImagePath = imagePath;
+
+            return _currentPerson;
         }
 
+
+
+        private void LoadPersonData(clsPerson person)
+        {
+            PersonIdLE.Text = person.Id.ToString();
+            NationalNoTB.Text = person.NationalNo;
+            FirstNameTB.Text = person.FirstName;
+            SecondNameTB.Text = person.SecondName;
+            ThirdNameTB.Text = person.ThirdName;
+            LastNameTB.Text = person.LastName;
+            DateOfBirthDTP.Value = person.DateOfBirth;
+
+            if(person.Gender=="Male")
+               { MaleRB.Checked = true; }
+            else
+               { FmaleRB.Checked = true; }
+
+            AddressTB.Text = person.Address;
+            PhoneTB.Text = person.Phone;
+            EmailTB.Text = person.Email;
+            CountryCB.SelectedIndex= person.NationalityCountryID - 1; // the problem is here
+
+
+            if (person.ImagePath != null && person.ImagePath != string.Empty && File.Exists(person.ImagePath))
+            {
+                PersonImagePB.Image = Image.FromFile(person.ImagePath);
+                PersonImagePB.Tag = person.ImagePath;
+                RemoveLL.Visible = true;
+            }
+            else
+            {
+                if (person.Gender == "Male")
+                    PersonImagePB.Image = Resources.Male_512; 
+                else
+                    PersonImagePB.Image = Resources.Female_512; 
+            }
+        }
 
 
 
@@ -56,8 +130,10 @@ namespace DVLD.People
                 CountryCB.Items.Add(country.CountryName);
 
             }
+
             CountryCB.SelectedIndex = 168;
         }
+
 
         private void UserCart_Load(object sender, EventArgs e)
         {
@@ -263,9 +339,9 @@ namespace DVLD.People
 
         private void AddEditPeople_Load(object sender, EventArgs e)
         {
-            MaleRB.Checked = true;  
-            loadCountries();
-            DateOfBirthValidating();
+            //MaleRB.Checked = true;  
+            //loadCountries();
+            //DateOfBirthValidating();
 
         }
 
@@ -292,14 +368,35 @@ namespace DVLD.People
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-           int newPersonID= DVLD_Buisness.clsPerson.AddNewPerson(FillData());
-            if(newPersonID == -1)
+            if(_currentPerson.Mode == clsPerson.enMode.UpdateMode)
             {
-                MessageBox.Show("Error adding new person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if(DVLD_Buisness.clsPerson.UpdatePerson(FillData()))
+                {
+                    MessageBox.Show(" person Updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Error updating person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
-            PersonIdLE.Text = newPersonID.ToString();
-            MessageBox.Show("New person added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            if (_currentPerson.Mode == clsPerson.enMode.AddNewMode)
+            {
+                int newPersonID = DVLD_Buisness.clsPerson.AddNewPerson(FillData());
+                if (newPersonID == -1)
+                {
+                    MessageBox.Show("Error adding new person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                PersonIdLE.Text = newPersonID.ToString();
+                MessageBox.Show("New person added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                //newPersonID = DVLD_Buisness.clsPerson.AddNewPerson(FillData());
+            }
+
+
         }
 
 

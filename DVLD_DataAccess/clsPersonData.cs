@@ -267,6 +267,35 @@ namespace DVLD_DataAccess
 
 
 
+        public static bool DeletePersonByID(int personID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "DELETE People WHERE personID =@personID;";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+
+            try
+            { 
+             connection.Open();
+             rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+
+        }
+
+
 
     }
 }

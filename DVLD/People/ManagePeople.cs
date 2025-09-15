@@ -115,5 +115,26 @@ namespace DVLD.People
         {
             this.Close();
         }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int personId = Convert.ToInt32(PeopleDGV.CurrentRow.Cells["PersonID"].Value);
+
+            if(DVLD_Buisness.clsPerson.DeletePersonByID(personId))
+            {
+                MessageBox.Show("Person deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                PeopleDGV.DataSource = DVLD_Buisness.clsPerson.GetAllPeople();
+                RecordsLEB.Text = (PeopleDGV.Rows.Count - 1).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Error deleting person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
+
+
     }
 }

@@ -66,7 +66,7 @@
             // fdfdfToolStripMenuItem
             // 
             this.fdfdfToolStripMenuItem.Name = "fdfdfToolStripMenuItem";
-            this.fdfdfToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
+            this.fdfdfToolStripMenuItem.Size = new System.Drawing.Size(146, 32);
             this.fdfdfToolStripMenuItem.Text = "fdfdf";
             // 
             // fdsfsToolStripMenuItem
@@ -106,10 +106,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::DVLD.Properties.Resources.Cartão_de_identificação_de_carteira_de_motorista_de_carro_com_foto____Vetor_Premium;
+            this.BackgroundImage = global::DVLD.Properties.Resources.Logo_Final;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1470, 841);
             this.Controls.Add(this.menuStrip1);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "Main";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

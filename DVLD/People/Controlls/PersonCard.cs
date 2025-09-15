@@ -57,7 +57,7 @@ namespace DVLD.People.Controlls
 
             else
             {
-                if (person.Gender == "Male")
+                if (person.Gender == "MALE")
                 { PersonPB.Image = Properties.Resources.Male_512; }
                 else
                 { PersonPB.Image = Properties.Resources.Female_512; }

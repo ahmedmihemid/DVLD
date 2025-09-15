@@ -262,6 +262,16 @@ namespace DVLD_Buisness
             return person;
 
         }
+
+        public static bool DeletePersonByID(int personID)
+        {
+            return DVLD_DataAccess.clsPeopleData.DeletePersonByID(personID);
+        }
+
+
+
+
+
     }
 }
 

@@ -58,7 +58,7 @@
             this.PeopleDGV.BackgroundColor = System.Drawing.Color.White;
             this.PeopleDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PeopleDGV.ContextMenuStrip = this.personCMS;
-            this.PeopleDGV.Location = new System.Drawing.Point(29, 286);
+            this.PeopleDGV.Location = new System.Drawing.Point(32, 269);
             this.PeopleDGV.Name = "PeopleDGV";
             this.PeopleDGV.RowHeadersWidth = 51;
             this.PeopleDGV.RowTemplate.Height = 26;
@@ -115,6 +115,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -152,7 +153,7 @@
             "Phone",
             "CountryName",
             "Email  "});
-            this.comboBox1.Location = new System.Drawing.Point(120, 235);
+            this.comboBox1.Location = new System.Drawing.Point(123, 218);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(217, 30);
             this.comboBox1.TabIndex = 4;
@@ -162,7 +163,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 238);
+            this.label1.Location = new System.Drawing.Point(29, 221);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 24);
             this.label1.TabIndex = 5;
@@ -172,7 +173,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(622, 178);
+            this.label2.Location = new System.Drawing.Point(623, 166);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(189, 28);
             this.label2.TabIndex = 7;
@@ -181,7 +182,7 @@
             // FilterValueTB
             // 
             this.FilterValueTB.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FilterValueTB.Location = new System.Drawing.Point(357, 235);
+            this.FilterValueTB.Location = new System.Drawing.Point(360, 218);
             this.FilterValueTB.Name = "FilterValueTB";
             this.FilterValueTB.Size = new System.Drawing.Size(124, 29);
             this.FilterValueTB.TabIndex = 8;
@@ -193,7 +194,7 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Image = global::DVLD.Properties.Resources.People_400;
-            this.pictureBox1.Location = new System.Drawing.Point(610, 42);
+            this.pictureBox1.Location = new System.Drawing.Point(611, 30);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(211, 133);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -206,7 +207,7 @@
             this.button2.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = global::DVLD.Properties.Resources.Close_32;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1308, 778);
+            this.button2.Location = new System.Drawing.Point(1311, 751);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(109, 58);
             this.button2.TabIndex = 3;
@@ -220,7 +221,7 @@
             this.button1.BackgroundImage = global::DVLD.Properties.Resources.Add_Person_40;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1308, 220);
+            this.button1.Location = new System.Drawing.Point(1311, 203);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 58);
             this.button1.TabIndex = 2;
@@ -231,7 +232,7 @@
             // 
             this.label223.AutoSize = true;
             this.label223.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label223.Location = new System.Drawing.Point(26, 812);
+            this.label223.Location = new System.Drawing.Point(28, 770);
             this.label223.Name = "label223";
             this.label223.Size = new System.Drawing.Size(121, 24);
             this.label223.TabIndex = 9;
@@ -241,7 +242,7 @@
             // 
             this.RecordsLEB.AutoSize = true;
             this.RecordsLEB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecordsLEB.Location = new System.Drawing.Point(153, 812);
+            this.RecordsLEB.Location = new System.Drawing.Point(155, 770);
             this.RecordsLEB.Name = "RecordsLEB";
             this.RecordsLEB.Size = new System.Drawing.Size(21, 24);
             this.RecordsLEB.TabIndex = 10;
@@ -251,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1448, 857);
+            this.ClientSize = new System.Drawing.Size(1448, 815);
             this.Controls.Add(this.RecordsLEB);
             this.Controls.Add(this.label223);
             this.Controls.Add(this.FilterValueTB);

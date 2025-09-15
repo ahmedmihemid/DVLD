@@ -83,7 +83,7 @@ namespace DVLD.People
             LastNameTB.Text = person.LastName;
             DateOfBirthDTP.Value = person.DateOfBirth;
 
-            if(person.Gender=="Male")
+            if(person.Gender== "MALE")
                { MaleRB.Checked = true; }
             else
                { FmaleRB.Checked = true; }
@@ -91,7 +91,7 @@ namespace DVLD.People
             AddressTB.Text = person.Address;
             PhoneTB.Text = person.Phone;
             EmailTB.Text = person.Email;
-            CountryCB.SelectedIndex= person.NationalityCountryID - 1; // the problem is here
+            CountryCB.SelectedIndex= person.NationalityCountryID - 1; 
 
 
             if (person.ImagePath != null && person.ImagePath != string.Empty && File.Exists(person.ImagePath))
@@ -102,7 +102,7 @@ namespace DVLD.People
             }
             else
             {
-                if (person.Gender == "Male")
+                if (person.Gender == "MALE")
                     PersonImagePB.Image = Resources.Male_512; 
                 else
                     PersonImagePB.Image = Resources.Female_512; 
@@ -393,7 +393,7 @@ namespace DVLD.People
                 }
                 PersonIdLE.Text = newPersonID.ToString();
                 MessageBox.Show("New person added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                //newPersonID = DVLD_Buisness.clsPerson.AddNewPerson(FillData());
+                
             }
 
 

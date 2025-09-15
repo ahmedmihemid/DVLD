@@ -38,7 +38,7 @@ namespace DVLD_Buisness
 
             if (dtCountries != null && dtCountries.Rows.Count > 0)
             {
-              foreach(DataRow row in dtCountries.Rows)
+                foreach (DataRow row in dtCountries.Rows)
                 {
                     clsCountry country = new clsCountry
                     {
@@ -51,20 +51,30 @@ namespace DVLD_Buisness
 
             return countries;
         }
-           
 
+        public static clsCountry GetCountryByID(int ID)
+        {
+            DataTable dtCountry = clsCountryData.GetCountryByID(ID);
+            DataRow row = dtCountry.Rows[0];
 
+            clsCountry country = new clsCountry();
+            country._countryID = Convert.ToInt32(row["CountryID"]);
+            country._countryName = row["CountryName"].ToString();
 
+            return country;
+        }
 
+        public static string getCountryName(int ID)
+        {
+            clsCountry country = GetCountryByID(ID);
 
-
-
-
-
+            return country.CountryName;
+        }
 
 
 
 
 
     }
+
 }

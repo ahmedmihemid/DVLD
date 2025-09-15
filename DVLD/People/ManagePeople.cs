@@ -74,7 +74,19 @@ namespace DVLD.People
 
         }
 
+       
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (PeopleDGV.CurrentRow != null)
+            {
+                int personId = Convert.ToInt32(PeopleDGV.CurrentRow.Cells["PersonID"].Value);
+                PersonDetails personDetails = new PersonDetails(personId);
+                personDetails.ShowDialog();
+
+            }
 
 
+        }
     }
 }

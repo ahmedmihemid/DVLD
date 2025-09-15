@@ -36,28 +36,6 @@ namespace DVLD.People
 
 
 
-        //private clsPerson FillData()
-        //{
-        //    int countryID = CountryCB.SelectedIndex + 1;
-
-        //    string imagePath = PersonImagePB.Tag == null ? "" : PersonImagePB.Tag.ToString();
-
-        //    return new clsPerson(
-        //        clsPerson.enMode.AddNewMode,
-        //        NationalNoTB?.Text ?? "",
-        //        FirstNameTB?.Text ?? "",
-        //        SecondNameTB?.Text ?? "",
-        //        ThirdNameTB?.Text ?? "",
-        //        LastNameTB?.Text ?? "",
-        //        DateOfBirthDTP.Value,
-        //        GetGenderAsString(),
-        //        AddressTB?.Text ?? "",
-        //        PhoneTB?.Text ?? "",
-        //        EmailTB?.Text ?? "",
-        //        countryID,
-        //        imagePath
-        //    );
-        //}
 
         private string GetGenderAsString()
         {
@@ -101,9 +79,6 @@ namespace DVLD.People
             return CopyImagePath;
 
         }
-
-
-       
 
 
         private void DateOfBirthValidating()
@@ -318,7 +293,13 @@ namespace DVLD.People
         private void btnSave_Click_1(object sender, EventArgs e)
         {
            int newPersonID= DVLD_Buisness.clsPerson.AddNewPerson(FillData());
+            if(newPersonID == -1)
+            {
+                MessageBox.Show("Error adding new person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             PersonIdLE.Text = newPersonID.ToString();
+            MessageBox.Show("New person added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 

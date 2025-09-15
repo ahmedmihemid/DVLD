@@ -47,5 +47,43 @@ namespace DVLD_DataAccess
         }
 
 
-     }
+
+        public static DataTable GetCountryByID(int ID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            DataTable dtCountry = new DataTable();
+            string query = "SELECT CountryID, CountryName FROM Countries WHERE CountryID = @CountryID;";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@CountryID", ID);
+
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dtCountry.Load(reader);
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dtCountry;
+        }
+
+
+
+
+    }
 }

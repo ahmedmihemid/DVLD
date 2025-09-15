@@ -127,7 +127,7 @@ namespace DVLD_DataAccess
             string lastName, DateTime dateofBirth, int gender, string address, string phone, string email,
             int narionalityCountryID, string imagePath)
         {
-            int newPersonID = 0;
+            int newPersonID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"INSERT INTO People 
                         (NationalNo, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath)
@@ -171,8 +171,45 @@ namespace DVLD_DataAccess
         }
 
 
+        public static DataTable GetPersonByID(int personID)
+        {
+            DataTable dt = new DataTable();
 
-       
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @" SELECT  PersonID, NationalNo, FirstName,  SecondName, ThirdName,  LastName,  DateOfBirth, 
+                CASE 
+                WHEN Gendor = 0 THEN 'MALE'
+                WHEN Gendor = 1 THEN 'FEMALE'
+                ELSE 'UNKNOWN'  
+                END AS GenderString,
+                Address,Phone,  Email ,People.NationalityCountryID , ImagePath FROM  People INNER JOIN Countries
+                ON People.NationalityCountryID = Countries.CountryID  WHERE PersonID = @personID ; ";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+
 
 
 

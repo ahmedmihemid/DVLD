@@ -48,11 +48,12 @@ namespace DVLD_DataAccess
 
 
 
-        public static DataTable GetCountryByID(int ID)
+        public static bool GetCountryByID(int ID, ref string CountryName)
         {
+            bool IsFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            DataTable dtCountry = new DataTable();
-            string query = "SELECT CountryID, CountryName FROM Countries WHERE CountryID = @CountryID;";
+      
+            string query = "SELECT * FROM Countries WHERE CountryID = @CountryID;";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@CountryID", ID);
 
@@ -61,9 +62,58 @@ namespace DVLD_DataAccess
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                if (reader.Read())
                 {
-                    dtCountry.Load(reader);
+                    CountryName = reader["CountryName"].ToString();
+                    IsFound = true;
+
+                }
+                else
+                {
+                    IsFound = false;
+                }
+
+                    reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
+
+
+        public static bool GetCountryByName(string CountryName, ref int ID)
+        {
+            bool IsFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+       
+            string query = "SELECT * FROM Countries WHERE CountryName = @CountryName;";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@CountryName", CountryName);
+
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    ID =(int) reader["CountryID"];
+                    IsFound = true;
+
+                }
+                else
+                {
+                    IsFound = false;
                 }
 
                 reader.Close();
@@ -73,16 +123,15 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                IsFound = false;
             }
             finally
             {
                 connection.Close();
             }
 
-            return dtCountry;
+            return IsFound;
         }
-
-
 
 
     }

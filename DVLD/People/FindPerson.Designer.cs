@@ -1,6 +1,6 @@
 ﻿namespace DVLD.People
 {
-    partial class PersonDetails
+    partial class FindPerson
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controlls.ctrlPersonCardWithFilter();
             this.button2 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.ctrlPersonCard1 = new DVLD.Controls.ctrlPersonCard();
+            this.TitleLEB = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // ctrlPersonCardWithFilter1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(303, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 34);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Person Details";
+            this.ctrlPersonCardWithFilter1.FilterEnabled = true;
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(-3, 78);
+            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            this.ctrlPersonCardWithFilter1.ShowAddPerson = true;
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(876, 447);
+            this.ctrlPersonCardWithFilter1.TabIndex = 0;
             // 
             // button2
             // 
@@ -52,45 +48,44 @@
             this.button2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = global::DVLD.Properties.Resources.Close_32;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(731, 384);
+            this.button2.Location = new System.Drawing.Point(735, 497);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(107, 50);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 5;
             this.button2.Text = "  Close";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // openFileDialog1
+            // TitleLEB
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.TitleLEB.AutoSize = true;
+            this.TitleLEB.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLEB.ForeColor = System.Drawing.Color.Red;
+            this.TitleLEB.Location = new System.Drawing.Point(340, 30);
+            this.TitleLEB.Name = "TitleLEB";
+            this.TitleLEB.Size = new System.Drawing.Size(192, 36);
+            this.TitleLEB.TabIndex = 6;
+            this.TitleLEB.Text = "Find Person";
             // 
-            // ctrlPersonCard1
-            // 
-            this.ctrlPersonCard1.Location = new System.Drawing.Point(11, 77);
-            this.ctrlPersonCard1.Name = "ctrlPersonCard1";
-            this.ctrlPersonCard1.Size = new System.Drawing.Size(827, 301);
-            this.ctrlPersonCard1.TabIndex = 5;
-            // 
-            // PersonDetails
+            // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 447);
-            this.Controls.Add(this.ctrlPersonCard1);
+            this.ClientSize = new System.Drawing.Size(871, 588);
+            this.Controls.Add(this.TitleLEB);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.label1);
-            this.Name = "PersonDetails";
-            this.Text = "PersonDetails";
+            this.Controls.Add(this.ctrlPersonCardWithFilter1);
+            this.Name = "Form2";
+            this.Text = "Form2";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+
+        private Controlls.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Controls.ctrlPersonCard ctrlPersonCard1;
+        private System.Windows.Forms.Label TitleLEB;
     }
 }

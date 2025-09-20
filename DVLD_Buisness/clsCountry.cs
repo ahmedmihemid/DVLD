@@ -10,69 +10,57 @@ namespace DVLD_Buisness
 {
     public class clsCountry
     {
-        private string _countryName;
-        private int _countryID;
-        public string CountryName
+        public int ID { set; get; }
+        public string CountryName { set; get; }
+
+        public clsCountry()
+
         {
-            get { return _countryName; }
-            set { _countryName = value; }
-        }
-        public int CountryID
-        {
-            get { return _countryID; }
-            set { _countryID = value; }
+            this.ID = -1;
+            this.CountryName = "";
+
         }
 
+        private clsCountry(int ID, string CountryName)
 
-
-
-
-
-
-
-        public static List<clsCountry> GetAllCountries()
         {
-            List<clsCountry> countries = new List<clsCountry>();
+            this.ID = ID;
+            this.CountryName = CountryName;
+        }
 
-            DataTable dtCountries = clsCountryData.GetAllCountries();
-
-            if (dtCountries != null && dtCountries.Rows.Count > 0)
+       public static clsCountry Find(int ID)
+        {
+         string countryName = "";
+            if(DVLD_DataAccess.clsCountryData.GetCountryByID(ID,ref countryName))
             {
-                foreach (DataRow row in dtCountries.Rows)
-                {
-                    clsCountry country = new clsCountry
-                    {
-                        _countryID = Convert.ToInt32(row["CountryID"]),
-                        _countryName = row["CountryName"].ToString()
-                    };
-                    countries.Add(country);
-                }
+                return new clsCountry(ID, countryName);
+            }
+            else
+            {
+                return null;
             }
 
-            return countries;
         }
 
-        public static clsCountry GetCountryByID(int ID)
+        public static clsCountry Find(string CountryName)
         {
-            DataTable dtCountry = clsCountryData.GetCountryByID(ID);
-            DataRow row = dtCountry.Rows[0];
+            int ID = -1;
+            if (DVLD_DataAccess.clsCountryData.GetCountryByName(CountryName, ref ID))
+            {
+                return new clsCountry(ID, CountryName);
+            }
+            else
+            {
+                return null;
+            }
 
-            clsCountry country = new clsCountry();
-            country._countryID = Convert.ToInt32(row["CountryID"]);
-            country._countryName = row["CountryName"].ToString();
-
-            return country;
         }
 
-        public static string getCountryName(int ID)
+
+        public static DataTable GetAllCountries()
         {
-            clsCountry country = GetCountryByID(ID);
-
-            return country.CountryName;
+            return DVLD_DataAccess.clsCountryData.GetAllCountries();
         }
-
-
-
 
 
     }

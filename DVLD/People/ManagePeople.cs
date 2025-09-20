@@ -13,102 +13,101 @@ namespace DVLD.People
 {
     public partial class ManagePeople : Form
     {
+        private static DataTable _dtAllPeople = clsPerson.GetAllPeople();
+
+
+
+        //only select the columns that you want to show in the grid
+        private DataTable _dtPeople = _dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNo",
+                                                         "FirstName", "SecondName", "ThirdName", "LastName",
+                                                         "GenderString", "DateOfBirth", "CountryName",
+                                                         "Phone", "Email");
+
+
         public ManagePeople()
         {
             InitializeComponent();
         }
 
-        private void ManagePeople_Load(object sender, EventArgs e)
+        private void _RefreshPeoplList()
         {
-           
-            PeopleDGV.DataSource = DVLD_Buisness.clsPerson.GetAllPeople();
-            RecordsLEB.Text = (PeopleDGV.Rows.Count - 1).ToString();
+               _dtAllPeople = clsPerson.GetAllPeople();
+
+             _dtPeople = _dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNo",
+                                                         "FirstName", "SecondName", "ThirdName", "LastName",
+                                                         "GenderString", "DateOfBirth", "CountryName",
+                                                         "Phone", "Email");
+
+            PeopleDGV.DataSource = _dtPeople;
+            RecordsLEB.Text = _dtPeople.Rows.Count.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AddEditPeople addEditPeople = new AddEditPeople();
-            addEditPeople.ShowDialog();
-        }
- 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FilterValueTB.Text = string.Empty;
-
-            if (comboBox1.SelectedIndex == 0)
-            {
-                FilterValueTB.Visible = false;
-                PeopleDGV.DataSource = DVLD_Buisness.clsPerson.GetAllPeople();
-                return;
-            }
-
-            FilterValueTB.Visible = true;
-        }
-
-        private void FilterValueTB_TextChanged(object sender, EventArgs e)
-        {
-            string columnName = comboBox1.SelectedItem.ToString();
-            string filterValue = FilterValueTB.Text.Trim();
-
-            PeopleDGV.DataSource = DVLD_Buisness.clsPerson.GetFilteredPeople(columnName, filterValue);
-            if (PeopleDGV.DataSource == null || ((DataTable)PeopleDGV.DataSource).Rows.Count == 0)
-            {
-                MessageBox.Show("No records found for the given filter.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                PeopleDGV.DataSource = DVLD_Buisness.clsPerson.GetAllPeople();
-                FilterValueTB.Text = string.Empty;
-            }
-
-            RecordsLEB.Text =( PeopleDGV.Rows.Count-1).ToString();
-
-        }
-
-        private void FilterValueTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(comboBox1.SelectedIndex == 1 || comboBox1.SelectedIndex == 9)
-            {
-                if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true; 
-                }
-            }
-
-        }
-
-       
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (PeopleDGV.CurrentRow != null)
-            {
-                int personId = Convert.ToInt32(PeopleDGV.CurrentRow.Cells["PersonID"].Value);
-                PersonDetails personDetails = new PersonDetails(personId);
-                personDetails.ShowDialog();
-
-            }
-
-
+            int personID = (int)PeopleDGV.CurrentRow.Cells[0].Value;
+            PersonDetails fr = new PersonDetails(personID);
+            fr.ShowDialog();
+            _RefreshPeoplList();
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddEditPeople addEditPeople = new AddEditPeople();
-            addEditPeople.ShowDialog();
+            AddEditPeople fr = new AddEditPeople();
+            fr.ShowDialog();
 
+            _RefreshPeoplList();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsPerson person = clsPerson.GetPersonByID(Convert.ToInt32(PeopleDGV.CurrentRow.Cells["PersonID"].Value));
+            int personID = (int)PeopleDGV.CurrentRow.Cells[0].Value;
+            AddEditPeople fr = new AddEditPeople(personID);
+            fr.ShowDialog();
 
-            if (person != null) 
+            _RefreshPeoplList();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("Are you sure you want to delete Person [" + PeopleDGV.CurrentRow.Cells[0].Value + "]", "Confirm Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                AddEditPeople addEditPeople = new AddEditPeople(person);
-                addEditPeople.ShowDialog();
+
+
+                //Perform Delele and refresh
+                if (clsPerson.DeletePersonByID((int)PeopleDGV.CurrentRow.Cells[0].Value))
+                {
+                    MessageBox.Show("Person Deleted Successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _RefreshPeoplList();
+                }
+
+                else
+                    MessageBox.Show("Person was not deleted because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            else
-            {
-                MessageBox.Show("Error retrieving person data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+        }
+
+        private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+        }
+
+        private void phoneCallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddEditPeople fr = new AddEditPeople();
+            fr.ShowDialog();
+
+            _RefreshPeoplList();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -116,25 +115,157 @@ namespace DVLD.People
             this.Close();
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ManagePeople_Load(object sender, EventArgs e)
         {
-            int personId = Convert.ToInt32(PeopleDGV.CurrentRow.Cells["PersonID"].Value);
-
-            if(DVLD_Buisness.clsPerson.DeletePersonByID(personId))
+            PeopleDGV.DataSource = _dtPeople;
+            comboBox1.SelectedIndex = 0;
+            RecordsLEB.Text = PeopleDGV.Rows.Count.ToString();
+            if (PeopleDGV.Rows.Count > 0)
             {
-                MessageBox.Show("Person deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                PeopleDGV.DataSource = DVLD_Buisness.clsPerson.GetAllPeople();
-                RecordsLEB.Text = (PeopleDGV.Rows.Count - 1).ToString();
+
+                PeopleDGV.Columns[0].HeaderText = "Person ID";
+                PeopleDGV.Columns[0].Width = 90;
+
+                PeopleDGV.Columns[1].HeaderText = "National No";
+                PeopleDGV.Columns[1].Width = 90;
+
+
+                PeopleDGV.Columns[2].HeaderText = "First Name";
+                PeopleDGV.Columns[2].Width = 100;
+
+                PeopleDGV.Columns[3].HeaderText = "Second Name";
+                PeopleDGV.Columns[3].Width = 120;
+
+
+                PeopleDGV.Columns[4].HeaderText = "Third Name";
+                PeopleDGV.Columns[4].Width = 100;
+
+                PeopleDGV.Columns[5].HeaderText = "Last Name";
+                PeopleDGV.Columns[5].Width = 100;
+
+                PeopleDGV.Columns[6].HeaderText = "Gendor";
+                PeopleDGV.Columns[6].Width = 80;
+
+                PeopleDGV.Columns[7].HeaderText = "Date Of Birth";
+                PeopleDGV.Columns[7].Width = 130;
+
+                PeopleDGV.Columns[8].HeaderText = "Nationality";
+                PeopleDGV.Columns[8].Width = 100;
+
+
+                PeopleDGV.Columns[9].HeaderText = "Phone";
+                PeopleDGV.Columns[9].Width = 110;
+
+
+                PeopleDGV.Columns[10].HeaderText = "Email";
+                PeopleDGV.Columns[10].Width = 160;
+            }
+        }
+
+        private void FilterValueTB_TextChanged(object sender, EventArgs e)
+        {
+
+            string FilterColumn = "";
+            //Map Selected Filter to real Column name 
+            switch (comboBox1.Text)
+            {
+                case "Person ID":
+                    FilterColumn = "PersonID";
+                    break;
+
+                case "National No":
+                    FilterColumn = "NationalNo";
+                    break;
+
+                case "First Name":
+                    FilterColumn = "FirstName";
+                    break;
+
+                case "Second Name":
+                    FilterColumn = "SecondName";
+                    break;
+
+                case "Third Name":
+                    FilterColumn = "ThirdName";
+                    break;
+
+                case "Last Name":
+                    FilterColumn = "LastName";
+                    break;
+
+                case "Nationality":
+                    FilterColumn = "CountryName";
+                    break;
+
+                case "Gendor":
+                    FilterColumn = "GendorCaption";
+                    break;
+
+                case "Phone":
+                    FilterColumn = "Phone";
+                    break;
+
+                case "Email":
+                    FilterColumn = "Email";
+                    break;
+
+                default:
+                    FilterColumn = "None";
+                    break;
+
+            }
+
+            //Reset the filters in case nothing selected or filter value conains nothing.
+            if (FilterValueTB.Text.Trim() == "" || FilterColumn == "None")
+            {
+                _dtPeople.DefaultView.RowFilter = "";
+                RecordsLEB.Text = PeopleDGV.Rows.Count.ToString();
+                return;
+            }
+
+
+            if (FilterColumn == "PersonID")
+            { 
+                //in this case we deal with integer not string.
+                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, FilterValueTB.Text.Trim());
             }
             else
-            {
-                MessageBox.Show("Error deleting person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            { 
+                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, FilterValueTB.Text.Trim());
             }
+
+            RecordsLEB.Text = PeopleDGV.Rows.Count.ToString();
+
+
 
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterValueTB.Visible = (comboBox1.Text != "None");
 
+            if (FilterValueTB.Visible)
+            {
+                FilterValueTB.Text = "";
+                FilterValueTB.Focus();
+            }
+        }
 
+     
+        private void PeopleDGV_DoubleClick(object sender, EventArgs e)
+        {
+            Form frm = new PersonDetails((int)PeopleDGV.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+            _RefreshPeoplList();
+        }
 
+        private void FilterValueTB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        
+            //we allow number incase person id is selected.
+            if (comboBox1.Text == "Person ID")
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        
+        }
     }
 }

@@ -11,192 +11,80 @@ namespace DVLD_Buisness
     public class clsPerson
     {
 
-        public enum enMode { EmptyMode = 0, UpdateMode = 1, AddNewMode = 2, ViewMode=3 }
+        public enum enMode { AddNew = 0, Update = 1 };
+        public enMode Mode = enMode.AddNew;
 
-        private enMode _Mode;
-        private int PersonID;
+        public int PersonID { set; get; }
+        public string FirstName { set; get; }
+        public string SecondName { set; get; }
+        public string ThirdName { set; get; }
+        public string LastName { set; get; }
+        public string FullName
+        {
+            get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; }
 
-        private string _NationalNo;
+        }
+        public string NationalNo { set; get; }
+        public DateTime DateOfBirth { set; get; }
+        public short Gendor { set; get; }
+        public string Address { set; get; }
+        public string Phone { set; get; }
+        public string Email { set; get; }
+        public int NationalityCountryID { set; get; }
 
-        private string _FirstName;
-
-        private string _SecondName;
-
-        private string _ThirdName;
-
-        private string _LastName;
-
-        private DateTime _DateOfBirth;
-
-        private string _Gender;
-
-        private string _Address;
-
-        private string _Phone;
-
-        private string _Email;
-
-        private int _NationalityCountryID;
+        public clsCountry CountryInfo;
 
         private string _ImagePath;
 
-
-
-
-        public clsPerson()
-        {
-            _Mode = enMode.EmptyMode;
-            //PersonID = 0;
-            _NationalNo = string.Empty;
-            _FirstName = string.Empty;
-            _SecondName = string.Empty;
-            _ThirdName = string.Empty;
-            _LastName = string.Empty;
-            _DateOfBirth = DateTime.MinValue;
-            _Gender = string.Empty;
-            _Address = string.Empty;
-            _Phone = string.Empty;
-            _Email = string.Empty;
-            _NationalityCountryID = 0;
-            _ImagePath = string.Empty;
-
-        }
-
-        public clsPerson(enMode mode , string nationalNo, string firstName, string secondName, string thirdName,
-            string lastName, DateTime dateofBirth, string gender, string address, string phone, string email,
-            int narionalityCountryID, string imagePath)
-        {
-            _Mode = mode;
-            //PersonID = personID;
-            _NationalNo = nationalNo;
-            _FirstName = firstName;
-            _SecondName = secondName;
-            _ThirdName = thirdName;
-            _LastName = lastName;
-            _DateOfBirth = dateofBirth;
-            _Gender = gender;
-            _Address = address;
-            _Phone = phone;
-            _Email = email;
-            _NationalityCountryID = narionalityCountryID;
-            _ImagePath = imagePath;
-        }
-
-
-
-
-
-
-
-        // Properties (getters/setters)
-        public enMode Mode
-        {
-            get => _Mode;
-            set => _Mode = value;
-        }
-
-        public int Id
-        {
-            get => PersonID;
-            //set => PersonID = value;
-        }
-
-        public string NationalNo
-        {
-            get => _NationalNo;
-            set => _NationalNo = value;
-        }
-
-        public string FirstName
-        {
-            get => _FirstName;
-            set => _FirstName = value;
-        }
-
-        public string SecondName
-        {
-            get => _SecondName;
-            set => _SecondName = value;
-        }
-
-        public string ThirdName
-        {
-            get => _ThirdName;
-            set => _ThirdName = value;
-        }
-
-        public string LastName
-        {
-            get => _LastName;
-            set => _LastName = value;
-        }
-
-        public DateTime DateOfBirth
-        {
-            get => _DateOfBirth;
-            set => _DateOfBirth = value;
-        }
-
-        public string Gender
-        {
-            get => _Gender;
-            set => _Gender = value;
-        }
-
-        public string Address
-        {
-            get => _Address;
-            set => _Address = value;
-        }
-
-        public string Phone
-        {
-            get => _Phone;
-            set => _Phone = value;
-        }
-
-        public string Email
-        {
-            get => _Email;
-            set => _Email = value;
-        }
-
-        public int NationalityCountryID
-        {
-            get => _NationalityCountryID;
-            set => _NationalityCountryID = value;
-        }
-
         public string ImagePath
         {
-            get => _ImagePath;
-            set => _ImagePath = value;
+            get { return _ImagePath; }
+            set { _ImagePath = value; }
         }
 
-        public string FullName
+        public clsPerson()
+
         {
-            get => $"{_FirstName} {_SecondName} {_ThirdName} {_LastName}";
+            this.PersonID = -1;
+            this.FirstName = "";
+            this.SecondName = "";
+            this.ThirdName = "";
+            this.LastName = "";
+            this.DateOfBirth = DateTime.Now;
+            this.Address = "";
+            this.Phone = "";
+            this.Email = "";
+            this.NationalityCountryID = -1;
+            this.ImagePath = "";
+
+            Mode = enMode.AddNew;
         }
 
+        private clsPerson(int PersonID, string FirstName, string SecondName, string ThirdName,
+            string LastName, string NationalNo, DateTime DateOfBirth, short Gendor,
+             string Address, string Phone, string Email,
+            int NationalityCountryID, string ImagePath)
 
-
-        public static bool IsEmpty(clsPerson person)
         {
-          return( person._Mode == enMode.EmptyMode);
+            this.PersonID = PersonID;
+            this.FirstName = FirstName;
+            this.SecondName = SecondName;
+            this.ThirdName = ThirdName;
+            this.LastName = LastName;
+            this.NationalNo = NationalNo;
+            this.DateOfBirth = DateOfBirth;
+            this.Gendor = Gendor;
+            this.Address = Address;
+            this.Phone = Phone;
+            this.Email = Email;
+            this.NationalityCountryID = NationalityCountryID;
+            this.ImagePath = ImagePath;
+            this.CountryInfo = clsCountry.Find(NationalityCountryID);
+            Mode = enMode.Update;
         }
 
-        public static clsPerson GetNewPersonObject()
-        {
-            return new clsPerson(enMode.AddNewMode,"","", "", "", "", DateTime.MinValue, "", "", "", "", 0, "");
-        }
 
-        private static byte GetGenderAsByte(string strGender)
-        {
-            if(strGender=="Male")
-                return 0;
-            else 
-                return 1;
-        }
+
 
 
         public static DataTable GetAllPeople()
@@ -205,63 +93,116 @@ namespace DVLD_Buisness
         }
 
 
-        public static DataTable GetFilteredPeople(string columnName, string filterValue)
-        {
-            return DVLD_DataAccess.clsPeopleData.GetFilteredPeople(columnName, filterValue);
-        }
+        //public static DataTable GetFilteredPeople(string columnName, string filterValue)
+        //{
+        //    return DVLD_DataAccess.clsPeopleData.GetFilteredPeople(columnName, filterValue);
+        //}
       
-        public static bool IdIsExist(string nationalNo)
+        public static bool IsExist(string nationalNo)
         {
             return DVLD_DataAccess.clsPeopleData.IdIsExist(nationalNo);
         }
 
 
-        public static int  AddNewPerson(clsPerson newPerson)
+        public static bool IsExist(int PersonID)
         {
-            return DVLD_DataAccess.clsPeopleData.AddNewPerson(newPerson._NationalNo, newPerson._FirstName,
-                newPerson._SecondName, newPerson._ThirdName, newPerson._LastName, newPerson._DateOfBirth,
-                GetGenderAsByte(newPerson.Gender), newPerson._Address, newPerson._Phone,
-                newPerson._Email, newPerson._NationalityCountryID, newPerson._ImagePath);
+            return DVLD_DataAccess.clsPeopleData.IdIsExist(PersonID);
+        }
 
+        private bool _AddNewPerson()
+         {
+            //call DataAccess Layer 
+
+            this.PersonID = DVLD_DataAccess.clsPeopleData.AddNewPerson(
+                this.FirstName,this.SecondName ,this.ThirdName,
+                this.LastName,this.NationalNo,
+                this.DateOfBirth, this.Gendor, this.Address, this.Phone, this.Email,
+                this.NationalityCountryID, this.ImagePath);
+
+            return (this.PersonID != -1);
+         }
+
+        private bool _UpdatePerson()
+        {
+            //call DataAccess Layer 
+
+            return DVLD_DataAccess.clsPeopleData.UpdatePerson(
+                this.PersonID, this.FirstName,this.SecondName,this.ThirdName,
+                this.LastName, this.NationalNo, this.DateOfBirth, this.Gendor,
+                this.Address, this.Phone, this.Email, 
+                  this.NationalityCountryID, this.ImagePath);
         }
 
 
-        public static bool UpdatePerson(clsPerson Person)
-        {
-            return DVLD_DataAccess.clsPeopleData.UpdatePerson(Person.Id,Person._NationalNo, Person._FirstName,
-                Person._SecondName, Person._ThirdName, Person._LastName, Person._DateOfBirth,
-                GetGenderAsByte(Person.Gender), Person._Address, Person._Phone,
-                Person._Email, Person._NationalityCountryID, Person._ImagePath);
-
-        }
-
-
-
-        public static clsPerson GetPersonByID(int personID)
+        public static clsPerson Find(int PersonID)
         {
 
-            DataTable dt = DVLD_DataAccess.clsPeopleData.GetPersonByID(personID);
-            DataRow dr = dt.Rows[0];
-            clsPerson person = new clsPerson();
+            string FirstName = "", SecondName = "", ThirdName = "", LastName = "", NationalNo = "", Email = "", Phone = "", Address = "", ImagePath = "";
+            DateTime DateOfBirth = DateTime.Now;
+            int NationalityCountryID = -1;
+            short Gendor = 0;
 
-            person._Mode = enMode.ViewMode;
-            person.PersonID = Convert.ToInt32(dr["PersonID"]);
-            person._NationalNo = dr["NationalNo"].ToString();
-            person._FirstName = dr["FirstName"].ToString();
-            person._SecondName = dr["SecondName"].ToString();
-            person._ThirdName = dr["ThirdName"].ToString();
-            person._LastName = dr["LastName"].ToString();
-            person._DateOfBirth = Convert.ToDateTime(dr["DateOfBirth"]);
-            person._Gender = dr["GenderString"].ToString();
-            person._Address = dr["Address"].ToString();
-            person._Phone = dr["Phone"].ToString();
-            person._Email = dr["Email"].ToString();
-            person._NationalityCountryID = Convert.ToInt32(dr["NationalityCountryID"]);
-            person._ImagePath = dr["ImagePath"].ToString();
+            bool IsFound = DVLD_DataAccess.clsPeopleData.GetPersonInfoByID
+                                (
+                                    PersonID, ref FirstName, ref SecondName,
+                                    ref ThirdName, ref LastName, ref NationalNo, ref DateOfBirth,
+                                    ref Gendor, ref Address, ref Phone, ref Email,
+                                    ref NationalityCountryID, ref ImagePath
+                                );
 
-            return person;
-
+            if (IsFound)
+                //we return new object of that person with the right data
+                return new clsPerson(PersonID, FirstName, SecondName, ThirdName, LastName,
+                          NationalNo, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
+            else
+                return null;
         }
+
+        public static clsPerson Find(string NationalNo)
+        {
+            string FirstName = "", SecondName = "", ThirdName = "", LastName = "", Email = "", Phone = "", Address = "", ImagePath = "";
+            DateTime DateOfBirth = DateTime.Now;
+            int PersonID = -1, NationalityCountryID = -1;
+            short Gendor = 0;
+
+            bool IsFound = DVLD_DataAccess.clsPeopleData.GetPersonInfoByNationalNo
+                                (
+                                     ref PersonID, ref FirstName, ref SecondName,
+                                    ref ThirdName, ref LastName, NationalNo, ref DateOfBirth,
+                                    ref Gendor, ref Address, ref Phone, ref Email,
+                                    ref NationalityCountryID, ref ImagePath
+                                );
+
+            if (IsFound)
+
+                return new clsPerson(PersonID, FirstName, SecondName, ThirdName, LastName,
+                          NationalNo, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
+            else
+                return null;
+        }
+
+        public bool Save()
+        {
+          switch (Mode)
+            {
+                case enMode.AddNew:
+                    if(_AddNewPerson())
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+                    return _UpdatePerson();
+               
+            }
+            return false;
+        }
+
 
         public static bool DeletePersonByID(int personID)
         {

@@ -13,11 +13,18 @@ namespace DVLD.People
 {
     public partial class PersonDetails : Form
     {
-        private int _personID;
-        public PersonDetails(int personID)
+
+
+        public PersonDetails(int PersonID)
         {
             InitializeComponent();
-            _personID = personID;
+            ctrlPersonCard1.LoadPersonInfo(PersonID);
+        }
+
+        public PersonDetails(string NationalNo)
+        {
+            InitializeComponent();
+            ctrlPersonCard1.LoadPersonInfo(NationalNo);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -25,11 +32,7 @@ namespace DVLD.People
             this.Close();
         }
 
-        private void PersonDetails_Load(object sender, EventArgs e)
-        {
-            personCard1.LoadPersonData(_personID);
-
-        }
+       
 
        
     }

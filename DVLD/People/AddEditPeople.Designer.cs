@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.TitleLEB = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.PersonIdLE = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,7 +42,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.AddressTB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.FmaleRB = new System.Windows.Forms.RadioButton();
+            this.FamaleRB = new System.Windows.Forms.RadioButton();
             this.MaleRB = new System.Windows.Forms.RadioButton();
             this.DateOfBirthDTP = new System.Windows.Forms.DateTimePicker();
             this.CountryCB = new System.Windows.Forms.ComboBox();
@@ -69,22 +69,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // TitleLEB
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(334, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 36);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Add New Person";
+            this.TitleLEB.AutoSize = true;
+            this.TitleLEB.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLEB.ForeColor = System.Drawing.Color.Red;
+            this.TitleLEB.Location = new System.Drawing.Point(331, 9);
+            this.TitleLEB.Name = "TitleLEB";
+            this.TitleLEB.Size = new System.Drawing.Size(264, 36);
+            this.TitleLEB.TabIndex = 1;
+            this.TitleLEB.Text = "Add New Person";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 103);
+            this.label2.Location = new System.Drawing.Point(9, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 22);
             this.label2.TabIndex = 2;
@@ -94,7 +94,7 @@
             // 
             this.PersonIdLE.AutoSize = true;
             this.PersonIdLE.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PersonIdLE.Location = new System.Drawing.Point(131, 103);
+            this.PersonIdLE.Location = new System.Drawing.Point(128, 58);
             this.PersonIdLE.Name = "PersonIdLE";
             this.PersonIdLE.Size = new System.Drawing.Size(46, 22);
             this.PersonIdLE.TabIndex = 3;
@@ -111,7 +111,7 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.AddressTB);
             this.groupBox1.Controls.Add(this.label5);
@@ -119,7 +119,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.FmaleRB);
+            this.groupBox1.Controls.Add(this.FamaleRB);
             this.groupBox1.Controls.Add(this.MaleRB);
             this.groupBox1.Controls.Add(this.DateOfBirthDTP);
             this.groupBox1.Controls.Add(this.CountryCB);
@@ -131,7 +131,7 @@
             this.groupBox1.Controls.Add(this.FirstNameTB);
             this.groupBox1.Controls.Add(this.PersonImagePB);
             this.groupBox1.Controls.Add(this.LastNameTB);
-            this.groupBox1.Location = new System.Drawing.Point(16, 147);
+            this.groupBox1.Location = new System.Drawing.Point(13, 102);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(921, 418);
             this.groupBox1.TabIndex = 4;
@@ -148,7 +148,7 @@
             this.RemoveLL.TabStop = true;
             this.RemoveLL.Text = "Remove";
             this.RemoveLL.Visible = false;
-            this.RemoveLL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RemoveLL_LinkClicked_1);
+            this.RemoveLL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RemoveLL_LinkClicked);
             // 
             // SetImageLL
             // 
@@ -232,16 +232,17 @@
             this.label6.TabIndex = 59;
             this.label6.Text = "Phone:";
             // 
-            // button2
+            // btnClose
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(486, 350);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 36);
-            this.button2.TabIndex = 58;
-            this.button2.Text = "Close";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnClose.BackColor = System.Drawing.Color.White;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(486, 350);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(93, 36);
+            this.btnClose.TabIndex = 58;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -252,7 +253,7 @@
             this.btnSave.TabIndex = 57;
             this.btnSave.Text = "Sava";
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // AddressTB
             // 
@@ -264,7 +265,7 @@
             this.AddressTB.TabIndex = 49;
             this.AddressTB.TabStop = false;
             this.AddressTB.Text = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
-            this.AddressTB.Validating += new System.ComponentModel.CancelEventHandler(this.AddressTB_Validating_1);
+            this.AddressTB.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // label5
             // 
@@ -316,18 +317,18 @@
             this.label14.TabIndex = 52;
             this.label14.Text = "Name:";
             // 
-            // FmaleRB
+            // FamaleRB
             // 
-            this.FmaleRB.AutoSize = true;
-            this.FmaleRB.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FmaleRB.Location = new System.Drawing.Point(228, 129);
-            this.FmaleRB.Name = "FmaleRB";
-            this.FmaleRB.Size = new System.Drawing.Size(64, 20);
-            this.FmaleRB.TabIndex = 51;
-            this.FmaleRB.TabStop = true;
-            this.FmaleRB.Text = "Fmale";
-            this.FmaleRB.UseVisualStyleBackColor = true;
-            this.FmaleRB.CheckedChanged += new System.EventHandler(this.FmaleRB_CheckedChanged_1);
+            this.FamaleRB.AutoSize = true;
+            this.FamaleRB.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FamaleRB.Location = new System.Drawing.Point(228, 129);
+            this.FamaleRB.Name = "FamaleRB";
+            this.FamaleRB.Size = new System.Drawing.Size(64, 20);
+            this.FamaleRB.TabIndex = 51;
+            this.FamaleRB.TabStop = true;
+            this.FamaleRB.Text = "Fmale";
+            this.FamaleRB.UseVisualStyleBackColor = true;
+            this.FamaleRB.Click += new System.EventHandler(this.FamaleRB_Click);
             // 
             // MaleRB
             // 
@@ -340,7 +341,7 @@
             this.MaleRB.TabStop = true;
             this.MaleRB.Text = "Male";
             this.MaleRB.UseVisualStyleBackColor = true;
-            this.MaleRB.CheckedChanged += new System.EventHandler(this.MaleRB_CheckedChanged_1);
+            this.MaleRB.Click += new System.EventHandler(this.MaleRB_Click);
             // 
             // DateOfBirthDTP
             // 
@@ -368,7 +369,7 @@
             this.PhoneTB.Name = "PhoneTB";
             this.PhoneTB.Size = new System.Drawing.Size(162, 29);
             this.PhoneTB.TabIndex = 47;
-            this.PhoneTB.Validating += new System.ComponentModel.CancelEventHandler(this.PhoneTB_Validating_1);
+            this.PhoneTB.Validating += new System.ComponentModel.CancelEventHandler(this.PhoneTB_Validating);
             // 
             // NationalNoTB
             // 
@@ -377,7 +378,7 @@
             this.NationalNoTB.Name = "NationalNoTB";
             this.NationalNoTB.Size = new System.Drawing.Size(162, 29);
             this.NationalNoTB.TabIndex = 44;
-            this.NationalNoTB.Validating += new System.ComponentModel.CancelEventHandler(this.NationalNoTB_Validating_1);
+            this.NationalNoTB.Validating += new System.ComponentModel.CancelEventHandler(this.NationalNoTB_Validating);
             // 
             // EmailTB
             // 
@@ -386,7 +387,7 @@
             this.EmailTB.Name = "EmailTB";
             this.EmailTB.Size = new System.Drawing.Size(162, 29);
             this.EmailTB.TabIndex = 48;
-            this.EmailTB.Validating += new System.ComponentModel.CancelEventHandler(this.EmailTB_Validating_1);
+            this.EmailTB.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // ThirdNameTB
             // 
@@ -395,7 +396,6 @@
             this.ThirdNameTB.Name = "ThirdNameTB";
             this.ThirdNameTB.Size = new System.Drawing.Size(162, 29);
             this.ThirdNameTB.TabIndex = 41;
-            this.ThirdNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.ThirdNameTB_Validating_1);
             // 
             // SecondNameTB
             // 
@@ -404,7 +404,7 @@
             this.SecondNameTB.Name = "SecondNameTB";
             this.SecondNameTB.Size = new System.Drawing.Size(162, 29);
             this.SecondNameTB.TabIndex = 40;
-            this.SecondNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.SecondNameTB_Validating_1);
+            this.SecondNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // FirstNameTB
             // 
@@ -413,7 +413,7 @@
             this.FirstNameTB.Name = "FirstNameTB";
             this.FirstNameTB.Size = new System.Drawing.Size(162, 29);
             this.FirstNameTB.TabIndex = 39;
-            this.FirstNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.FirstNameTB_Validating_1);
+            this.FirstNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // PersonImagePB
             // 
@@ -432,7 +432,7 @@
             this.LastNameTB.Name = "LastNameTB";
             this.LastNameTB.Size = new System.Drawing.Size(162, 29);
             this.LastNameTB.TabIndex = 42;
-            this.LastNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.LastNameTB_Validating_1);
+            this.LastNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // errorProvider1
             // 
@@ -444,13 +444,17 @@
             // 
             // AddEditPeople
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(949, 597);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(949, 533);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.PersonIdLE);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.TitleLEB);
+            this.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddEditPeople";
             this.Text = "AddEditPeople";
             this.Load += new System.EventHandler(this.AddEditPeople_Load);
@@ -464,11 +468,10 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label TitleLEB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label PersonIdLE;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.LinkLabel RemoveLL;
         private System.Windows.Forms.LinkLabel SetImageLL;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -477,7 +480,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox AddressTB;
         private System.Windows.Forms.Label label5;
@@ -485,7 +488,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RadioButton FmaleRB;
+        private System.Windows.Forms.RadioButton FamaleRB;
         private System.Windows.Forms.RadioButton MaleRB;
         private System.Windows.Forms.DateTimePicker DateOfBirthDTP;
         private System.Windows.Forms.ComboBox CountryCB;
@@ -499,5 +502,6 @@
         private System.Windows.Forms.TextBox LastNameTB;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.LinkLabel RemoveLL;
     }
 }

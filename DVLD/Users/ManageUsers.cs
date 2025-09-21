@@ -15,8 +15,6 @@ namespace DVLD.Users
     {
 
         private static  DataTable _dtAllUsers = DVLD_Buisness.clsUser.GetAllUser();
-
-
         private DataTable _dtUsers = _dtAllUsers.DefaultView.ToTable(false, "UserID", "PersonID", "FullName", "UserName", "IsActive");
 
 
@@ -24,9 +22,6 @@ namespace DVLD.Users
         {
             InitializeComponent();
         }
-
-
-
 
         private void _ReafreshData()
         {
@@ -37,6 +32,7 @@ namespace DVLD.Users
 
         private void ManageUsers_Load(object sender, EventArgs e)
         {
+
             UsersDGV.DataSource = _dtUsers;
             comboBox1.SelectedIndex = 0;
             RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
@@ -209,6 +205,29 @@ namespace DVLD.Users
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            AddEditUsers fr = new AddEditUsers();
+            fr.ShowDialog();
+            _ReafreshData();
+        }
+
+
+        private void showDetailsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
+            UserDetails fr = new UserDetails(userId);
+            fr.ShowDialog();
+        }
+
+        private void UsersDGV_DoubleClick(object sender, EventArgs e)
+        {
+            int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
+            UserDetails fr = new UserDetails(userId);
+            fr.ShowDialog();
+            _ReafreshData();
+        }
+
+        private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddEditUsers fr = new AddEditUsers();
             fr.ShowDialog();

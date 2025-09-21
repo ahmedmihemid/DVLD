@@ -53,6 +53,49 @@ namespace DVLD_DataAccess
         }
 
 
+        public static bool FindByUserID(int UserID, ref string UserName, ref int PersonID, ref string Password, ref bool IsActive)
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT * FROM Users WHERE UserID = @UserID; ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.Add("@UserID", UserID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    UserName = (string)reader["UserName"];
+                    PersonID = (int)reader["PersonID"];
+                    Password = (string)reader["Password"];
+                    IsActive = (bool)reader["IsActive"];
+                    IsFound = true;
+                }
+                IsFound = false;
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return IsFound;
+        }
+
+
+
+
+
         public static bool Login(string userName, string password , ref int userID, ref int personID,  ref bool isActive)
         {
             bool IsFound = false;

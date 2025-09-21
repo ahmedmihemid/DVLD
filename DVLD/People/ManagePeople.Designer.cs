@@ -56,6 +56,7 @@
             // 
             // PeopleDGV
             // 
+            this.PeopleDGV.AllowUserToAddRows = false;
             this.PeopleDGV.BackgroundColor = System.Drawing.Color.White;
             this.PeopleDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PeopleDGV.ContextMenuStrip = this.personCMS;

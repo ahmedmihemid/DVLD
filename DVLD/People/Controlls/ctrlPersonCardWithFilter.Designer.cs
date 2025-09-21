@@ -60,6 +60,7 @@
             // btnAddNewPerson
             // 
             this.btnAddNewPerson.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddNewPerson.Image = global::DVLD.Properties.Resources.AddPerson_32;
             this.btnAddNewPerson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddNewPerson.Location = new System.Drawing.Point(594, 20);
             this.btnAddNewPerson.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -67,6 +68,7 @@
             this.btnAddNewPerson.Size = new System.Drawing.Size(44, 37);
             this.btnAddNewPerson.TabIndex = 20;
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
+            this.btnAddNewPerson.Click += new System.EventHandler(this.btnAddNewPerson_Click_1);
             // 
             // btnFind
             // 
@@ -77,26 +79,29 @@
             this.btnFind.Size = new System.Drawing.Size(44, 37);
             this.btnFind.TabIndex = 18;
             this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click_1);
             // 
             // cbFilterBy
             // 
             this.cbFilterBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilterBy.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFilterBy.FormattingEnabled = true;
             this.cbFilterBy.Items.AddRange(new object[] {
             "National No.",
             "Person ID"});
             this.cbFilterBy.Location = new System.Drawing.Point(96, 25);
             this.cbFilterBy.Name = "cbFilterBy";
-            this.cbFilterBy.Size = new System.Drawing.Size(210, 24);
+            this.cbFilterBy.Size = new System.Drawing.Size(210, 29);
             this.cbFilterBy.TabIndex = 16;
             // 
             // txtFilterValue
             // 
             this.txtFilterValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFilterValue.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFilterValue.Location = new System.Drawing.Point(313, 25);
             this.txtFilterValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFilterValue.Name = "txtFilterValue";
-            this.txtFilterValue.Size = new System.Drawing.Size(214, 24);
+            this.txtFilterValue.Size = new System.Drawing.Size(214, 28);
             this.txtFilterValue.TabIndex = 17;
             // 
             // label1

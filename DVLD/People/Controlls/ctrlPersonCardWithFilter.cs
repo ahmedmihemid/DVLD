@@ -104,18 +104,6 @@ namespace DVLD.People.Controlls
             txtFilterValue.Focus();
         }
 
-        private void btnFind_Click(object sender, EventArgs e)
-        {
-            if (!this.ValidateChildren())
-            {
-                //Here we dont continue becuase the form is not valid
-                MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-
-            }
-
-            FindNow();
-        }
 
         private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
         {
@@ -139,13 +127,7 @@ namespace DVLD.People.Controlls
             }
         }
 
-        private void btnAddNewPerson_Click(object sender, EventArgs e)
-        {
-            AddEditPeople frm1 = new AddEditPeople();
-            frm1.DataBack += DataBackEvent; // Subscribe to the event
-            frm1.ShowDialog();
-
-        }
+     
 
         private void DataBackEvent(object sender, int PersonID)
         {
@@ -183,6 +165,26 @@ namespace DVLD.People.Controlls
         public ctrlPersonCardWithFilter()
         {
             InitializeComponent();
+        }
+
+        private void btnFind_Click_1(object sender, EventArgs e)
+        {
+            if (!this.ValidateChildren())
+            {
+                //Here we dont continue becuase the form is not valid
+                MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            }
+
+            FindNow();
+        }
+
+        private void btnAddNewPerson_Click_1(object sender, EventArgs e)
+        {
+            AddEditPeople frm1 = new AddEditPeople();
+            frm1.DataBack += DataBackEvent; // Subscribe to the event
+            frm1.ShowDialog();
         }
     }
 }

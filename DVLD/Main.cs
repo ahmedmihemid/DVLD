@@ -1,4 +1,5 @@
 ﻿using DVLD.People;
+using DVLD.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,7 +58,8 @@ namespace DVLD
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ManageUsers fr = new ManageUsers();
+            fr.ShowDialog();
         }
 
 

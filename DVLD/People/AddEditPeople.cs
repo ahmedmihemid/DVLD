@@ -37,13 +37,10 @@ namespace DVLD.People
         public AddEditPeople()
         {
             InitializeComponent();
-            //_Mode = enMode.AddNew;
-
         }
 
         public AddEditPeople(int PersonID)
         {
-
             InitializeComponent();
             _Mode = enMode.Update;
             _PersonID = PersonID;
@@ -359,10 +356,11 @@ namespace DVLD.People
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            
-
             this.Close();
-
         }
+
+
+
+
     }
 }

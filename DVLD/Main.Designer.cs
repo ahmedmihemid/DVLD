@@ -116,27 +116,27 @@
             // 
             this.curentUserInfoToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonDetails_321;
             this.curentUserInfoToolStripMenuItem.Name = "curentUserInfoToolStripMenuItem";
-            this.curentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(263, 32);
+            this.curentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(303, 66);
             this.curentUserInfoToolStripMenuItem.Text = "Curent User Info";
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Image = global::DVLD.Properties.Resources.Password_32;
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(263, 32);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(303, 66);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(260, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(300, 6);
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // singOutToolStripMenuItem
             // 
             this.singOutToolStripMenuItem.Image = global::DVLD.Properties.Resources.sign_out_32__2;
             this.singOutToolStripMenuItem.Name = "singOutToolStripMenuItem";
-            this.singOutToolStripMenuItem.Size = new System.Drawing.Size(263, 32);
+            this.singOutToolStripMenuItem.Size = new System.Drawing.Size(303, 66);
             this.singOutToolStripMenuItem.Text = "Sing Out";
             this.singOutToolStripMenuItem.Click += new System.EventHandler(this.singOutToolStripMenuItem_Click);
             // 

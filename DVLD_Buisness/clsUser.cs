@@ -119,6 +119,11 @@ namespace DVLD_Buisness
                 (this.UserID, this.UserName, this.Password, this.IsActive);
         }
 
+        public static bool DeleteUser(int UserID)
+        {
+           return   DVLD_DataAccess.clsUserData.DeleteUser(UserID);
+        }
+
         public bool Save()
         {
             switch (Mode)

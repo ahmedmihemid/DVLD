@@ -243,5 +243,26 @@ namespace DVLD.Users
             fr.ShowDialog();
             _ReafreshData();
         }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are you sure you want to delete this user?","Delete User",MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+            int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
+            if(DVLD_Buisness.clsUser.DeleteUser(userId))
+            {
+                MessageBox.Show("User deleted successfully.", "Delete User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ReafreshData();
+            }
+            else
+            {
+                MessageBox.Show("Error deleting user.", "Delete User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
     }
 }

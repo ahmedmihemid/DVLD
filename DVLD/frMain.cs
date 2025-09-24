@@ -58,6 +58,16 @@ namespace DVLD
             fr.ShowDialog();
         }
 
+        private void curentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frUserDetails fr = new frUserDetails(Classes.clsGlobal.CurrentUser.UserID);
+            fr.ShowDialog();
+        }
 
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frChanagePassword fr = new frChanagePassword(Classes.clsGlobal.CurrentUser.UserID);
+            fr.ShowDialog();
+        }
     }
 }

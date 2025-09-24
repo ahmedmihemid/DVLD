@@ -118,6 +118,7 @@
             this.curentUserInfoToolStripMenuItem.Name = "curentUserInfoToolStripMenuItem";
             this.curentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(303, 66);
             this.curentUserInfoToolStripMenuItem.Text = "Curent User Info";
+            this.curentUserInfoToolStripMenuItem.Click += new System.EventHandler(this.curentUserInfoToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
@@ -125,6 +126,7 @@
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(303, 66);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -140,7 +142,7 @@
             this.singOutToolStripMenuItem.Text = "Sing Out";
             this.singOutToolStripMenuItem.Click += new System.EventHandler(this.singOutToolStripMenuItem_Click);
             // 
-            // Main
+            // frMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,7 +151,7 @@
             this.ClientSize = new System.Drawing.Size(1470, 841);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Name = "Main";
+            this.Name = "frMain";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);

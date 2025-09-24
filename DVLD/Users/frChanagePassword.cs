@@ -96,6 +96,7 @@ namespace DVLD.Users
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.AutoValidate = AutoValidate.Disable;
             this.Close();
         }
     }

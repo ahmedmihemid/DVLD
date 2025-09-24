@@ -92,11 +92,6 @@ namespace DVLD_Buisness
             return  DVLD_DataAccess.clsPeopleData.GetAllPeople();
         }
 
-
-        //public static DataTable GetFilteredPeople(string columnName, string filterValue)
-        //{
-        //    return DVLD_DataAccess.clsPeopleData.GetFilteredPeople(columnName, filterValue);
-        //}
       
         public static bool IsExist(string nationalNo)
         {

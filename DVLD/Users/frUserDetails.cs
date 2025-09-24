@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace DVLD.Users
 {
-    public partial class UserDetails : Form
+    public partial class frUserDetails : Form
     {
 
         private int _userId=-1;
-        public UserDetails(int userId)
+        public frUserDetails(int userId)
         {
             InitializeComponent();
             _userId = userId;

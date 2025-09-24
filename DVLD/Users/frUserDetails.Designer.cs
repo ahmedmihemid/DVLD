@@ -1,6 +1,6 @@
 ﻿namespace DVLD.Users
 {
-    partial class UserDetails
+    partial class frUserDetails
     {
         /// <summary>
         /// Required designer variable.

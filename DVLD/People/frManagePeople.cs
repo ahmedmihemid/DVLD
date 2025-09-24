@@ -11,7 +11,7 @@ using DVLD_Buisness;
 
 namespace DVLD.People
 {
-    public partial class ManagePeople : Form
+    public partial class frManagePeople : Form
     {
         private static DataTable _dtAllPeople = clsPerson.GetAllPeople();
 
@@ -24,7 +24,7 @@ namespace DVLD.People
                                                          "Phone", "Email");
 
 
-        public ManagePeople()
+        public frManagePeople()
         {
             InitializeComponent();
         }
@@ -46,14 +46,14 @@ namespace DVLD.People
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int personID = (int)PeopleDGV.CurrentRow.Cells[0].Value;
-            PersonDetails fr = new PersonDetails(personID);
+            frPersonDetails fr = new frPersonDetails(personID);
             fr.ShowDialog();
             _RefreshPeoplList();
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddEditPeople fr = new AddEditPeople();
+            frAddEditPeople fr = new frAddEditPeople();
             fr.ShowDialog();
 
             _RefreshPeoplList();
@@ -62,7 +62,7 @@ namespace DVLD.People
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int personID = (int)PeopleDGV.CurrentRow.Cells[0].Value;
-            AddEditPeople fr = new AddEditPeople(personID);
+            frAddEditPeople fr = new frAddEditPeople(personID);
             fr.ShowDialog();
 
             _RefreshPeoplList();
@@ -104,7 +104,7 @@ namespace DVLD.People
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddEditPeople fr = new AddEditPeople();
+            frAddEditPeople fr = new frAddEditPeople();
             fr.ShowDialog();
 
             _RefreshPeoplList();
@@ -254,7 +254,7 @@ namespace DVLD.People
      
         private void PeopleDGV_DoubleClick(object sender, EventArgs e)
         {
-            Form frm = new PersonDetails((int)PeopleDGV.CurrentRow.Cells[0].Value);
+            Form frm = new frPersonDetails((int)PeopleDGV.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
             _RefreshPeoplList();
         }

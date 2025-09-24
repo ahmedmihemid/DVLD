@@ -182,7 +182,7 @@ namespace DVLD.People.Controlls
 
         private void btnAddNewPerson_Click_1(object sender, EventArgs e)
         {
-            AddEditPeople frm1 = new AddEditPeople();
+            frAddEditPeople frm1 = new frAddEditPeople();
             frm1.DataBack += DataBackEvent; // Subscribe to the event
             frm1.ShowDialog();
         }

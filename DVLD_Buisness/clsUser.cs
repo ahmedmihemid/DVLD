@@ -58,7 +58,6 @@ namespace DVLD_Buisness
             return new clsUser(userID, personID, UserName, password, isActive);
         }
 
-
         public static clsUser Find(int UserID)
         {
             
@@ -75,8 +74,6 @@ namespace DVLD_Buisness
 
         }
 
-
-
         public static clsUser Login(string UserName,string Password, ref bool IsFound)
         {
 
@@ -89,12 +86,10 @@ namespace DVLD_Buisness
            return new clsUser(userID, personID, UserName, Password, isActive);
         }
 
-
         public static DataTable GetAllUser()
         {
             return DVLD_DataAccess.clsUserData.GetAllUsers();
         }
-
 
         public static bool IsExistByPersonID(int PersonID)
         {

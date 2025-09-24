@@ -93,9 +93,6 @@ namespace DVLD_DataAccess
         }
 
 
-
-
-
         public static bool Login(string userName, string password , ref int userID, ref int personID,  ref bool isActive)
         {
             bool IsFound = false;

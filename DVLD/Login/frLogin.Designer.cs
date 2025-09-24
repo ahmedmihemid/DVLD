@@ -1,6 +1,6 @@
 ﻿namespace DVLD
 {
-    partial class Login
+    partial class frLogin
     {
         /// <summary>
         /// Required designer variable.

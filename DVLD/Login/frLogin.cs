@@ -12,9 +12,9 @@ using System.IO;
 
 namespace DVLD
 {
-    public partial class Login : Form
+    public partial class frLogin : Form
     {
-        public Login()
+        public frLogin()
         {
             InitializeComponent();
         }
@@ -80,7 +80,7 @@ namespace DVLD
 
             DVLD.Classes.clsGlobal.CurrentUser = user;
             this.Hide();
-            Main fr = new Main(this);
+            frMain fr = new frMain(this);
             fr.ShowDialog();
        
           

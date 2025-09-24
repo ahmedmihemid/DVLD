@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace DVLD.People
 {
-    public partial class AddEditPeople : Form
+    public partial class frAddEditPeople : Form
     {
 
 
@@ -34,12 +34,12 @@ namespace DVLD.People
         private string imageFolderPath = "C:\\Users\\MBM\\My_apps_ahmed\\DVLD_People_images";
 
 
-        public AddEditPeople()
+        public frAddEditPeople()
         {
             InitializeComponent();
         }
 
-        public AddEditPeople(int PersonID)
+        public frAddEditPeople(int PersonID)
         {
             InitializeComponent();
             _Mode = enMode.Update;

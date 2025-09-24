@@ -11,17 +11,17 @@ using DVLD_Buisness;
 
 namespace DVLD.People
 {
-    public partial class PersonDetails : Form
+    public partial class frPersonDetails : Form
     {
 
 
-        public PersonDetails(int PersonID)
+        public frPersonDetails(int PersonID)
         {
             InitializeComponent();
             ctrlPersonCard1.LoadPersonInfo(PersonID);
         }
 
-        public PersonDetails(string NationalNo)
+        public frPersonDetails(string NationalNo)
         {
             InitializeComponent();
             ctrlPersonCard1.LoadPersonInfo(NationalNo);

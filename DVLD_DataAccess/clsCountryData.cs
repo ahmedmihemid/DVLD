@@ -47,7 +47,6 @@ namespace DVLD_DataAccess
         }
 
 
-
         public static bool GetCountryByID(int ID, ref string CountryName)
         {
             bool IsFound = false;

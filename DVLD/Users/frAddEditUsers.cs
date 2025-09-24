@@ -11,7 +11,7 @@ using DVLD_Buisness;
 
 namespace DVLD.Users
 {
-    public partial class AddEditUsers : Form
+    public partial class frAddEditUsers : Form
     {
 
         private enum enMode {AddMode=0,UpdateMode=1};
@@ -22,14 +22,14 @@ namespace DVLD.Users
         private clsUser _User = null;
 
         private int _PersonID ;
-        public AddEditUsers()
+        public frAddEditUsers()
         {
             InitializeComponent();
             _mode = enMode.AddMode;
             _PersonID = 0;
         }
 
-        public AddEditUsers(int UserID)
+        public frAddEditUsers(int UserID)
         {
             InitializeComponent();
            

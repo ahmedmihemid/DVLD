@@ -12,17 +12,17 @@ using System.Windows.Forms;
 
 namespace DVLD
 {
-    public partial class Main : Form
+    public partial class frMain : Form
     {
 
-        private Login _frLogin;
+        private frLogin _frLogin;
 
-        public Main()
+        public frMain()
         {
             InitializeComponent();
         }
 
-        public Main(Login frLogin)
+        public frMain(frLogin frLogin)
         {
             InitializeComponent();
             _frLogin = frLogin;
@@ -35,7 +35,7 @@ namespace DVLD
 
         private void fdsfsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManagePeople managePeople = new ManagePeople();
+            frManagePeople managePeople = new frManagePeople();
             managePeople.ShowDialog();
         }
 
@@ -43,10 +43,6 @@ namespace DVLD
         {
 
         }
-
-
-
-
 
         private void singOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -58,7 +54,7 @@ namespace DVLD
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManageUsers fr = new ManageUsers();
+            frManageUsers fr = new frManageUsers();
             fr.ShowDialog();
         }
 

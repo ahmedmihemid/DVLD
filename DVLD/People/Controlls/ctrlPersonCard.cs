@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using static DVLD.People.AddEditPeople;
+using static DVLD.People.frAddEditPeople;
 
 namespace DVLD.Controls
 {
@@ -119,7 +119,7 @@ namespace DVLD.Controls
 
         private void llEditPersonInfo_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddEditPeople frm = new AddEditPeople(_PersonID);
+            frAddEditPeople frm = new frAddEditPeople(_PersonID);
             frm.ShowDialog();
 
             //refresh

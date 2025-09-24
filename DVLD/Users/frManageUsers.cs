@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace DVLD.Users
 {
-    public partial class ManageUsers : Form
+    public partial class frManageUsers : Form
     {
 
         private static  DataTable _dtAllUsers = DVLD_Buisness.clsUser.GetAllUser();
         private DataTable _dtUsers = _dtAllUsers.DefaultView.ToTable(false, "UserID", "PersonID", "FullName", "UserName", "IsActive");
 
 
-        public ManageUsers()
+        public frManageUsers()
         {
             InitializeComponent();
         }
@@ -168,7 +168,6 @@ namespace DVLD.Users
         }
 
 
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox1.Text=="None" )
@@ -194,7 +193,6 @@ namespace DVLD.Users
 
         }
 
-
         private void FilterValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(comboBox1.Text=="Person ID" || comboBox1.Text == "User ID")
@@ -202,20 +200,17 @@ namespace DVLD.Users
 
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
-            AddEditUsers fr = new AddEditUsers();
+            frAddEditUsers fr = new frAddEditUsers();
             fr.ShowDialog();
             _ReafreshData();
         }
 
-
-
         private void showDetailsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
-            UserDetails fr = new UserDetails(userId);
+            frUserDetails fr = new frUserDetails(userId);
             fr.ShowDialog();
         }
 
@@ -223,7 +218,7 @@ namespace DVLD.Users
         private void UsersDGV_DoubleClick(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
-            UserDetails fr = new UserDetails(userId);
+            frUserDetails fr = new frUserDetails(userId);
             fr.ShowDialog();
             _ReafreshData();
         }
@@ -231,7 +226,7 @@ namespace DVLD.Users
 
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddEditUsers fr = new AddEditUsers();
+            frAddEditUsers fr = new frAddEditUsers();
             fr.ShowDialog();
             _ReafreshData();
         }
@@ -239,7 +234,7 @@ namespace DVLD.Users
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
-            AddEditUsers fr = new AddEditUsers(userId);
+            frAddEditUsers fr = new frAddEditUsers(userId);
             fr.ShowDialog();
             _ReafreshData();
         }
@@ -262,7 +257,16 @@ namespace DVLD.Users
             }
         }
 
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
+            frChanagePassword fr =new frChanagePassword(userId);
+            fr.ShowDialog();
+        }
 
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

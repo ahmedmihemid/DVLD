@@ -1,6 +1,6 @@
 ﻿namespace DVLD.Users
 {
-    partial class AddEditUsers
+    partial class frAddEditUsers
     {
         /// <summary>
         /// Required designer variable.

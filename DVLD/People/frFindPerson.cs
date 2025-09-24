@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DVLD.People
 {
-    public partial class FindPerson : Form
+    public partial class frFindPerson : Form
     {
 
         // Declare a delegate
@@ -21,7 +21,7 @@ namespace DVLD.People
         public event DataBackEventHandler DataBack;
 
 
-        public FindPerson()
+        public frFindPerson()
         {
             InitializeComponent();
         }

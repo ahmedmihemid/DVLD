@@ -186,5 +186,10 @@ namespace DVLD.People.Controlls
             frm1.DataBack += DataBackEvent; // Subscribe to the event
             frm1.ShowDialog();
         }
+
+        private void ctrlPersonCardWithFilter_Load_1(object sender, EventArgs e)
+        {
+            cbFilterBy.SelectedIndex = 1;
+        }
     }
 }

@@ -21,39 +21,77 @@ namespace DVLD.Users
 
         private clsUser _User = null;
 
-        private int _PersonID =0;
+        private int _PersonID ;
         public AddEditUsers()
         {
             InitializeComponent();
-            _User = new clsUser();
             _mode = enMode.AddMode;
+            _PersonID = 0;
         }
 
         public AddEditUsers(int UserID)
         {
             InitializeComponent();
-            _User = new clsUser();
+           
             _UserID = UserID;
             _mode = enMode.UpdateMode;
+            _PersonID = DVLD_Buisness.clsUser.Find(UserID).PersonID;
         }
 
+        private void _ResetDefualtValues()
+        {
+            if(_mode == enMode.UpdateMode)
+            {
+                TitleLEB.Text = "Edit User";
+                ctrlPersonCardWithFilter1.FilterEnabled = false;
+            }
+            else
+            {
+                TitleLEB.Text = "Add New User";
+                _User = new clsUser();
+                tabControl1.TabPages[1].Enabled = false;
+            }
+            UserIdLEB.Text = "???";
+            IsActiveCHB.Checked = false;
 
+        }
+
+        private void _LoadData()
+        {
+            _User = DVLD_Buisness.clsUser.Find(_UserID);
+            if(_User == null)
+            {
+                 MessageBox.Show("Failed to load user information, please try again.");
+                return;
+            }
+            ctrlPersonCardWithFilter1.LoadPersonInfo(_User.PersonID);
+            UserIdLEB.Text = _User.UserID.ToString();
+            UserNameTB.Text = _User.UserName;
+            PasswordTB.Text = _User.Password;
+            ConfirmPasswordTB.Text = _User.Password;
+            IsActiveCHB.Checked = _User.IsActive;
+
+        }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if(_PersonID==0)
+            if (_mode == enMode.AddMode)
             {
-                MessageBox.Show("Please select a person first.");
-                return;
+      
+            if (_PersonID == 0)
+                {
+                    MessageBox.Show("Please select a person first.");
+                    return;
+                }
+
+                if (DVLD_Buisness.clsUser.IsExistByPersonID(_PersonID))
+                {
+                    MessageBox.Show("This person is already assigned to a user, please select another person.");
+                    return;
+                }
             }
 
-            if(  DVLD_Buisness.clsUser.IsExistByPersonID(_PersonID))
-            {
-              MessageBox.Show("This person is already assigned to a user, please select another person.");
-              return;
-            }
-
-            _User = new clsUser();
+        
             _User.Person.PersonID = _PersonID;
 
             tabControl1.TabPages[1].Enabled = true;
@@ -68,7 +106,10 @@ namespace DVLD.Users
 
         private void AddEditUsers_Load(object sender, EventArgs e)
         {
-            tabControl1.TabPages[1].Enabled = false;
+            _ResetDefualtValues();
+
+            if (_mode == enMode.UpdateMode)
+                _LoadData();
         }
 
         private void UsreNameTB_Validating(object sender, CancelEventArgs e)
@@ -98,7 +139,7 @@ namespace DVLD.Users
             if (PasswordTB.Text == "")
             {
                 e.Cancel = true;
-                errorProvider1.SetError(PasswordTB, "User Name is required.");
+                errorProvider1.SetError(PasswordTB, "Password is required.");
 
             }
 
@@ -139,10 +180,12 @@ namespace DVLD.Users
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(_PersonID == 0)
+            if (!this.ValidateChildren())
             {
-                MessageBox.Show("Please select a person first.");
+                //Here we dont continue becuase the form is not valid
+                MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+
             }
 
 
@@ -158,15 +201,11 @@ namespace DVLD.Users
                 _mode = enMode.UpdateMode;
                 MessageBox.Show("User information saved successfully.");
 
-
-
             }
             else
             {
                 MessageBox.Show("Failed to save user information, please try again.");
             }
-
-
 
 
         }

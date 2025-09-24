@@ -242,7 +242,7 @@ namespace DVLD_DataAccess
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@IsActive", IsActive);
 
-            int newUserID = 0;
+            int newUserID = -1;
 
             try
             {
@@ -251,7 +251,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                newUserID = 0;
+                newUserID = -1;
                 Console.WriteLine("Error: " + ex.Message);
             }
             finally
@@ -263,7 +263,39 @@ namespace DVLD_DataAccess
         }
 
 
+        public static bool UpdateUser(int UserID, string UserName, string Password, bool IsActive)
+        {
 
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Users SET 
+                          UserName =@UserName,
+                          Password =@Password,
+                          IsActive =@IsActive WHERE UserID =@UserID ;";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@IsActive", IsActive);
+
+            int rowsAffected = 0;
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                rowsAffected = 0;
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return (rowsAffected > 0);
+
+        }
 
     }
 }

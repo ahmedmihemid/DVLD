@@ -41,6 +41,7 @@ namespace DVLD_Buisness
             Password = password;
             IsActive = isActive;
             Person = new clsPerson();
+            Mode = enMode.UpdateMode;
         }
 
         public static clsUser Find(string UserName)
@@ -54,19 +55,13 @@ namespace DVLD_Buisness
 
             DVLD_DataAccess.clsUserData.FindByUserName(user.UserName, ref userID, ref personID, ref password, ref isActive);
 
-            user.UserName = UserName;
-            user.UserID = userID;
-            user.PersonID = personID;
-            user.Password = password;
-            user.IsActive = isActive;
-
-            return user;
+            return new clsUser(userID, personID, UserName, password, isActive);
         }
 
 
         public static clsUser Find(int UserID)
         {
-            clsUser user = new clsUser();
+            
 
             string userName = string.Empty;
             int personID = 0;
@@ -75,13 +70,9 @@ namespace DVLD_Buisness
 
             DVLD_DataAccess.clsUserData.FindByUserID(UserID, ref userName, ref personID, ref password, ref isActive);
 
-            user.UserName = userName;
-            user.UserID = UserID;
-            user.PersonID = personID;
-            user.Password = password;
-            user.IsActive = isActive;
+           
+            return new clsUser(UserID, personID, userName, password, isActive);
 
-            return user;
         }
 
 
@@ -95,14 +86,7 @@ namespace DVLD_Buisness
 
             IsFound= DVLD_DataAccess.clsUserData.Login(UserName,  Password, ref userID, ref personID, ref isActive);
 
-            clsUser user = new clsUser();
-            user.UserName = UserName;
-            user.UserID = userID;
-            user.PersonID = personID;
-            user.Password = Password;
-            user.IsActive = isActive;
-
-            return user;
+           return new clsUser(userID, personID, UserName, Password, isActive);
         }
 
 
@@ -129,11 +113,11 @@ namespace DVLD_Buisness
             return (this.UserID != -1);
         }
 
-        //private bool _UpdateUser()
-        //{
-        //    return DVLD_DataAccess.clsUserData.UpdateUser
-        //        (this.UserID, this.PersonID, this.UserName, this.Password, this.IsActive);
-        //}
+        private bool _UpdateUser()
+        {
+            return DVLD_DataAccess.clsUserData.UpdateUser
+                (this.UserID, this.UserName, this.Password, this.IsActive);
+        }
 
         public bool Save()
         {
@@ -155,7 +139,7 @@ namespace DVLD_Buisness
                 }
                 case enMode.UpdateMode:
                 {
-                        //_UpdateUser();
+                        _UpdateUser();
                         return true;
                         break;
                 }

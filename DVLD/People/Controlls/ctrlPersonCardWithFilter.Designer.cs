@@ -62,7 +62,7 @@
             this.btnAddNewPerson.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddNewPerson.Image = global::DVLD.Properties.Resources.AddPerson_32;
             this.btnAddNewPerson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddNewPerson.Location = new System.Drawing.Point(594, 20);
+            this.btnAddNewPerson.Location = new System.Drawing.Point(603, 19);
             this.btnAddNewPerson.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddNewPerson.Name = "btnAddNewPerson";
             this.btnAddNewPerson.Size = new System.Drawing.Size(44, 37);
@@ -74,7 +74,7 @@
             // 
             this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFind.Image = global::DVLD.Properties.Resources.SearchPerson;
-            this.btnFind.Location = new System.Drawing.Point(543, 20);
+            this.btnFind.Location = new System.Drawing.Point(552, 19);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(44, 37);
             this.btnFind.TabIndex = 18;
@@ -89,7 +89,7 @@
             this.cbFilterBy.Items.AddRange(new object[] {
             "National No.",
             "Person ID"});
-            this.cbFilterBy.Location = new System.Drawing.Point(96, 25);
+            this.cbFilterBy.Location = new System.Drawing.Point(105, 24);
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(210, 29);
             this.cbFilterBy.TabIndex = 16;
@@ -98,7 +98,7 @@
             // 
             this.txtFilterValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFilterValue.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilterValue.Location = new System.Drawing.Point(313, 25);
+            this.txtFilterValue.Location = new System.Drawing.Point(322, 24);
             this.txtFilterValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFilterValue.Name = "txtFilterValue";
             this.txtFilterValue.Size = new System.Drawing.Size(214, 28);
@@ -133,6 +133,7 @@
             this.Controls.Add(this.gbFilters);
             this.Name = "ctrlPersonCardWithFilter";
             this.Size = new System.Drawing.Size(876, 447);
+            this.Load += new System.EventHandler(this.ctrlPersonCardWithFilter_Load_1);
             this.gbFilters.ResumeLayout(false);
             this.gbFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

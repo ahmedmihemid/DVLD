@@ -151,7 +151,7 @@
             this.PasswordTB.Name = "PasswordTB";
             this.PasswordTB.PasswordChar = '*';
             this.PasswordTB.Size = new System.Drawing.Size(206, 32);
-            this.PasswordTB.TabIndex = 7;
+            this.PasswordTB.TabIndex = 9;
             this.PasswordTB.Validating += new System.ComponentModel.CancelEventHandler(this.PasswordTB_Validating);
             // 
             // ConfirmPasswordTB
@@ -161,7 +161,7 @@
             this.ConfirmPasswordTB.Name = "ConfirmPasswordTB";
             this.ConfirmPasswordTB.PasswordChar = '*';
             this.ConfirmPasswordTB.Size = new System.Drawing.Size(206, 32);
-            this.ConfirmPasswordTB.TabIndex = 6;
+            this.ConfirmPasswordTB.TabIndex = 8;
             this.ConfirmPasswordTB.Validating += new System.ComponentModel.CancelEventHandler(this.ConfirmPasswordTB_Validating);
             // 
             // UserNameTB
@@ -170,7 +170,7 @@
             this.UserNameTB.Location = new System.Drawing.Point(264, 109);
             this.UserNameTB.Name = "UserNameTB";
             this.UserNameTB.Size = new System.Drawing.Size(206, 32);
-            this.UserNameTB.TabIndex = 5;
+            this.UserNameTB.TabIndex = 11;
             this.UserNameTB.Validating += new System.ComponentModel.CancelEventHandler(this.UsreNameTB_Validating);
             // 
             // UserIdLEB

@@ -58,9 +58,6 @@ namespace DVLD.Users
                 UsersDGV.Columns[4].Width = 70;
 
             }
-
-
-
         }
 
         private void FilterValueTB_TextChanged(object sender, EventArgs e)
@@ -122,8 +119,8 @@ namespace DVLD.Users
                 _dtUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterValue, FilterValueTB.Text.Trim());
             }
 
-
         }
+
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -168,9 +165,9 @@ namespace DVLD.Users
                 RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
             }
 
-
-
         }
+
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -197,12 +194,14 @@ namespace DVLD.Users
 
         }
 
+
         private void FilterValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(comboBox1.Text=="Person ID" || comboBox1.Text == "User ID")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
 
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -212,12 +211,14 @@ namespace DVLD.Users
         }
 
 
+
         private void showDetailsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
             UserDetails fr = new UserDetails(userId);
             fr.ShowDialog();
         }
+
 
         private void UsersDGV_DoubleClick(object sender, EventArgs e)
         {
@@ -227,9 +228,18 @@ namespace DVLD.Users
             _ReafreshData();
         }
 
+
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddEditUsers fr = new AddEditUsers();
+            fr.ShowDialog();
+            _ReafreshData();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
+            AddEditUsers fr = new AddEditUsers(userId);
             fr.ShowDialog();
             _ReafreshData();
         }

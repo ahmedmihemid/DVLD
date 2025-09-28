@@ -14,8 +14,7 @@ namespace DVLD.Users
     public partial class frManageUsers : Form
     {
 
-        private static  DataTable _dtAllUsers = DVLD_Buisness.clsUser.GetAllUser();
-        private DataTable _dtUsers = _dtAllUsers.DefaultView.ToTable(false, "UserID", "PersonID", "FullName", "UserName", "IsActive");
+        private static  DataTable _dtAllUsers ;
 
 
         public frManageUsers()
@@ -23,17 +22,11 @@ namespace DVLD.Users
             InitializeComponent();
         }
 
-        private void _ReafreshData()
-        {
-            _dtAllUsers = DVLD_Buisness.clsUser.GetAllUser();
-            _dtUsers = _dtAllUsers.DefaultView.ToTable(false, "UserID", "PersonID", "FullName", "UserName", "IsActive");
-            UsersDGV.DataSource = _dtUsers;
-        }
-
+     
         private void ManageUsers_Load(object sender, EventArgs e)
         {
-
-            UsersDGV.DataSource = _dtUsers;
+            _dtAllUsers = DVLD_Buisness.clsUser.GetAllUser();
+            UsersDGV.DataSource = _dtAllUsers;
             comboBox1.SelectedIndex = 0;
             RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
 
@@ -99,14 +92,14 @@ namespace DVLD.Users
 
             if(FilterValueTB.Text.Trim() =="" || FilterValue == "None")
             {
-                _dtUsers.DefaultView.RowFilter = "";
+                _dtAllUsers.DefaultView.RowFilter = "";
                 RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
                 return;
             }
 
             else if (FilterValue == "UserID" || FilterValue == "PersonID")
             {
-                _dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterValue, FilterValueTB.Text.Trim());
+                _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterValue, FilterValueTB.Text.Trim());
                 RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
             }
  
@@ -116,7 +109,7 @@ namespace DVLD.Users
             }
             else
             {
-                _dtUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterValue, FilterValueTB.Text.Trim());
+                _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterValue, FilterValueTB.Text.Trim());
             }
 
         }
@@ -149,19 +142,19 @@ namespace DVLD.Users
 
             if(FilterValue == "All")
             {
-                _dtUsers.DefaultView.RowFilter = "";
+                _dtAllUsers.DefaultView.RowFilter = "";
                 RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
                 
             }
             else if(FilterValue == "IsActive")
             {
-                _dtUsers.DefaultView.RowFilter= "[IsActive] = true";
+                _dtAllUsers.DefaultView.RowFilter= "[IsActive] = true";
                 RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
 
             }
             else if(FilterValue == "IsNotActive")
             {
-                _dtUsers.DefaultView.RowFilter = "[IsActive] = false";
+                _dtAllUsers.DefaultView.RowFilter = "[IsActive] = false";
                 RecordsLEB.Text = UsersDGV.Rows.Count.ToString();
             }
 
@@ -204,7 +197,7 @@ namespace DVLD.Users
         {
             frAddEditUsers fr = new frAddEditUsers();
             fr.ShowDialog();
-            _ReafreshData();
+            ManageUsers_Load(null, null);
         }
 
         private void showDetailsToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -220,7 +213,7 @@ namespace DVLD.Users
             int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
             frUserDetails fr = new frUserDetails(userId);
             fr.ShowDialog();
-            _ReafreshData();
+            ManageUsers_Load(null, null);// this Loud event to refresh data
         }
 
 
@@ -228,7 +221,7 @@ namespace DVLD.Users
         {
             frAddEditUsers fr = new frAddEditUsers();
             fr.ShowDialog();
-            _ReafreshData();
+            ManageUsers_Load(null, null);// this Loud event to refresh data
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,7 +229,7 @@ namespace DVLD.Users
             int userId = Convert.ToInt32(UsersDGV.CurrentRow.Cells["UserID"].Value);
             frAddEditUsers fr = new frAddEditUsers(userId);
             fr.ShowDialog();
-            _ReafreshData();
+            ManageUsers_Load(null, null);// this Loud event to refresh data
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -249,7 +242,7 @@ namespace DVLD.Users
             if(DVLD_Buisness.clsUser.DeleteUser(userId))
             {
                 MessageBox.Show("User deleted successfully.", "Delete User", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                _ReafreshData();
+                ManageUsers_Load(null, null);// this Loud event to refresh data
             }
             else
             {
@@ -267,6 +260,16 @@ namespace DVLD.Users
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not implemented yet.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void phoneCallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is not implemented yet.", "Phone Call", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

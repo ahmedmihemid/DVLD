@@ -52,7 +52,6 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
-
         public static bool FindByUserID(int UserID, ref string UserName, ref int PersonID, ref string Password, ref bool IsActive)
         {
             bool IsFound = false;
@@ -92,8 +91,46 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
+        public static bool FindByPersonID(int PersonID, ref string UserName, ref int UserID, ref string Password, ref bool IsActive)
+        {
+            bool IsFound = false;
 
-        public static bool Login(string userName, string password , ref int userID, ref int personID,  ref bool isActive)
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT * FROM Users WHERE PersonID = @PersonID; ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.Add("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    UserName = (string)reader["UserName"];
+                    UserID = (int)reader["UserID"];
+                    Password = (string)reader["Password"];
+                    IsActive = (bool)reader["IsActive"];
+                    IsFound = true;
+                }
+                IsFound = false;
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return IsFound;
+        }
+
+        public static bool GetUserInfoByUsernameAndPassword(string userName, string password , ref int userID, ref int personID,  ref bool isActive)
         {
             bool IsFound = false;
 
@@ -132,14 +169,14 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
-
         public static DataTable GetAllUsers()
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT UserID,Users.PersonID,UserName,IsActive,People.FirstName +' '
-             + People.SecondName+' '+People.ThirdName +' '+ People.LastName AS FullName 
+            string query = @"SELECT UserID,Users.PersonID,People.FirstName +' '
+             + People.SecondName+' '+People.ThirdName +' '+ People.LastName AS FullName
+             ,UserName,IsActive
              FROM USERS INNER JOIN People ON Users.PersonID = People.PersonID ;";
 
             SqlCommand command = new SqlCommand(query,connection);
@@ -196,6 +233,34 @@ namespace DVLD_DataAccess
 
         }
 
+        public static bool IsExistByUserID(int UserID)
+        {
+
+            bool IsExists = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT COUNT(1) FROM Users WHERE UserID = @UserID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserID", UserID);
+
+            try
+            {
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                IsExists = count > 0;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return IsExists;
+
+        }
 
         public static bool IsExistByUserName(string UserName)
         {
@@ -259,7 +324,6 @@ namespace DVLD_DataAccess
 
         }
 
-
         public static bool UpdateUser(int UserID, string UserName, string Password, bool IsActive)
         {
 
@@ -294,7 +358,6 @@ namespace DVLD_DataAccess
 
         }
 
-
         public static bool DeleteUser(int UserID)
         {
             int rowsAffected = 0;
@@ -318,6 +381,33 @@ namespace DVLD_DataAccess
                 connection.Close();
             }
 
+            return (rowsAffected > 0);
+        }
+
+        public static bool ChangeUserPassword(int UserID, string NewPassword)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Users SET 
+                          Password =@Password
+                          WHERE UserID =@UserID ;";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@Password", NewPassword);
+            int rowsAffected = 0;
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                rowsAffected = 0;
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
             return (rowsAffected > 0);
         }
 

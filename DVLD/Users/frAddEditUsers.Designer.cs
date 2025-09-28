@@ -112,7 +112,6 @@
             this.ctrlPersonCardWithFilter1.ShowAddPerson = true;
             this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(867, 436);
             this.ctrlPersonCardWithFilter1.TabIndex = 0;
-            this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected);
             // 
             // tabPage2
             // 
@@ -239,6 +238,7 @@
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.SystemColors.Window;
+            this.btnClose.CausesValidation = false;
             this.btnClose.Image = global::DVLD.Properties.Resources.Close_321;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Location = new System.Drawing.Point(624, 569);
@@ -253,7 +253,7 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // AddEditUsers
+            // frAddEditUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -263,8 +263,11 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.TitleLEB);
-            this.Name = "AddEditUsers";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.Name = "frAddEditUsers";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.frAddEditUsers_Activated);
             this.Load += new System.EventHandler(this.AddEditUsers_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

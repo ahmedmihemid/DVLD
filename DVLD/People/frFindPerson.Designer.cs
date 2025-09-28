@@ -67,7 +67,7 @@
             this.TitleLEB.TabIndex = 6;
             this.TitleLEB.Text = "Find Person";
             // 
-            // Form2
+            // frFindPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -75,7 +75,8 @@
             this.Controls.Add(this.TitleLEB);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.ctrlPersonCardWithFilter1);
-            this.Name = "Form2";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "frFindPerson";
             this.Text = "Form2";
             this.ResumeLayout(false);
             this.PerformLayout();

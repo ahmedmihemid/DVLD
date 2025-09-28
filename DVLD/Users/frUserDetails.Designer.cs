@@ -65,7 +65,7 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "User Details";
             // 
-            // UserDetails
+            // frUserDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -73,7 +73,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlUserCard1);
-            this.Name = "UserDetails";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "frUserDetails";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.UserDetails_Load);
             this.ResumeLayout(false);

@@ -21,69 +21,55 @@ namespace DVLD
 
         private void Login_Load(object sender, EventArgs e)
         {
-            if (chkRememberMe.Checked)
+            string userName = "";
+            string password = "";
+            if (DVLD.Classes.clsGlobal.GetStoredCredential(ref userName,ref password))
             {
-                ReadLoginInfor();
-            }
-        }
-
-        private void WriteLoginInfor()
-        {
-            if (chkRememberMe.Checked)
-            {
-                using (StreamWriter sw = new StreamWriter("RememberMe.txt", false))
-                {
-                    sw.WriteLine(UserNameTB.Text.Trim());
-                    sw.WriteLine(PasswordTB.Text.Trim());
-                }
+                UserNameTB.Text = userName;
+                PasswordTB.Text = password;
+                chkRememberMe.Checked = true;
             }
             else
-            {
-                using (StreamWriter sw = new StreamWriter("RememberMe.txt", false))
-                {
-                    sw.WriteLine("");
-                }
-            }
+                chkRememberMe.Checked = false;
 
         }
 
-        private void ReadLoginInfor()
-        {
-            using (StreamReader sr = new StreamReader("RememberMe.txt"))
-            {
-                UserNameTB.Text= sr.ReadLine();
-                PasswordTB.Text= sr.ReadLine();
-            }
-
-        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            bool isFound=false; 
-            clsUser user = clsUser.Login(UserNameTB.Text.Trim(), PasswordTB.Text.Trim(),ref isFound);
-            if(!isFound)
+           
+            clsUser user = clsUser.GetUserInfoByUsernameAndPassword(UserNameTB.Text.Trim(), PasswordTB.Text.Trim());
+          if(user!=null)
             {
-               MessageBox.Show("Invalid username or password.");
+                if (chkRememberMe.Checked )
+                {
+                    DVLD.Classes.clsGlobal.RememberUsernameAndPassword(UserNameTB.Text.Trim(), PasswordTB.Text.Trim());
+                }
+                else
+                {
+                    DVLD.Classes.clsGlobal.RememberUsernameAndPassword("", "");
+                }
+
+                if (!user.IsActive)
+                {
+                    MessageBox.Show("User is Inactive, Please contact the system administrator");
+                    return;
+                }
+
+                DVLD.Classes.clsGlobal.CurrentUser = user;
+                this.Hide();
+                frMain main = new frMain(this);
+                main.ShowDialog();
+
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username or Password");
                 return;
             }
-            if (!user.IsActive)
-            {
-
-                MessageBox.Show("This user is not active.");
-                return;
-            }
 
 
-            DVLD.Classes.clsGlobal.CurrentUser = user;
-
-            WriteLoginInfor();
-
-            DVLD.Classes.clsGlobal.CurrentUser = user;
-            this.Hide();
-            frMain fr = new frMain(this);
-            fr.ShowDialog();
-       
-          
         }
 
         private void btnClose_Click(object sender, EventArgs e)

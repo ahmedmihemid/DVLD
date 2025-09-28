@@ -22,8 +22,17 @@ namespace DVLD.Users
             this._UserID = UserID;
         }
 
+        private void _ResetDefualtValues()
+        {
+            CurrentPasswordTB.Text = "";
+            NewPasswordTB.Text = "";
+            ConfirmPasswordTB.Text = "";
+            CurrentPasswordTB.Focus();
+        }
+
         private void ctrlUserCard1_Load(object sender, EventArgs e)
         {
+            _ResetDefualtValues();
             ctrlUserCard1.LoadUserInfo(_UserID);
             _User = clsUser.Find(_UserID); 
             
@@ -85,18 +94,31 @@ namespace DVLD.Users
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            if (this.ValidateChildren())
+            if (!this.ValidateChildren())
             {
-                _User.Password = NewPasswordTB.Text;
-                _User.Save();
-                MessageBox.Show("Password changed successfully.", "Change Password", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please fix the errors and try again.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
             }
 
+            _User.Password = NewPasswordTB.Text;
+
+            if (_User.Save())
+            {
+                MessageBox.Show("Password Changed Successfully.",
+                   "Saved.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ResetDefualtValues();
+            }
+            else
+            {
+                MessageBox.Show("An Erro Occured, Password did not change.",
+                   "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.AutoValidate = AutoValidate.Disable;
+          
             this.Close();
         }
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 
 namespace DVLD_Buisness
 {
@@ -17,7 +12,7 @@ namespace DVLD_Buisness
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
-        public clsPerson Person { get; set; }
+        public clsPerson PersonInfo { get; set; }
 
 
 
@@ -28,8 +23,7 @@ namespace DVLD_Buisness
             UserName = string.Empty;
             Password = string.Empty;
             IsActive = true;
-
-            Person = new clsPerson();
+            PersonInfo = new clsPerson();
         }
 
 
@@ -40,7 +34,7 @@ namespace DVLD_Buisness
             UserName = userName;
             Password = password;
             IsActive = isActive;
-            Person = new clsPerson();
+            PersonInfo = new clsPerson();
             Mode = enMode.UpdateMode;
         }
 
@@ -74,16 +68,36 @@ namespace DVLD_Buisness
 
         }
 
-        public static clsUser Login(string UserName,string Password, ref bool IsFound)
+        public static clsUser FindByPersonID(int PersonID)
+        {
+
+
+            string userName = string.Empty;
+            int userID = 0;
+            string password = string.Empty;
+            bool isActive = false;
+
+            DVLD_DataAccess.clsUserData.FindByPersonID(PersonID, ref userName, ref userID, ref password, ref isActive);
+
+
+            return new clsUser(userID, PersonID, userName, password, isActive);
+
+        }
+
+
+        public static clsUser GetUserInfoByUsernameAndPassword(string UserName,string Password)
         {
 
             int userID = 0;
             int personID = 0;
             bool isActive = false;
 
-            IsFound= DVLD_DataAccess.clsUserData.Login(UserName,  Password, ref userID, ref personID, ref isActive);
+          bool  IsFound= DVLD_DataAccess.clsUserData.GetUserInfoByUsernameAndPassword(UserName,  Password, ref userID, ref personID, ref isActive);
 
-           return new clsUser(userID, personID, UserName, Password, isActive);
+            if (IsFound)
+            return new clsUser(userID, personID, UserName, Password, isActive);
+            else
+                return null;
         }
 
         public static DataTable GetAllUser()
@@ -94,6 +108,11 @@ namespace DVLD_Buisness
         public static bool IsExistByPersonID(int PersonID)
         {
             return DVLD_DataAccess.clsUserData.IsExistByPersonID(PersonID);
+        }
+
+        public static bool IsExistByUserID(int UserID)
+        {
+            return DVLD_DataAccess.clsUserData.IsExistByUserID(UserID);
         }
 
         public static bool IsExistByUserName(string UserName)

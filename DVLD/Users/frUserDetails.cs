@@ -13,7 +13,7 @@ namespace DVLD.Users
     public partial class frUserDetails : Form
     {
 
-        private int _userId=-1;
+        private int _userId;
         public frUserDetails(int userId)
         {
             InitializeComponent();

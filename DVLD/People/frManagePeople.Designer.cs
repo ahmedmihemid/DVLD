@@ -253,7 +253,7 @@
             this.RecordsLEB.TabIndex = 10;
             this.RecordsLEB.Text = "0";
             // 
-            // ManagePeople
+            // frManagePeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -269,7 +269,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.PeopleDGV);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "ManagePeople";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "frManagePeople";
             this.Text = "Manage People";
             this.Load += new System.EventHandler(this.ManagePeople_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PeopleDGV)).EndInit();

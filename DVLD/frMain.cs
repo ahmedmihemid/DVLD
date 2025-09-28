@@ -17,11 +17,6 @@ namespace DVLD
 
         private frLogin _frLogin;
 
-        public frMain()
-        {
-            InitializeComponent();
-        }
-
         public frMain(frLogin frLogin)
         {
             InitializeComponent();

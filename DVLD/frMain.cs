@@ -1,4 +1,5 @@
-﻿using DVLD.People;
+﻿using DVLD.ApplicationsTypes;
+using DVLD.People;
 using DVLD.Users;
 using System;
 using System.Collections.Generic;
@@ -64,5 +65,17 @@ namespace DVLD
             frChanagePassword fr = new frChanagePassword(Classes.clsGlobal.CurrentUser.UserID);
             fr.ShowDialog();
         }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frManageApplicationTypes fr = new frManageApplicationTypes();
+            fr.ShowDialog();
+
+        }
+
+
+
+
+
     }
 }

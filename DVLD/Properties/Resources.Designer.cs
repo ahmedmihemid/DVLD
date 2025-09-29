@@ -414,6 +414,16 @@ namespace DVLD.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap edit_324 {
+            get {
+                object obj = ResourceManager.GetObject("edit 324", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Email_32 {
             get {
                 object obj = ResourceManager.GetObject("Email 32", resourceCulture);
@@ -647,6 +657,16 @@ namespace DVLD.Properties {
         internal static System.Drawing.Bitmap Schedule_Test_512 {
             get {
                 object obj = ResourceManager.GetObject("Schedule Test 512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Schedule_Test_5121 {
+            get {
+                object obj = ResourceManager.GetObject("Schedule Test 5121", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

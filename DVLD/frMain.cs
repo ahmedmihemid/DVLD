@@ -1,5 +1,6 @@
 ﻿using DVLD.ApplicationsTypes;
 using DVLD.People;
+using DVLD.Test_Types;
 using DVLD.Users;
 using System;
 using System.Collections.Generic;
@@ -73,9 +74,10 @@ namespace DVLD
 
         }
 
-
-
-
-
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frManageTestTypes fr = new frManageTestTypes();
+            fr.ShowDialog();
+        }
     }
 }

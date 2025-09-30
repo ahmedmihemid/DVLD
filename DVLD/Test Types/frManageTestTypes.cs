@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD_Buisness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,7 +50,7 @@ namespace DVLD.Test_Types
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frUpdateTestTypes fr = new frUpdateTestTypes(Convert.ToInt32(TestTypesTGV.CurrentRow.Cells[0].Value));
+            frUpdateTestTypes fr = new frUpdateTestTypes((clsTestTypes.enTestType)Convert.ToInt32(TestTypesTGV.CurrentRow.Cells[0].Value));
             fr.ShowDialog();
             _LoadTestTypes();
         }

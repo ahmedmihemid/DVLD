@@ -39,7 +39,7 @@ namespace DVLD_DataAccess
             return dt;
         }
 
-        public static bool Find(int ApplicationTypeID, ref string ApplicationTypeTitle , ref decimal ApplicationFees)
+        public static bool Find(int ApplicationTypeID, ref string ApplicationTypeTitle , ref float ApplicationFees)
         {
      
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -56,7 +56,7 @@ namespace DVLD_DataAccess
                   isFound = true;
              
                   ApplicationTypeTitle =(string) reader["ApplicationTypeTitle"];
-                  ApplicationFees =(decimal) reader["ApplicationFees"];
+                  ApplicationFees =Convert.ToSingle (reader["ApplicationFees"]);
 
 
                 }
@@ -80,7 +80,36 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static bool Update(int ApplicationTypeID, string ApplicationTypeTitle, decimal ApplicationFees)
+        public static int AddNew( string ApplicationTypeTitle, float ApplicationFees)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"INSERT INTO ApplicationTypes (ApplicationTypeTitle,ApplicationFees) 
+                            VALUES(@ApplicationTypeTitle,@ApplicationFees);
+                           SELECT SCOPE_IDENTITY();";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
+            command.Parameters.AddWithValue("@ApplicationFees", ApplicationFees);
+
+            int ApplicationTypeID = -1;
+
+            try
+            {
+                connection.Open();
+                ApplicationTypeID =(int) command.ExecuteScalar();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return ApplicationTypeID;
+        }
+
+        public static bool Update(int ApplicationTypeID, string ApplicationTypeTitle, float ApplicationFees)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"UPDATE ApplicationTypes set

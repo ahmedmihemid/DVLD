@@ -13,9 +13,9 @@ namespace DVLD.Test_Types
 {
     public partial class frUpdateTestTypes : Form
     {
-        private int _TestTypeID;
+        private clsTestTypes.enTestType _TestTypeID;
         private clsTestTypes _testTypes;
-        public frUpdateTestTypes(int testTypeID)
+        public frUpdateTestTypes(clsTestTypes.enTestType testTypeID)
         {
             InitializeComponent();
             _TestTypeID = testTypeID;
@@ -31,7 +31,7 @@ namespace DVLD.Test_Types
             _testTypes = clsTestTypes.Find(_TestTypeID);
             if (_testTypes != null)
             {
-                IdLEB.Text = (_testTypes.TestTypeID).ToString();
+                IdLEB.Text = ((_testTypes.ID)).ToString();
                 TitleTB.Text = _testTypes.TestTypeTitle;
                 TestTypeDescriptionTB.Text = _testTypes.TestTypeDescription;
                 FeesTB.Text = (_testTypes.TestTypeFees).ToString();
@@ -45,11 +45,19 @@ namespace DVLD.Test_Types
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if(!this.ValidateChildren())
+            {
+                MessageBox.Show("Please correct the validation errors.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
             if (_testTypes != null)
             {   
                 _testTypes.TestTypeTitle = TitleTB.Text;
                 _testTypes.TestTypeDescription = TestTypeDescriptionTB.Text;
-                _testTypes.TestTypeFees = Convert.ToDecimal(FeesTB.Text);
+                _testTypes.TestTypeFees = Convert.ToSingle(FeesTB.Text);
 
                 if (_testTypes.save())
                 {
@@ -70,6 +78,56 @@ namespace DVLD.Test_Types
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();   
+        }
+
+        private void TitleTB_Validating(object sender, CancelEventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(TitleTB.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(TitleTB, "Title cannot be empty.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(TitleTB, "");
+            }
+        }
+
+        private void TestTypeDescriptionTB_Validating(object sender, CancelEventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(TestTypeDescriptionTB.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(TestTypeDescriptionTB, "Description cannot be empty.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(TestTypeDescriptionTB, "");
+            }
+        }
+
+        private void FeesTB_Validating(object sender, CancelEventArgs e)
+        {
+            string input = FeesTB.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(FeesTB, "Fees is required.");
+            }
+            else if (!Classes.clsValidatoin.IsNumber(input))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(FeesTB, "Fees must be a valid number.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(FeesTB, "");
+            }
+
         }
     }
 }

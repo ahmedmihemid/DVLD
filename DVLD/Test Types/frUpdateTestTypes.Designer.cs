@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.IdLEB = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.FeesTB = new System.Windows.Forms.TextBox();
@@ -39,6 +40,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.TestTypeDescriptionTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // IdLEB
@@ -68,6 +71,7 @@
             this.FeesTB.Name = "FeesTB";
             this.FeesTB.Size = new System.Drawing.Size(347, 28);
             this.FeesTB.TabIndex = 36;
+            this.FeesTB.Validating += new System.ComponentModel.CancelEventHandler(this.FeesTB_Validating);
             // 
             // TitleTB
             // 
@@ -76,6 +80,7 @@
             this.TitleTB.Name = "TitleTB";
             this.TitleTB.Size = new System.Drawing.Size(347, 28);
             this.TitleTB.TabIndex = 35;
+            this.TitleTB.Validating += new System.ComponentModel.CancelEventHandler(this.TitleTB_Validating);
             // 
             // label2
             // 
@@ -146,6 +151,7 @@
             this.TestTypeDescriptionTB.TabIndex = 50;
             this.TestTypeDescriptionTB.TabStop = false;
             this.TestTypeDescriptionTB.Text = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
+            this.TestTypeDescriptionTB.Validating += new System.ComponentModel.CancelEventHandler(this.TestTypeDescriptionTB_Validating);
             // 
             // label4
             // 
@@ -156,6 +162,10 @@
             this.label4.Size = new System.Drawing.Size(119, 21);
             this.label4.TabIndex = 51;
             this.label4.Text = "Description :";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frUpdateTestTypes
             // 
@@ -176,6 +186,7 @@
             this.Name = "frUpdateTestTypes";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frUpdateTestTypes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +205,6 @@
         private System.Windows.Forms.Label TitleLEB;
         private System.Windows.Forms.TextBox TestTypeDescriptionTB;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

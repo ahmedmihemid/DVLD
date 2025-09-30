@@ -42,7 +42,7 @@ namespace DVLD_DataAccess
             return dt;
         }
 
-        public static bool Find(int TestTypeID, ref string TestTypeTitle, ref string TestTypeDescription, ref decimal TestFees)
+        public static bool Find(int TestTypeID, ref string TestTypeTitle, ref string TestTypeDescription, ref float TestFees)
         {
             SqlConnection con = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT * FROM TestTypes WHERE TestTypeID = @TestTypeID";
@@ -58,7 +58,7 @@ namespace DVLD_DataAccess
                     isFound = true;
                     TestTypeTitle = reader["TestTypeTitle"].ToString();
                     TestTypeDescription = reader["TestTypeDescription"].ToString();
-                    TestFees = (decimal)reader["TestTypeFees"];
+                    TestFees = Convert.ToSingle(reader["TestTypeFees"]);
                 }
                 else
                 {
@@ -81,7 +81,37 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static bool Update(int TestTypeID, string TestTypeTitle, string TestTypeDescription, decimal TestFees)
+        public static int AddNew(string TestTypeTitle, string TestTypeDescription, float TestFees)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"INSERT INTO TestTypes (TestTypeTitle,TestTypeDescription,TestFees) 
+                            VALUES(@TestTypeTitle,@TestTypeDescription,@TestFees);
+                           SELECT SCOPE_IDENTITY();";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
+            command.Parameters.AddWithValue("@TestTypeDescription", TestTypeDescription);
+            command.Parameters.AddWithValue("@TestFees", TestFees);
+
+            int TestTypeID = -1;
+
+            try
+            {
+                connection.Open();
+                TestTypeID = (int)command.ExecuteScalar();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return TestTypeID;
+        }
+
+        public static bool Update(int TestTypeID, string TestTypeTitle, string TestTypeDescription, float TestFees)
         {
             SqlConnection con = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "UPDATE TestTypes SET TestTypeTitle = @TestTypeTitle," +

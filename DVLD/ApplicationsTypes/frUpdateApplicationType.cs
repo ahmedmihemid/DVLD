@@ -36,9 +36,9 @@ namespace DVLD.ApplicationsTypes
             _applicationType = clsApplicationTypes.Find(_ApplicationTypeID);
             if (_applicationType != null)
             {
-               IdLEB.Text = (_applicationType.ApplicationTypeID).ToString();
-               TitleTB.Text = _applicationType.ApplicationTypeTitle;
-               FeesTB.Text = (_applicationType.ApplicationFees).ToString();
+               IdLEB.Text = (_applicationType.ID).ToString();
+               TitleTB.Text = _applicationType.Title;
+               FeesTB.Text = (_applicationType.Fees).ToString();
             }
             else
             {
@@ -49,9 +49,15 @@ namespace DVLD.ApplicationsTypes
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _applicationType.ApplicationTypeID = Convert.ToInt32(IdLEB.Text);
-            _applicationType.ApplicationTypeTitle = TitleTB.Text;
-            _applicationType.ApplicationFees = Convert.ToDecimal(FeesTB.Text);
+            if(!this.ValidateChildren())
+            {
+                MessageBox.Show("Please correct the validation errors.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _applicationType.ID = Convert.ToInt32(IdLEB.Text);
+            _applicationType.Title = TitleTB.Text;
+            _applicationType.Fees = Convert.ToSingle(FeesTB.Text);
 
             if (_applicationType.save())
             {
@@ -67,6 +73,42 @@ namespace DVLD.ApplicationsTypes
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void TitleTB_Validating(object sender, CancelEventArgs e)
+      {
+            if(string.IsNullOrWhiteSpace(TitleTB.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(TitleTB, "Title cannot be empty.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(TitleTB, "");
+            }
+        }
+
+
+        private void FeesTB_Validating(object sender, CancelEventArgs e)
+        {
+            string input = FeesTB.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(FeesTB, "Fees is required.");
+            }
+            else if (!Classes.clsValidatoin.IsNumber(input))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(FeesTB, "Fees must be a valid number.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(FeesTB, "");
+            }
         }
     }
 }

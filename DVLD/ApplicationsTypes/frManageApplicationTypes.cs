@@ -42,8 +42,7 @@ namespace DVLD.ApplicationsTypes
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int ApplicationType= Convert.ToInt32( ApplicationTypesTGV.CurrentRow.Cells[0].Value);
-            frUpdateApplicationType fr = new frUpdateApplicationType(ApplicationType);
+            frUpdateApplicationType fr = new frUpdateApplicationType((int)ApplicationTypesTGV.CurrentRow.Cells[0].Value);
             fr.ShowDialog();
             ManageApplicationTypes_Load(null, null);//refresh data
         }

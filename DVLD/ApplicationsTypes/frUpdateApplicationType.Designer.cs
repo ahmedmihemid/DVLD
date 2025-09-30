@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TitleLEB = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,6 +38,8 @@
             this.IdLEB = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // TitleLEB
@@ -78,6 +81,7 @@
             this.TitleTB.Name = "TitleTB";
             this.TitleTB.Size = new System.Drawing.Size(323, 28);
             this.TitleTB.TabIndex = 26;
+            this.TitleTB.Validating += new System.ComponentModel.CancelEventHandler(this.TitleTB_Validating);
             // 
             // FeesTB
             // 
@@ -86,6 +90,7 @@
             this.FeesTB.Name = "FeesTB";
             this.FeesTB.Size = new System.Drawing.Size(323, 28);
             this.FeesTB.TabIndex = 27;
+            this.FeesTB.Validating += new System.ComponentModel.CancelEventHandler(this.FeesTB_Validating);
             // 
             // label3
             // 
@@ -134,6 +139,10 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frUpdateApplicationType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -152,6 +161,7 @@
             this.Name = "frUpdateApplicationType";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frUpdateApplicationType_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,5 +178,6 @@
         private System.Windows.Forms.Label IdLEB;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

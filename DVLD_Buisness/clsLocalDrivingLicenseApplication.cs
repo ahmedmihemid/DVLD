@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DVLD_Buisness
 {
@@ -13,13 +14,10 @@ namespace DVLD_Buisness
         public int ApplicationID { get; set; }
         public int LicenseClassID { get; set; }
 
-
-
         public static bool IsExist(int ApplicationID, int LicenseClassID)
         {
             return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.IsExist(ApplicationID, LicenseClassID);
         }
-
 
         private bool _AddNew()
         {
@@ -36,11 +34,9 @@ namespace DVLD_Buisness
 
         }
 
-
-
-        public static bool HasApplicationForLicenseClass(int applicationID, int licenseClassID)
+        public static bool HasApplicationForLicenseClass(int applicationID, int licenseClassID ,int ApplicationStatus)
         {
-            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.HasApplicationForLicenseClass(applicationID, licenseClassID);
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.HasApplicationForLicenseClass(applicationID, licenseClassID, ApplicationStatus);
         
         }
 
@@ -63,14 +59,16 @@ namespace DVLD_Buisness
             }
         }
 
-
+        public static DataTable GetAllLocalDrivingLicenseApplicationInfo()
+        {
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.GetAllLocalDrivingLicenseApplicationInfo();
+        }
 
 
         public bool Save()
         {
-
             return _AddNew();
-
         }
+
     }
 }

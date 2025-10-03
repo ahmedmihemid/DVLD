@@ -26,10 +26,7 @@ namespace DVLD
             _frLogin = frLogin;
         }
 
-        private void managePepoleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void fdsfsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -86,6 +83,14 @@ namespace DVLD
             frAddNewLocalDrivingApplication fr = new frAddNewLocalDrivingApplication();
             fr.ShowDialog();
         }
+
+        private void localDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frManageLocalDrivingApplication fr = new frManageLocalDrivingApplication();
+            fr.ShowDialog();
+        }
+
+
 
     }
 }

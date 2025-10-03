@@ -8,7 +8,6 @@ namespace DVLD_Buisness
 {
     public class clsApplications
     {
-
         public enum enMode
         {
             AddNew = 1,
@@ -23,7 +22,6 @@ namespace DVLD_Buisness
 
         public enMode Mode = enMode.AddNew;
 
-
         public int ApplicationID { get; set; }
         public int ApplicantPersonID { get; set; }
         public DateTime ApplicationDate { get; set; }
@@ -32,9 +30,6 @@ namespace DVLD_Buisness
         public DateTime LastStatusDate { get; set; }
         public float PaidFees { get; set; }
         public int CreatedByUserID { get; set; }
-
-
-
 
         public clsApplications()
         {
@@ -49,7 +44,6 @@ namespace DVLD_Buisness
             Mode = enMode.AddNew;
         }
 
-
       public clsApplications(int ApplicationID, int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, enStatus ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
         {
             this.ApplicationID = ApplicationID;
@@ -62,9 +56,6 @@ namespace DVLD_Buisness
             this.CreatedByUserID = CreatedByUserID;
             Mode = enMode.Edit;
         }
-
-
-
 
         public static clsApplications Find(int ApplicationID )
         {
@@ -89,8 +80,6 @@ namespace DVLD_Buisness
 
 
         }
-
-
 
         private bool _AddNew()
         {

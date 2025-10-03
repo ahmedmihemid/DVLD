@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace DVLD_DataAccess
 {
@@ -71,16 +72,17 @@ namespace DVLD_DataAccess
         }
 
 
-        public static bool HasApplicationForLicenseClass(int ApplicantPersonID, int LicenseClassID)
+        public static bool HasApplicationForLicenseClass(int ApplicantPersonID, int LicenseClassID,int ApplicationStatus)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"select Count(*) from LocalDrivingLicenseApplications inner join Applications on 
                            Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
                            where LocalDrivingLicenseApplications.LicenseClassID = @LicenseClassID 
-                           and Applications.ApplicantPersonID = @ApplicantPersonID  and Applications.ApplicationStatus = 1 ;";
+                           and Applications.ApplicantPersonID = @ApplicantPersonID  and Applications.ApplicationStatus = @ApplicationStatus ;";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
             command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
+            command.Parameters.AddWithValue("@ApplicationStatus", ApplicationStatus);
             bool hasApplication = false;
             try
             {
@@ -138,5 +140,45 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
+   
+        public static DataTable GetAllLocalDrivingLicenseApplicationInfo()
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string sql = "SELECT * FROM LocalDrivingLicenseApplications_View;";
+            SqlCommand command = new SqlCommand(sql, connection);
+            DataTable dataTable = new DataTable();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    dataTable.Load(reader);
+                }
+                else
+                {
+                    dataTable = null;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                Console.WriteLine("Error: " + ex.Message);
+                dataTable = null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dataTable;
+        }
+
+
+
+
+
+
     }
 }

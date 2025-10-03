@@ -62,6 +62,12 @@
     <Compile Include="Global Classes\clsGlobal.cs" />
     <Compile Include="Global Classes\clsUtil.cs" />
     <Compile Include="Global Classes\clsValidatoin.cs" />
+    <Compile Include="Licenses\frAddNewLocalDrivingApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Licenses\frAddNewLocalDrivingApplication.Designer.cs">
+      <DependentUpon>frAddNewLocalDrivingApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationsTypes\frManageApplicationTypes.resx">
       <DependentUpon>frManageApplicationTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\frAddNewLocalDrivingApplication.resx">
+      <DependentUpon>frAddNewLocalDrivingApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frLogin.resx">
       <DependentUpon>frLogin.cs</DependentUpon>

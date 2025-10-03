@@ -1,4 +1,5 @@
 ﻿using DVLD.ApplicationsTypes;
+using DVLD.Licenses;
 using DVLD.People;
 using DVLD.Test_Types;
 using DVLD.Users;
@@ -46,7 +47,7 @@ namespace DVLD
             DVLD.Classes.clsGlobal.CurrentUser = null;
             _frLogin.Show();
             this.Close();
-           
+
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,5 +80,12 @@ namespace DVLD
             frManageTestTypes fr = new frManageTestTypes();
             fr.ShowDialog();
         }
+
+        private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frAddNewLocalDrivingApplication fr = new frAddNewLocalDrivingApplication();
+            fr.ShowDialog();
+        }
+
     }
 }

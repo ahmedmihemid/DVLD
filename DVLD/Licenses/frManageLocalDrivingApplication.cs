@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
+
 namespace DVLD.Licenses
 {
     public partial class frManageLocalDrivingApplication : Form
@@ -132,7 +134,26 @@ namespace DVLD.Licenses
             frManageLocalDrivingApplication_Load(null, null);
         }
 
-      
+        private void deleteApplicationToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this user?", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+
+            if(clsApplications.Delete(clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value)).ApplicationID))
+            {
+                MessageBox.Show("Applications deleted successfully.", "Delete Applications", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frManageLocalDrivingApplication_Load(null, null);
+            }
+            else
+            {
+                MessageBox.Show("Error deleting Applications.", "Delete Applications", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+         
+        }
+
 
 
     }

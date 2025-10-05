@@ -81,6 +81,11 @@ namespace DVLD_Buisness
 
         }
 
+        public static bool Delete(int ApplicationID)
+        {
+            return DVLD_DataAccess.ApplicationsData.Delete(ApplicationID);
+        }
+
         private bool _AddNew()
         {
          this.ApplicationID = DVLD_DataAccess.ApplicationsData.AddNew(this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (int)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);

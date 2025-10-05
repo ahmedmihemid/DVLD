@@ -168,6 +168,47 @@ namespace DVLD_DataAccess
 
         }
 
+        public static bool Delete(int ApplicationID)
+        {
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            SqlCommand deleteChild = new SqlCommand(@" DELETE FROM LocalDrivingLicenseApplications WHERE ApplicationID = @ApplicationID", connection);
+            deleteChild.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+
+            SqlCommand deleteParent = new SqlCommand(@"DELETE FROM Applications WHERE ApplicationID = @ApplicationID;", connection);
+            deleteParent.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+
+        
+            bool isDeleted = false;
+            try
+            {
+                connection.Open();
+                // First, delete child records
+                deleteChild.ExecuteNonQuery();
+                // Then, delete the parent record
+                int rowsAffected = deleteParent.ExecuteNonQuery();
+                isDeleted = rowsAffected > 0;
+
+
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                Console.WriteLine("Error: " + ex.Message);
+                isDeleted = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isDeleted;
+        }
+
+
+
+
+
     }
 
 }

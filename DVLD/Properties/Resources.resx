@@ -160,14 +160,29 @@
   <data name="edit 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit 321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add New User 722" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add New User 722.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="edit 322" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit 322.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Damaged Driving License 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Damaged Driving License 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PersonDetails 323" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PersonDetails 323.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Delete 32 21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete 32 21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Schedule Test 5121" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Schedule Test 5121.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit 326" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit 326.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Email 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Email 321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="License View 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\License View 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Man 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Man 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -180,6 +195,9 @@
   </data>
   <data name="Driver License 48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Driver License 48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Add New User 722" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add New User 722.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IconLogo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IconLogo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,23 +241,26 @@
   <data name="Add New User 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add New User 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="edit 322" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit 322.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Calendar 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Calendar 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Application Types 5121" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Application Types 5121.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Delete 32 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete 32 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Person 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Person 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Schedule Test 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Schedule Test 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SearchPerson" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SearchPerson.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add Person 402" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add Person 402.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Delete 322" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete 322.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Close 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -304,6 +325,9 @@
   <data name="Address 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Address 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="IssueDrivingLicense 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IssueDrivingLicense 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="closeBlack32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\closeBlack32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -319,14 +343,17 @@
   <data name="account_settings 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\account_settings 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="edit 325" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit 325.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Application Types 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Application Types 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddPerson 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddPerson 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Email 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Email 321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Applications2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Applications2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PersonDetails 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PersonDetails 321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -337,10 +364,13 @@
   <data name="Add Person 40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add Person 40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Add Person 402" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add Person 402.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="edit 324" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit 324.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Applications2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Applications2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PersonLicenseHistory 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PersonLicenseHistory 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

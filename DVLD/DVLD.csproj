@@ -68,11 +68,11 @@
     <Compile Include="Licenses\frManageLocalDrivingApplication.Designer.cs">
       <DependentUpon>frManageLocalDrivingApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licenses\frAddNewLocalDrivingApplication.cs">
+    <Compile Include="Licenses\frAddEditLocalDrivingApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Licenses\frAddNewLocalDrivingApplication.Designer.cs">
-      <DependentUpon>frAddNewLocalDrivingApplication.cs</DependentUpon>
+    <Compile Include="Licenses\frAddEditLocalDrivingApplication.Designer.cs">
+      <DependentUpon>frAddEditLocalDrivingApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frLogin.cs">
       <SubType>Form</SubType>
@@ -175,8 +175,8 @@
     <EmbeddedResource Include="Licenses\frManageLocalDrivingApplication.resx">
       <DependentUpon>frManageLocalDrivingApplication.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licenses\frAddNewLocalDrivingApplication.resx">
-      <DependentUpon>frAddNewLocalDrivingApplication.cs</DependentUpon>
+    <EmbeddedResource Include="Licenses\frAddEditLocalDrivingApplication.resx">
+      <DependentUpon>frAddEditLocalDrivingApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frLogin.resx">
       <DependentUpon>frLogin.cs</DependentUpon>
@@ -476,6 +476,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Applications2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonDetails 323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit 325.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete 32 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit 326.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete 32 21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete 322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Schedule Test 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IssueDrivingLicense 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License View 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonLicenseHistory 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

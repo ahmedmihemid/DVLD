@@ -1,6 +1,6 @@
 ﻿namespace DVLD.Licenses
 {
-    partial class frAddNewLocalDrivingApplication
+    partial class frAddEditLocalDrivingApplication
     {
         /// <summary>
         /// Required designer variable.

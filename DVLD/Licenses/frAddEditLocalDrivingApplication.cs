@@ -11,7 +11,7 @@ using DVLD_Buisness;
 
 namespace DVLD.Licenses
 {
-    public partial class frAddNewLocalDrivingApplication : Form
+    public partial class frAddEditLocalDrivingApplication : Form
     {
         public enum enMode { AddNew=1, Edit=2 }
         public enMode Mode = enMode.AddNew;
@@ -20,7 +20,7 @@ namespace DVLD.Licenses
 
         clsApplications applications;
         clsLocalDrivingLicenseApplication localDrivingLicenseApplication;
-        public frAddNewLocalDrivingApplication()
+        public frAddEditLocalDrivingApplication()
         {
             InitializeComponent();
             Mode = enMode.AddNew;
@@ -28,7 +28,7 @@ namespace DVLD.Licenses
             localDrivingLicenseApplication = new clsLocalDrivingLicenseApplication();
         }
 
-        public frAddNewLocalDrivingApplication(int applicationsID)
+        public frAddEditLocalDrivingApplication(int applicationsID)
         {
             InitializeComponent();
             Mode = enMode.Edit;
@@ -67,11 +67,12 @@ namespace DVLD.Licenses
                 this.Text = "Add New Local Driving Application";
                 tabControl1.TabPages[1].Enabled = false;
                 btnSave.Enabled = false;
+                ApplicationIdLEB.Text = "???";
+                ApplicationDateLEB.Text = "???";
+                LicensesFeesLEB.Text = "???";
+                CreateByLEB.Text = "???";
             }
-            ApplicationIdLEB.Text = "???";
-            ApplicationDateLEB.Text = "???";
-            LicensesFeesLEB.Text = "???";
-            CreateByLEB.Text = "???";
+           
            
 
         }
@@ -86,11 +87,39 @@ namespace DVLD.Licenses
             _FillLicenseClasses();
         }
 
+
+        private void _LoadApplicationData()
+        {
+            if(applications != null)
+            {
+                ctrlPersonCardWithFilter1.LoadPersonInfo(applications.ApplicantPersonID);
+                ApplicationIdLEB.Text = applications.ApplicationID.ToString();
+                ApplicationDateLEB.Text = applications.ApplicationDate.ToShortDateString();
+                if(localDrivingLicenseApplication !=null)
+                LicensesClassCB.SelectedIndex = localDrivingLicenseApplication.LicenseClassID - 1;
+                LicensesFeesLEB.Text= applications.PaidFees.ToString();
+                CreateByLEB.Text = clsUser.Find(applications.CreatedByUserID).UserName;
+
+            }
+            else
+            {
+                MessageBox.Show("The specified application could not be found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
-
             _ResetDefualtValues();
+
+            if (Mode == enMode.Edit)
+                _LoadApplicationData();
+
         }
+
+
 
         private void btnNext_Click(object sender, EventArgs e)
         {
@@ -127,13 +156,24 @@ namespace DVLD.Licenses
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(DVLD_Buisness.clsLocalDrivingLicenseApplication.HasApplicationForLicenseClass(ctrlPersonCardWithFilter1.PersonID, LicensesClassCB.SelectedIndex+1, (int)applications.ApplicationStatus))
-            {
-                MessageBox.Show("This person already has an application for the selected license class.", "Duplicate Application", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-           
 
+            if(DVLD_Buisness.clsLocalDrivingLicenseApplication.HasApplicationForLicenseClass(ctrlPersonCardWithFilter1.PersonID, LicensesClassCB.SelectedIndex+1, (int)applications.ApplicationStatus))
+            {  
+                if(Mode == enMode.Edit && localDrivingLicenseApplication != null && localDrivingLicenseApplication.LicenseClassID == LicensesClassCB.SelectedIndex + 1)
+                {
+                    // Allow saving if in edit mode and the license class hasn't changed
+                }
+                else
+                {
+                    MessageBox.Show("This person already has an application for the selected license class.", "Duplicate Application", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //MessageBox.Show("This person already has an application for the selected license class.", "Duplicate Application", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //return;
+            }
+
+           
             applications.ApplicantPersonID = ctrlPersonCardWithFilter1.PersonID;
             applications.ApplicationDate = DateTime.Now;
             applications.ApplicationTypeID = _ApplicationTypeId;
@@ -165,9 +205,6 @@ namespace DVLD.Licenses
             {
                 MessageBox.Show("An error occurred while saving the application. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-
 
         }
 

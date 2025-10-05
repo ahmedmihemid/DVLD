@@ -44,7 +44,7 @@ namespace DVLD_Buisness
             Mode = enMode.AddNew;
         }
 
-      public clsApplications(int ApplicationID, int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, enStatus ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
+        public clsApplications(int ApplicationID, int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, enStatus ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
         {
             this.ApplicationID = ApplicationID;
             this.ApplicantPersonID = ApplicantPersonID;
@@ -89,7 +89,8 @@ namespace DVLD_Buisness
 
         private bool _Update()
         {
-           return true;
+          
+            return DVLD_DataAccess.ApplicationsData.Update(this.ApplicationID, this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (int)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
         }
 
         public bool Save()

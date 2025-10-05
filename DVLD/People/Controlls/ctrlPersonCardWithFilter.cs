@@ -27,6 +27,9 @@ namespace DVLD.People.Controlls
             }
         }
 
+
+
+
         private bool _ShowAddPerson = true;
         public bool ShowAddPerson
         {
@@ -177,7 +180,9 @@ namespace DVLD.People.Controlls
 
             }
 
+
             FindNow();
+
         }
 
         private void btnAddNewPerson_Click_1(object sender, EventArgs e)

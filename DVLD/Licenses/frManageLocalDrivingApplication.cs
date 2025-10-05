@@ -26,8 +26,9 @@ namespace DVLD.Licenses
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frAddNewLocalDrivingApplication fr = new frAddNewLocalDrivingApplication();
+            frAddEditLocalDrivingApplication fr = new frAddEditLocalDrivingApplication();
             fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
         }
 
         private void frManageLocalDrivingApplication_Load(object sender, EventArgs e)
@@ -57,12 +58,6 @@ namespace DVLD.Licenses
 
         }
 
-
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void FilterValueTB_TextChanged(object sender, EventArgs e)
         {
@@ -127,6 +122,17 @@ namespace DVLD.Licenses
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
+   
+
+        private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ApplicationID = clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value)).ApplicationID;
+            frAddEditLocalDrivingApplication fr = new frAddEditLocalDrivingApplication(ApplicationID);
+             fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
+        }
+
+      
 
 
     }

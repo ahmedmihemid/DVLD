@@ -60,7 +60,7 @@ namespace DVLD_DataAccess
                     ApplicantPersonID = (int)reader["ApplicantPersonID"];
                     ApplicationDate = (DateTime)reader["ApplicationDate"];
                     ApplicationTypeID = (int)reader["ApplicationTypeID"];
-                    ApplicationStatus = (int)reader["ApplicationStatus"];
+                    ApplicationStatus = Convert.ToInt32(reader["ApplicationStatus"]);
                     LastStatusDate = (DateTime)reader["LastStatusDate"];
                     PaidFees = Convert.ToSingle(reader["PaidFees"]);
                     CreatedByUserID = (int)reader["CreatedByUserID"];
@@ -123,10 +123,51 @@ namespace DVLD_DataAccess
 
             return newID;
         }
-   
-    
-    
-    
+
+
+        public static bool Update(int ApplicationID, int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, int ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Applications
+                           SET ApplicantPersonID = @ApplicantPersonID,
+                           ApplicationDate = @ApplicationDate, 
+                           ApplicationTypeID = @ApplicationTypeID, 
+                           ApplicationStatus = @ApplicationStatus, 
+                           LastStatusDate = @LastStatusDate,
+                           PaidFees = @PaidFees, 
+                           CreatedByUserID = @CreatedByUserID
+                           WHERE ApplicationID = @ApplicationID;";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            cmd.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
+            cmd.Parameters.AddWithValue("@ApplicationDate", ApplicationDate);
+            cmd.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            cmd.Parameters.AddWithValue("@ApplicationStatus", ApplicationStatus);
+            cmd.Parameters.AddWithValue("@LastStatusDate", LastStatusDate);
+            cmd.Parameters.AddWithValue("@PaidFees", PaidFees);
+            cmd.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+            bool isUpdated = false;
+            try
+            {
+                connection.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                isUpdated = rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                Console.WriteLine("Error: " + ex.Message);
+                isUpdated = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isUpdated;
+
+        }
+
     }
-    
+
 }

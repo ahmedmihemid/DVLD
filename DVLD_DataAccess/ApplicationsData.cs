@@ -179,7 +179,7 @@ namespace DVLD_DataAccess
             SqlCommand deleteParent = new SqlCommand(@"DELETE FROM Applications WHERE ApplicationID = @ApplicationID;", connection);
             deleteParent.Parameters.AddWithValue("@ApplicationID", ApplicationID);
 
-        
+
             bool isDeleted = false;
             try
             {
@@ -206,9 +206,39 @@ namespace DVLD_DataAccess
         }
 
 
+        public static bool ChangeStatus(int ApplicationID, int NewStatus, DateTime StatusChangeDate)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Applications
+                           SET ApplicationStatus = @NewStatus, 
+                           LastStatusDate = @StatusChangeDate
+                           WHERE ApplicationID = @ApplicationID;";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            cmd.Parameters.AddWithValue("@NewStatus", NewStatus);
+            cmd.Parameters.AddWithValue("@StatusChangeDate", StatusChangeDate);
+            bool isUpdated = false;
 
+            try
+            {
+                connection.Open();
+                int num = cmd.ExecuteNonQuery();
+                isUpdated = num > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                isUpdated = false;
 
+            }
+            finally
+            {
+                connection.Close();
+            }
 
+            return isUpdated;
+
+        }
     }
 
 }

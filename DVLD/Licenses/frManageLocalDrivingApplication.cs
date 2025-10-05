@@ -124,8 +124,6 @@ namespace DVLD.Licenses
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-   
-
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int ApplicationID = clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value)).ApplicationID;
@@ -152,6 +150,27 @@ namespace DVLD.Licenses
             }
 
          
+        }
+
+        private void cancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to cancel this applicaation ?", "cancel applicaation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+
+            int ApplicationID = clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value)).ApplicationID;
+            if (clsApplications.ChangeStatus(ApplicationID, clsApplications.enStatus.Cancelled))
+            {
+                MessageBox.Show("The application has been cancelled successfully.","Success", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                frManageLocalDrivingApplication_Load(null, null);
+            }
+            else
+            {
+                MessageBox.Show("Failed to cancel the application. Please try again.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+            }
+
         }
 
 

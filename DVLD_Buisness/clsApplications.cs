@@ -13,13 +13,7 @@ namespace DVLD_Buisness
             AddNew = 1,
             Edit = 2
         }
-        public enum enStatus
-        {
-            New =1,
-            InProcess =2,
-            cancelled =3,
-        }
-
+        public enum enStatus { New = 1, Cancelled = 2, Completed = 3 };
         public enMode Mode = enMode.AddNew;
 
         public int ApplicationID { get; set; }
@@ -97,6 +91,12 @@ namespace DVLD_Buisness
           
             return DVLD_DataAccess.ApplicationsData.Update(this.ApplicationID, this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (int)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
         }
+
+        public static bool ChangeStatus(int ApplicationID, enStatus NewStatus)
+        {
+            return DVLD_DataAccess.ApplicationsData.ChangeStatus(ApplicationID, (int)NewStatus, DateTime.Now);
+        }
+
 
         public bool Save()
         {

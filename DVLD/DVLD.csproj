@@ -47,17 +47,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationsTypes\frUpdateApplicationType.cs">
+    <Compile Include="Applications\ApplicationsTypes\frUpdateApplicationType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationsTypes\frUpdateApplicationType.Designer.cs">
+    <Compile Include="Applications\ApplicationsTypes\frUpdateApplicationType.Designer.cs">
       <DependentUpon>frUpdateApplicationType.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationsTypes\frManageApplicationTypes.cs">
+    <Compile Include="Applications\ApplicationsTypes\frManageApplicationTypes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationsTypes\frManageApplicationTypes.Designer.cs">
+    <Compile Include="Applications\ApplicationsTypes\frManageApplicationTypes.Designer.cs">
       <DependentUpon>frManageApplicationTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Controlls\ctlApplicationBasicInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Applications\Controlls\ctlApplicationBasicInfo.Designer.cs">
+      <DependentUpon>ctlApplicationBasicInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\frApplicationDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\frApplicationDetails.Designer.cs">
+      <DependentUpon>frApplicationDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Global Classes\clsGlobal.cs" />
     <Compile Include="Global Classes\clsUtil.cs" />
@@ -73,6 +85,12 @@
     </Compile>
     <Compile Include="Licenses\frAddEditLocalDrivingApplication.Designer.cs">
       <DependentUpon>frAddEditLocalDrivingApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Licenses\ctrlDrivingLicenseApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Licenses\ctrlDrivingLicenseApplicationInfo.Designer.cs">
+      <DependentUpon>ctrlDrivingLicenseApplicationInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frLogin.cs">
       <SubType>Form</SubType>
@@ -166,17 +184,26 @@
     <Compile Include="Users\frManageUsers.Designer.cs">
       <DependentUpon>frManageUsers.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ApplicationsTypes\frUpdateApplicationType.resx">
+    <EmbeddedResource Include="Applications\ApplicationsTypes\frUpdateApplicationType.resx">
       <DependentUpon>frUpdateApplicationType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationsTypes\frManageApplicationTypes.resx">
+    <EmbeddedResource Include="Applications\ApplicationsTypes\frManageApplicationTypes.resx">
       <DependentUpon>frManageApplicationTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Controlls\ctlApplicationBasicInfo.resx">
+      <DependentUpon>ctlApplicationBasicInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\frApplicationDetails.resx">
+      <DependentUpon>frApplicationDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\frManageLocalDrivingApplication.resx">
       <DependentUpon>frManageLocalDrivingApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\frAddEditLocalDrivingApplication.resx">
       <DependentUpon>frAddEditLocalDrivingApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\ctrlDrivingLicenseApplicationInfo.resx">
+      <DependentUpon>ctrlDrivingLicenseApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frLogin.resx">
       <DependentUpon>frLogin.cs</DependentUpon>
@@ -506,6 +533,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PersonLicenseHistory 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vision Test 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Written Test 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Street Test 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User 32 -2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

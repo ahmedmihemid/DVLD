@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
-    public class ApplicationsData
+    public class clsApplicationsData
     {
 
 

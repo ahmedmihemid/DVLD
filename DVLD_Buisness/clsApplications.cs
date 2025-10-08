@@ -61,7 +61,7 @@ namespace DVLD_Buisness
             float PaidFees =0;
             int CreatedByUserID =0;
                      
-            bool isFound=DVLD_DataAccess.ApplicationsData.Find(ApplicationID, ref ApplicantPersonID, ref ApplicationDate, ref ApplicationTypeID, ref ApplicationStatus, ref LastStatusDate, ref PaidFees, ref CreatedByUserID);
+            bool isFound=DVLD_DataAccess.clsApplicationsData.Find(ApplicationID, ref ApplicantPersonID, ref ApplicationDate, ref ApplicationTypeID, ref ApplicationStatus, ref LastStatusDate, ref PaidFees, ref CreatedByUserID);
             
             if(isFound)
             {
@@ -77,24 +77,24 @@ namespace DVLD_Buisness
 
         public static bool Delete(int ApplicationID)
         {
-            return DVLD_DataAccess.ApplicationsData.Delete(ApplicationID);
+            return DVLD_DataAccess.clsApplicationsData.Delete(ApplicationID);
         }
 
         private bool _AddNew()
         {
-         this.ApplicationID = DVLD_DataAccess.ApplicationsData.AddNew(this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (int)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
+         this.ApplicationID = DVLD_DataAccess.clsApplicationsData.AddNew(this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (int)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
          return this.ApplicationID > 0;
         }
 
         private bool _Update()
         {
           
-            return DVLD_DataAccess.ApplicationsData.Update(this.ApplicationID, this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (int)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
+            return DVLD_DataAccess.clsApplicationsData.Update(this.ApplicationID, this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (int)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
         }
 
         public static bool ChangeStatus(int ApplicationID, enStatus NewStatus)
         {
-            return DVLD_DataAccess.ApplicationsData.ChangeStatus(ApplicationID, (int)NewStatus, DateTime.Now);
+            return DVLD_DataAccess.clsApplicationsData.ChangeStatus(ApplicationID, (int)NewStatus, DateTime.Now);
         }
 
 

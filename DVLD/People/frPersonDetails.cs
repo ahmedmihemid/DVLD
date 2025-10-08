@@ -10,10 +10,10 @@ using System.Windows.Forms;
 using DVLD_Buisness;
 
 namespace DVLD.People
-{
+{    
+
     public partial class frPersonDetails : Form
     {
-
 
         public frPersonDetails(int PersonID)
         {

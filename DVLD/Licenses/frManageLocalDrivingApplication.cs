@@ -1,4 +1,5 @@
-﻿using DVLD_Buisness;
+﻿using DVLD.Applications;
+using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -173,7 +174,12 @@ namespace DVLD.Licenses
 
         }
 
+        private void showApplicationDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
-
+            frApplicationDetails fr = new frApplicationDetails((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
+            fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DVLD.Applications;
+using DVLD.Tests;
 using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
@@ -178,6 +179,27 @@ namespace DVLD.Licenses
         {
 
             frApplicationDetails fr = new frApplicationDetails((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
+            fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
+        }
+
+        private void sechsuleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.VisionTest);
+            fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
+        }
+
+        private void sechsuleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.WrittenTest);
+            fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
+        }
+
+        private void sechsuleToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.StreetTest);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }

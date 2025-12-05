@@ -236,6 +236,7 @@
             this.sechsuleToolStripMenuItem.Name = "sechsuleToolStripMenuItem";
             this.sechsuleToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.sechsuleToolStripMenuItem.Text = "Sechsule Vision Test";
+            this.sechsuleToolStripMenuItem.Click += new System.EventHandler(this.sechsuleToolStripMenuItem_Click);
             // 
             // sechsuleToolStripMenuItem1
             // 
@@ -243,6 +244,7 @@
             this.sechsuleToolStripMenuItem1.Name = "sechsuleToolStripMenuItem1";
             this.sechsuleToolStripMenuItem1.Size = new System.Drawing.Size(232, 26);
             this.sechsuleToolStripMenuItem1.Text = "Sechsule Written Test";
+            this.sechsuleToolStripMenuItem1.Click += new System.EventHandler(this.sechsuleToolStripMenuItem1_Click);
             // 
             // sechsuleToolStripMenuItem2
             // 
@@ -250,6 +252,7 @@
             this.sechsuleToolStripMenuItem2.Name = "sechsuleToolStripMenuItem2";
             this.sechsuleToolStripMenuItem2.Size = new System.Drawing.Size(232, 26);
             this.sechsuleToolStripMenuItem2.Text = "Sechsule Street Test";
+            this.sechsuleToolStripMenuItem2.Click += new System.EventHandler(this.sechsuleToolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 

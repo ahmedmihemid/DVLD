@@ -142,17 +142,41 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test Types\frUpdateTestTypes.cs">
+    <Compile Include="Tests\Controlls\ctrlSecheduledTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\Controlls\ctrlSecheduledTest.Designer.cs">
+      <DependentUpon>ctrlSecheduledTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Test Types\frUpdateTestTypes.Designer.cs">
+    <Compile Include="Tests\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\frManageTestAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\frManageTestAppointments.Designer.cs">
+      <DependentUpon>frManageTestAppointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Test Types\frUpdateTestTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\Test Types\frUpdateTestTypes.Designer.cs">
       <DependentUpon>frUpdateTestTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Test Types\frManageTestTypes.cs">
+    <Compile Include="Tests\Test Types\frManageTestTypes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Test Types\frManageTestTypes.Designer.cs">
+    <Compile Include="Tests\Test Types\frManageTestTypes.Designer.cs">
       <DependentUpon>frManageTestTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Controlls\crlScheduleTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\Controlls\crlScheduleTest.Designer.cs">
+      <DependentUpon>crlScheduleTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\frAddEditUsers.cs">
       <SubType>Form</SubType>
@@ -239,10 +263,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Test Types\frUpdateTestTypes.resx">
+    <EmbeddedResource Include="Tests\Controlls\crlScheduleTest.resx">
+      <DependentUpon>crlScheduleTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Controlls\ctrlSecheduledTest.resx">
+      <DependentUpon>ctrlSecheduledTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\frManageTestAppointments.resx">
+      <DependentUpon>frManageTestAppointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Test Types\frUpdateTestTypes.resx">
       <DependentUpon>frUpdateTestTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Test Types\frManageTestTypes.resx">
+    <EmbeddedResource Include="Tests\Test Types\frManageTestTypes.resx">
       <DependentUpon>frManageTestTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frAddEditUsers.resx">
@@ -551,6 +587,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\User 32 -2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vision 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Written Test 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Street Test 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Schedule Test 5122.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Street Test 322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddAppointment 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

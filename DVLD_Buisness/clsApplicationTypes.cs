@@ -55,6 +55,17 @@ namespace DVLD_Buisness
                 return null;
 
         }
+        public static clsApplicationTypes FindByTitle( string applicationTypeTitle)
+        {
+            int applicationTypeID = -1;
+            float applicationFees = 0;
+
+            if( clsApplicationTypesData.FindByTitle(applicationTypeTitle, ref applicationTypeID, ref applicationFees))
+                return new clsApplicationTypes(applicationTypeID, applicationTypeTitle, applicationFees);
+            else
+                return null;
+
+        }
 
 
         private bool _AddNew()

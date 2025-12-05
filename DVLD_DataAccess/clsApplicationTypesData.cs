@@ -80,6 +80,42 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
+        public static bool FindByTitle(string ApplicationTypeTitle, ref int ApplicationTypeID, ref float ApplicationFees)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string sql = "SELECT * FROM ApplicationTypes WHERE ApplicationTypeTitle = @ApplicationTypeTitle;";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
+            bool isFound = false;
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    isFound = true;
+                    ApplicationTypeID = (int)reader["ApplicationTypeID"];
+                    ApplicationFees = Convert.ToSingle(reader["ApplicationFees"]);
+                }
+                else
+                {
+                    isFound = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
+
         public static int AddNew( string ApplicationTypeTitle, float ApplicationFees)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);

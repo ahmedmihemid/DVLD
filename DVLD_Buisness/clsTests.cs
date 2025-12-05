@@ -40,7 +40,10 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsTestsData.GetNumberOfPassedTests(localDrivingLicenseApplicationID);
         }
 
-
+        public static bool IsItFallTests(int localDrivingLicenseApplicationID,int testTypeID)
+        {
+            return DVLD_DataAccess.clsTestsData.IsItFallTests(localDrivingLicenseApplicationID, testTypeID);
+        }
 
 
     }

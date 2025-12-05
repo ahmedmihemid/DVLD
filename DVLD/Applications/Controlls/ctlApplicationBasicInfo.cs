@@ -52,8 +52,8 @@ namespace DVLD.Applications.Controlls
             lblFees.Text = _Applications.PaidFees.ToString();
             lblType.Text = clsApplicationTypes.Find(_Applications.ApplicationTypeID).Title;
             lblApplicant.Text = clsPerson.Find(_Applications.ApplicantPersonID).FullName;
-            lblDate.Text = _Applications.ApplicationDate.ToString();
-            lblStatusDate.Text = _Applications.LastStatusDate.ToString();
+            lblDate.Text = _Applications.ApplicationDate.ToShortDateString();
+            lblStatusDate.Text = _Applications.LastStatusDate.ToShortDateString();
             lblCreatedByUser.Text = clsUser.Find(_Applications.CreatedByUserID).UserName;
 
         }

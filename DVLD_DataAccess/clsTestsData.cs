@@ -12,7 +12,7 @@ namespace DVLD_DataAccess
 
 
 
-        public static int GetNumberOfPassedTests(int localDrivingLicenseApplicationID)
+        public static int GetNumberOfPassedTests(int localDrivingLicenseApplicationID )
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string sql = @"SELECT COUNT(*) FROM Tests t
@@ -37,6 +37,44 @@ namespace DVLD_DataAccess
                 connection.Close();
             }
             return passedTestsCount;
+        }
+ 
+
+        public static bool IsItFallTests(int localDrivingLicenseApplicationID, int testTypeID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string sql = @"Select count(*) 
+                   from Tests 
+                   inner join TestAppointments 
+                   on Tests.TestAppointmentID = TestAppointments.TestAppointmentID 
+                   where TestAppointments.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID
+                   AND Tests.TestResult = 0 
+                   AND TestAppointments.TestTypeID = @TestTypeID;";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", testTypeID);
+
+            int failedTestsCount = 0;
+
+            try
+            {
+                connection.Open();
+                failedTestsCount = Convert.ToInt32(command.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                failedTestsCount = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return failedTestsCount > 0;
         }
 
 

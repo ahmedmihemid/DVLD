@@ -13,13 +13,13 @@ namespace DVLD.Tests
 {
     public partial class frManageTestAppointments : Form
     {
-        public enum enTest {  VisionTest=1, WrittenTest = 2,  StreetTest = 3 }
+        public enum enTest { VisionTest = 1, WrittenTest = 2, StreetTest = 3 }
         private enTest _Test;
-
-        
 
         private int _LocalDrivingLicenseApplicationID = -1;
 
+        
+        private DataTable _dtTestAppointments = null;
 
         public frManageTestAppointments(int LocalDrivingLicenseApplicationID, enTest test)
         {
@@ -36,13 +36,14 @@ namespace DVLD.Tests
 
 
 
+
         private void _FillData()
         {
             switch (_Test)
             {
                 case enTest.VisionTest:
                     {
-                        TestImagePB.Image= Resources.Vision_512;
+                        TestImagePB.Image = Resources.Vision_512;
                         TitleLEB.Text = "Vison Test Appointments";
                         break;
                     }
@@ -64,9 +65,30 @@ namespace DVLD.Tests
             }
 
 
+            _dtTestAppointments = DVLD_Buisness.clsTestAppointments.GetAllTestAppointmentsBylocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID, (int)_Test);
+            dataGridView1.DataSource = _dtTestAppointments;
+            RecordsLEB.Text = dataGridView1.Rows.Count.ToString();
+
+            if (dataGridView1.Rows.Count > 0)
+            {
+                dataGridView1.Columns[0].HeaderText = "Appointment ID";
+                dataGridView1.Columns[0].Width = 150;
+
+                dataGridView1.Columns[1].HeaderText = "Appointment Data";
+                dataGridView1.Columns[1].Width = 280;
 
 
+                dataGridView1.Columns[2].HeaderText = "Paid Fees";
+                dataGridView1.Columns[2].Width = 130;
+
+
+                dataGridView1.Columns[3].HeaderText = "Is Locked";
+                dataGridView1.Columns[3].Width = 110;
+            }
         }
+    
+
+        
 
         private void button1_Click(object sender, EventArgs e)
        {
@@ -74,6 +96,7 @@ namespace DVLD.Tests
             fr.ShowDialog();
 
         }
+
 
 
     }

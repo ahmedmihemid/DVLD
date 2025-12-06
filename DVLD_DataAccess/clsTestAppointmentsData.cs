@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace DVLD_DataAccess
 {
@@ -85,6 +86,39 @@ namespace DVLD_DataAccess
 
         }
 
+
+        public static DataTable GetAllTestAppointmentsBylocalDrivingLicenseApplicationID(int localDrivingLicenseApplicationID,int TestTypeID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string sql = "SELECT TestAppointmentID,  AppointmentDate, PaidFees,  IsLocked " +
+                         "FROM TestAppointments " +
+                         "WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID AND TestTypeID=@TestTypeID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in GetAllTestAppointmentsBylocalDrivingLicenseApplicationID: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
 
 
     }

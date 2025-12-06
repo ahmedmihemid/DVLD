@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DVLD_Buisness
 {
@@ -46,6 +47,12 @@ namespace DVLD_Buisness
             Mode = enMode.Update;
         }
 
+
+
+        public static DataTable GetAllTestAppointmentsBylocalDrivingLicenseApplicationID(int localDrivingLicenseApplicationID,int TestType)
+        {
+            return DVLD_DataAccess.clsTestAppointmentsData.GetAllTestAppointmentsBylocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID, TestType);
+        }
 
         public static clsTestAppointments FindIfTestAppointment(int testAppointmentID)
         {

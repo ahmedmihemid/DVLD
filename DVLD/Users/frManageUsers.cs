@@ -35,7 +35,7 @@ namespace DVLD.Users
                 UsersDGV.Columns[0].HeaderText = "User ID";
                 UsersDGV.Columns[0].Width=100;
 
-                UsersDGV.Columns[1].HeaderText = "Person ID";
+                UsersDGV.Columns[1].HeaderText = "Person ID"; 
                 UsersDGV.Columns[1].Width = 100;
 
 

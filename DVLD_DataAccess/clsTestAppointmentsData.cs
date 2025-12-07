@@ -85,7 +85,32 @@ namespace DVLD_DataAccess
             }
 
         }
-
+        
+        public static bool UpdateTestAppointment(int TestAppointmentID, DateTime AppointmentDate)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string sql = "UPDATE TestAppointments " +
+                         "SET AppointmentDate = @AppointmentDate " +
+                         "WHERE TestAppointmentID = @TestAppointmentID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
+            command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
+            int rowsAffected = 0;
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in UpdateTestAppointment: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return rowsAffected > 0;
+        }
 
         public static DataTable GetAllTestAppointmentsBylocalDrivingLicenseApplicationID(int localDrivingLicenseApplicationID,int TestTypeID)
         {
@@ -120,6 +145,33 @@ namespace DVLD_DataAccess
 
         }
 
+
+        public static bool IsHasNotLockedTestAppointment(int localDrivingLicenseApplicationID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string sql = "SELECT COUNT(*) " +
+                         "FROM TestAppointments " +
+                         "WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID AND IsLocked = 0";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+            try
+            {
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in IsHasLockedTestAppointment: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
 
     }
 }

@@ -37,17 +37,16 @@ namespace DVLD.Tests
         }
 
 
-        private void _FillData()
-        {
-          crlScheduleTest1.LoadData(_LocalDrivingLicenseApplicationID, _Test);
-            
-        }
+       
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            _FillData();
+      
         }
 
-       
+        private void crlScheduleTest1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -53,6 +53,7 @@
             this.crlScheduleTest1.Name = "crlScheduleTest1";
             this.crlScheduleTest1.Size = new System.Drawing.Size(553, 705);
             this.crlScheduleTest1.TabIndex = 0;
+            this.crlScheduleTest1.Load += new System.EventHandler(this.crlScheduleTest1_Load);
             // 
             // Form1
             // 

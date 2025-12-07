@@ -35,6 +35,7 @@ namespace DVLD.Licenses
             frManageLocalDrivingApplication_Load(null, null);
         }
 
+
         private void frManageLocalDrivingApplication_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
@@ -61,6 +62,7 @@ namespace DVLD.Licenses
 
 
         }
+
 
 
         private void FilterValueTB_TextChanged(object sender, EventArgs e)
@@ -108,6 +110,8 @@ namespace DVLD.Licenses
 
         }
 
+
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
           FilterValueTB.Visible = (comboBox1.Text!="None");
@@ -120,11 +124,14 @@ namespace DVLD.Licenses
            
         }
 
+
+
         private void FilterValueTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (comboBox1.Text == "L.D.L.AppID")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
 
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -133,6 +140,8 @@ namespace DVLD.Licenses
              fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }
+
+
 
         private void deleteApplicationToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -154,6 +163,8 @@ namespace DVLD.Licenses
          
         }
 
+
+
         private void cancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to cancel this applicaation ?", "cancel applicaation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
@@ -172,8 +183,10 @@ namespace DVLD.Licenses
                 MessageBox.Show("Failed to cancel the application. Please try again.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
 
             }
-
         }
+
+
+
 
         private void showApplicationDToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -183,6 +196,9 @@ namespace DVLD.Licenses
             frManageLocalDrivingApplication_Load(null, null);
         }
 
+
+
+
         private void sechsuleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.VisionTest);
@@ -190,12 +206,16 @@ namespace DVLD.Licenses
             frManageLocalDrivingApplication_Load(null, null);
         }
 
+
+
         private void sechsuleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.WrittenTest);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }
+
+
 
         private void sechsuleToolStripMenuItem2_Click(object sender, EventArgs e)
         {

@@ -46,12 +46,17 @@ namespace DVLD.Tests
 
         public void LoadData(int LocalDrivingLicenseApplicationID, enTest test)
         {
+            _TestAppointment=new clsTestAppointments();
+            _RetakeApplication= new clsApplications();
+
+
             _Mode = enMode.AddNew;
             gbRetakeTestInfo.Enabled = false;
             _Test = test;
             _LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
             _LocalDrivingLicenseApplication = clsLocalDrivingLicenseApplication.Find(_LocalDrivingLicenseApplicationID);
             _Application = clsApplications.Find(_LocalDrivingLicenseApplication.ApplicationID);
+           
             
 
             _chooseGreationType();
@@ -177,26 +182,27 @@ namespace DVLD.Tests
 
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            clsTestAppointments testAppointment = new clsTestAppointments();
-            testAppointment.TestTypeID = (int)_Test;
-            testAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationID;
-            testAppointment.AppointmentDate = dtpTestDate.Value;
-            testAppointment.CreatedByUserID = DVLD.Classes.clsGlobal.CurrentUser.UserID;
+        {   
+           
+            _TestAppointment.TestTypeID = (int)_Test;
+            _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationID;
+            _TestAppointment.AppointmentDate = dtpTestDate.Value;
+            _TestAppointment.CreatedByUserID = DVLD.Classes.clsGlobal.CurrentUser.UserID;
+            
 
             if (_GreationType == enGreationType.Retake)
             {
-                testAppointment.PaidFees = (_Application.PaidFees + _RetakeApplication.PaidFees);
-                testAppointment.RetakeTestApplicationID = _RetakeApplication.ApplicationID;
+                _TestAppointment.PaidFees = (_Application.PaidFees + _RetakeApplication.PaidFees);
+                _TestAppointment.RetakeTestApplicationID = _RetakeApplication.ApplicationID;
             }
             else
             {
-                testAppointment.PaidFees = _Application.PaidFees;
+                _TestAppointment.PaidFees = _Application.PaidFees;
             }
 
-            testAppointment.IsLocked = false;
+            _TestAppointment.IsLocked = false;
 
-            if (testAppointment.Save())
+            if (_TestAppointment.Save())
             {
                 MessageBox.Show("Test Appointment saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -206,7 +212,9 @@ namespace DVLD.Tests
 
 
             }
+
         }
+
 
 
     }

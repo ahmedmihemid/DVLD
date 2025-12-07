@@ -34,9 +34,6 @@ namespace DVLD.Tests
             _FillData();
         }
 
-
-
-
         private void _FillData()
         {
             switch (_Test)
@@ -87,15 +84,28 @@ namespace DVLD.Tests
             }
         }
     
-
-        
-
         private void button1_Click(object sender, EventArgs e)
-       {
+        {
+            if(DVLD_Buisness.clsTestAppointments.IsHasNotLockedTestAppointment(_LocalDrivingLicenseApplicationID))
+            {
+                MessageBox.Show("Cannot add new test appointment because there is a Not locked test appointment existing.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             Form1 fr = new Form1(_LocalDrivingLicenseApplicationID, _Test);
             fr.ShowDialog();
+            Form1_Load(null, null);
 
         }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int testAppointmentID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            Form1 fr = new Form1(_LocalDrivingLicenseApplicationID, _Test, testAppointmentID);
+            fr.ShowDialog();
+            Form1_Load(null, null);
+        }
+
 
 
 

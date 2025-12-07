@@ -88,9 +88,17 @@ namespace DVLD_Buisness
 
         private bool _update(clsTestAppointments testAppointment)
         {
-            return false;//just to be implemented in future
-
+           return DVLD_DataAccess.clsTestAppointmentsData.UpdateTestAppointment(testAppointment.TestAppointmentID ,testAppointment.AppointmentDate);
         }
+
+
+
+        public  static bool IsHasNotLockedTestAppointment(int localDrivingLicenseApplicationID)
+        {
+            return DVLD_DataAccess.clsTestAppointmentsData.IsHasNotLockedTestAppointment(localDrivingLicenseApplicationID);
+        }
+
+
 
         public bool Save()
         {

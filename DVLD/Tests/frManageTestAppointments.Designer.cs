@@ -67,19 +67,19 @@
             this.takeTestToolStripMenuItem,
             this.editToolStripMenuItem});
             this.TestAppoCMS.Name = "TestAppoCMS";
-            this.TestAppoCMS.Size = new System.Drawing.Size(211, 80);
+            this.TestAppoCMS.Size = new System.Drawing.Size(138, 52);
             // 
             // takeTestToolStripMenuItem
             // 
             this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
             this.takeTestToolStripMenuItem.Text = "Take Test";
             this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -165,6 +165,7 @@
             this.btnClose.TabIndex = 28;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // ctrlDrivingLicenseApplicationInfo1
             // 

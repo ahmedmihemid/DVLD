@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DVLD_Buisness;
 
 namespace DVLD.Tests
 {
@@ -113,11 +114,25 @@ namespace DVLD.Tests
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
+        
             int testAppointmentID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            clsTestAppointments testAppointment = clsTestAppointments.FindIfTestAppointment(testAppointmentID);
+
+            if (testAppointment.IsLocked)
+            {
+                MessageBox.Show("Cannot take the test because the appointment is locked.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             frTakeTest fr = new frTakeTest(testAppointmentID, _Test);
             fr.ShowDialog();
             Form1_Load(null, null);
 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

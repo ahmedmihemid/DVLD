@@ -86,15 +86,16 @@ namespace DVLD_DataAccess
 
         }
         
-        public static bool UpdateTestAppointment(int TestAppointmentID, DateTime AppointmentDate)
+        public static bool UpdateTestAppointment(int TestAppointmentID, DateTime AppointmentDate,bool IsLocked)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string sql = "UPDATE TestAppointments " +
-                         "SET AppointmentDate = @AppointmentDate " +
+                         "SET AppointmentDate = @AppointmentDate, IsLocked = @IsLocked " +
                          "WHERE TestAppointmentID = @TestAppointmentID";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
+            command.Parameters.AddWithValue("@IsLocked", IsLocked);
             int rowsAffected = 0;
             try
             {

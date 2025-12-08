@@ -88,12 +88,12 @@
             this.gbTestType.Controls.Add(this.pictureBox8);
             this.gbTestType.Controls.Add(this.lblTitle);
             this.gbTestType.Controls.Add(this.pbTestTypeImage);
-            this.gbTestType.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTestType.Location = new System.Drawing.Point(6, 8);
+            this.gbTestType.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbTestType.Location = new System.Drawing.Point(17, 8);
             this.gbTestType.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.gbTestType.Name = "gbTestType";
             this.gbTestType.Padding = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.gbTestType.Size = new System.Drawing.Size(535, 610);
+            this.gbTestType.Size = new System.Drawing.Size(509, 568);
             this.gbTestType.TabIndex = 154;
             this.gbTestType.TabStop = false;
             this.gbTestType.Text = "Test Type";
@@ -256,7 +256,7 @@
             // 
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Location = new System.Drawing.Point(155, 206);
+            this.lblTitle.Location = new System.Drawing.Point(123, 200);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(267, 58);
@@ -277,6 +277,7 @@
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Image = global::DVLD.Properties.Resources.License_Type_32;
             this.pictureBox7.Location = new System.Drawing.Point(163, 303);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox7.Name = "pictureBox7";
@@ -309,6 +310,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::DVLD.Properties.Resources.Count_32;
             this.pictureBox1.Location = new System.Drawing.Point(163, 384);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.pictureBox1.Name = "pictureBox1";
@@ -343,7 +345,7 @@
             // 
             this.pbTestTypeImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbTestTypeImage.InitialImage = null;
-            this.pbTestTypeImage.Location = new System.Drawing.Point(178, 29);
+            this.pbTestTypeImage.Location = new System.Drawing.Point(146, 23);
             this.pbTestTypeImage.Margin = new System.Windows.Forms.Padding(9, 12, 9, 12);
             this.pbTestTypeImage.Name = "pbTestTypeImage";
             this.pbTestTypeImage.Size = new System.Drawing.Size(225, 177);
@@ -357,7 +359,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbTestType);
             this.Name = "ctrlSecheduledTest";
-            this.Size = new System.Drawing.Size(547, 625);
+            this.Size = new System.Drawing.Size(538, 587);
             this.gbTestType.ResumeLayout(false);
             this.gbTestType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

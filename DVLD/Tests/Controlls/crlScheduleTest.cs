@@ -233,8 +233,8 @@ namespace DVLD.Tests
                 }
                 else
                 {
-                    e.Cancel = true;
-                    errorProvider1.SetError(dtpTestDate, "Test date cannot be in the past.");
+                    e.Cancel = false;
+                    errorProvider1.SetError(dtpTestDate, "");
 
                 }
             }

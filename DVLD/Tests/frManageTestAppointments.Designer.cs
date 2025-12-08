@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TestAppoCMS = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RecordsLEB = new System.Windows.Forms.Label();
             this.label223 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,12 +41,9 @@
             this.TestImagePB = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.ctrlDrivingLicenseApplicationInfo1 = new DVLD.Licenses.ctrlDrivingLicenseApplicationInfo();
-            this.TestAppoCMS = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TestImagePB)).BeginInit();
             this.TestAppoCMS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestImagePB)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -59,6 +59,29 @@
             this.dataGridView1.RowTemplate.Height = 26;
             this.dataGridView1.Size = new System.Drawing.Size(765, 150);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // TestAppoCMS
+            // 
+            this.TestAppoCMS.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.TestAppoCMS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.takeTestToolStripMenuItem,
+            this.editToolStripMenuItem});
+            this.TestAppoCMS.Name = "TestAppoCMS";
+            this.TestAppoCMS.Size = new System.Drawing.Size(211, 80);
+            // 
+            // takeTestToolStripMenuItem
+            // 
+            this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.takeTestToolStripMenuItem.Text = "Take Test";
+            this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // RecordsLEB
             // 
@@ -152,28 +175,6 @@
             this.ctrlDrivingLicenseApplicationInfo1.Size = new System.Drawing.Size(924, 392);
             this.ctrlDrivingLicenseApplicationInfo1.TabIndex = 0;
             // 
-            // TestAppoCMS
-            // 
-            this.TestAppoCMS.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.TestAppoCMS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.takeTestToolStripMenuItem,
-            this.editToolStripMenuItem});
-            this.TestAppoCMS.Name = "TestAppoCMS";
-            this.TestAppoCMS.Size = new System.Drawing.Size(211, 80);
-            // 
-            // takeTestToolStripMenuItem
-            // 
-            this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
-            this.takeTestToolStripMenuItem.Text = "Take Test";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
             // frManageTestAppointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -194,8 +195,8 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TestImagePB)).EndInit();
             this.TestAppoCMS.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TestImagePB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

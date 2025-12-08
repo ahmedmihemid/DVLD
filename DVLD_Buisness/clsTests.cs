@@ -8,6 +8,8 @@ namespace DVLD_Buisness
 {
     public class clsTests
     {
+        private enum enTestResult { Fail = 0, Pass = 1 }
+
         public int TestID { get; set; }
         public int TestAppointmentID { get; set; }
         public bool TestResult { get; set; }
@@ -42,8 +44,39 @@ namespace DVLD_Buisness
 
         public static bool IsItFallTests(int localDrivingLicenseApplicationID,int testTypeID)
         {
-            return DVLD_DataAccess.clsTestsData.IsItFallTests(localDrivingLicenseApplicationID, testTypeID);
+            return DVLD_DataAccess.clsTestsData.HasTestResult(localDrivingLicenseApplicationID, testTypeID, (int)enTestResult.Fail);
         }
+
+
+        public static bool IsHasPassedTest(int localDrivingLicenseApplicationID, int testTypeID)
+        {
+            return DVLD_DataAccess.clsTestsData.HasTestResult(localDrivingLicenseApplicationID, testTypeID,(int)enTestResult.Pass);
+        }
+
+
+
+        private bool _AddNew()
+        {
+            int newID = DVLD_DataAccess.clsTestsData.AddNew(TestAppointmentID, TestResult, Notes, CreatedByUserID);
+            if (newID > 0)
+            {
+                this.TestID = newID;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public bool Save()
+        {
+            return _AddNew();
+        }
+
+
+
 
 
     }

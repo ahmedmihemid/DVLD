@@ -77,18 +77,18 @@ namespace DVLD_Buisness
         }
 
 
-        private bool _add(clsTestAppointments testAppointment)
+        private bool _add()
         {
-            this.TestAppointmentID = DVLD_DataAccess.clsTestAppointmentsData.addTestAppointment(testAppointment.TestTypeID, testAppointment.LocalDrivingLicenseApplicationID,
-            testAppointment.AppointmentDate, testAppointment.PaidFees, testAppointment.CreatedByUserID, testAppointment.RetakeTestApplicationID, testAppointment.IsLocked);
+            this.TestAppointmentID = DVLD_DataAccess.clsTestAppointmentsData.addTestAppointment(this.TestTypeID, this.LocalDrivingLicenseApplicationID,
+            this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.RetakeTestApplicationID, this.IsLocked);
 
             return this.TestAppointmentID > -1;
         }
 
 
-        private bool _update(clsTestAppointments testAppointment)
+        private bool _update()
         {
-           return DVLD_DataAccess.clsTestAppointmentsData.UpdateTestAppointment(testAppointment.TestAppointmentID ,testAppointment.AppointmentDate);
+           return DVLD_DataAccess.clsTestAppointmentsData.UpdateTestAppointment(this.TestAppointmentID , this.AppointmentDate, this.IsLocked);
         }
 
 
@@ -105,7 +105,7 @@ namespace DVLD_Buisness
             switch (this.Mode)
             {
                 case enMode.AddNew:
-                    if (_add(this))
+                    if (_add())
                     {
                         Mode = enMode.Update;
                         return true;
@@ -118,7 +118,7 @@ namespace DVLD_Buisness
 
 
                 case enMode.Update:
-                    return _update(this);
+                    return _update();
 
             }
             return false;

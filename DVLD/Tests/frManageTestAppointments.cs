@@ -91,6 +91,11 @@ namespace DVLD.Tests
                 MessageBox.Show("Cannot add new test appointment because there is a Not locked test appointment existing.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            if (DVLD_Buisness.clsTests.IsHasPassedTest(_LocalDrivingLicenseApplicationID, (int)_Test))
+            {
+                MessageBox.Show("Cannot add new test appointment because the test has already been passed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             Form1 fr = new Form1(_LocalDrivingLicenseApplicationID, _Test);
             fr.ShowDialog();
@@ -106,8 +111,13 @@ namespace DVLD.Tests
             Form1_Load(null, null);
         }
 
+        private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int testAppointmentID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            frTakeTest fr = new frTakeTest(testAppointmentID, _Test);
+            fr.ShowDialog();
+            Form1_Load(null, null);
 
-
-
+        }
     }
 }

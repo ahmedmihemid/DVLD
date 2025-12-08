@@ -40,7 +40,7 @@ namespace DVLD_DataAccess
         }
  
 
-        public static bool IsItFallTests(int localDrivingLicenseApplicationID, int testTypeID)
+        public static bool HasTestResult(int localDrivingLicenseApplicationID, int testTypeID,int testResult)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -49,13 +49,14 @@ namespace DVLD_DataAccess
                    inner join TestAppointments 
                    on Tests.TestAppointmentID = TestAppointments.TestAppointmentID 
                    where TestAppointments.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID
-                   AND Tests.TestResult = 0 
+                   AND Tests.TestResult = @testResult
                    AND TestAppointments.TestTypeID = @TestTypeID;";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
             command.Parameters.AddWithValue("@TestTypeID", testTypeID);
+            command.Parameters.AddWithValue("@testResult", testResult);
 
             int failedTestsCount = 0;
 
@@ -77,7 +78,38 @@ namespace DVLD_DataAccess
             return failedTestsCount > 0;
         }
 
+  
 
+        public static int AddNew(int testAppointmentID, bool testResult, string notes, int createdByUserID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string sql = @"INSERT INTO Tests (TestAppointmentID, TestResult, Notes, CreatedByUserID)
+                           VALUES (@TestAppointmentID, @TestResult, @Notes, @CreatedByUserID);
+                           SELECT SCOPE_IDENTITY();";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@TestAppointmentID", testAppointmentID);   
+            command.Parameters.AddWithValue("@TestResult", testResult);
+            command.Parameters.AddWithValue("@Notes", notes);
+            command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
+            int newID = 0;
+
+            try
+            { 
+                connection.Open();
+                newID = Convert.ToInt32(command.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                newID = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return newID;
+        }
 
 
     }

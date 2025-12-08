@@ -118,8 +118,8 @@ namespace DVLD.Tests
 
         private void _FillData()
         {
-            dtpTestDate.MaxDate = DateTimePicker.MaximumDateTime;
-            dtpTestDate.MinDate = DateTimePicker.MinimumDateTime;
+            //dtpTestDate.MaxDate = DateTimePicker.MaximumDateTime;
+            //dtpTestDate.MinDate = DateTimePicker.MaximumDateTime;
 
             switch (_Test)
             {
@@ -153,7 +153,7 @@ namespace DVLD.Tests
                     lblDrivingClass.Text= _LocalDrivingLicenseApplication.LicenseClassID.ToString();
                     lblFullName.Text = clsPerson.Find(_Application.ApplicantPersonID).FullName;
                     //lblTrial.Text = "";
-                    //dtpTestDate.MaxDate= DateTime.Now; 
+                       
              
                     if (_Mode == enMode.Edit)
                     {  
@@ -183,7 +183,14 @@ namespace DVLD.Tests
 
         private void btnSave_Click(object sender, EventArgs e)
         {   
-           
+            if(!this.ValidateChildren())
+            {
+                MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
             _TestAppointment.TestTypeID = (int)_Test;
             _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationID;
             _TestAppointment.AppointmentDate = dtpTestDate.Value;
@@ -215,6 +222,39 @@ namespace DVLD.Tests
 
         }
 
+        private void dtpTestDate_Validating(object sender, CancelEventArgs e)
+        {
+            if(_Mode == enMode.AddNew)
+            {
+                if (dtpTestDate.Value < DateTime.Now)
+                {
+                    e.Cancel = true;
+                    errorProvider1.SetError(dtpTestDate, "Test date cannot be in the past.");
+                }
+                else
+                {
+                    e.Cancel = true;
+                    errorProvider1.SetError(dtpTestDate, "Test date cannot be in the past.");
+
+                }
+            }
+            else
+            { 
+                if (dtpTestDate.Value >= DateTime.Now || dtpTestDate.Value == _TestAppointment.AppointmentDate)
+                 {
+                     e.Cancel = false;
+                     errorProvider1.SetError(dtpTestDate, "");
+                 }
+           
+                 else
+                 {
+                     e.Cancel = true;
+                     errorProvider1.SetError(dtpTestDate, "Test date cannot be in the past.");
+                 }
+            }
+
+        }
+      
 
 
     }

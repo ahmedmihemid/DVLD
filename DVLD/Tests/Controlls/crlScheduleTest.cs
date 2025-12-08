@@ -158,6 +158,12 @@ namespace DVLD.Tests
                     if (_Mode == enMode.Edit)
                     {  
                         dtpTestDate.Value= _TestAppointment.AppointmentDate;
+                        if(_TestAppointment.IsLocked)
+                         {
+                            dtpTestDate.Enabled = false;
+                            btnSave.Enabled = false;
+                         }
+
                     }
                     else
                     {

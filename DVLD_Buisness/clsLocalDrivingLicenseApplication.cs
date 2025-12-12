@@ -15,7 +15,10 @@ namespace DVLD_Buisness
         public int LocalDrivingLicenseApplicationID { get; set; }
         public int ApplicationID { get; set; }
         public int LicenseClassID { get; set; }
-      
+
+
+        public clsApplications application = null;
+
 
         public clsLocalDrivingLicenseApplication()
         {
@@ -23,6 +26,7 @@ namespace DVLD_Buisness
             LocalDrivingLicenseApplicationID = 0;
             ApplicationID = 0;
             LicenseClassID = 0;
+            application = new clsApplications();
         }
 
         public clsLocalDrivingLicenseApplication(int localDrivingLicenseApplicationID, int applicationID, int licenseClassID)
@@ -31,6 +35,7 @@ namespace DVLD_Buisness
             this.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
             this.ApplicationID = applicationID;
             this.LicenseClassID = licenseClassID;
+            application = clsApplications.Find(applicationID);
         }
 
         public static bool IsExist(int ApplicationID, int LicenseClassID)

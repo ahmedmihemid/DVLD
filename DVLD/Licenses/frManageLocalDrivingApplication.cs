@@ -223,5 +223,19 @@ namespace DVLD.Licenses
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+            shechduleTestsToolStripMenuItem.Enabled = true; // ContextMenuStrip ما يعيد ضبط نفسه.
+
+
+            clsLocalDrivingLicenseApplication L_D_application = clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value));
+
+            if (L_D_application.application.ApplicationStatus == clsApplications.enStatus.Cancelled)
+            {
+                shechduleTestsToolStripMenuItem.Enabled = false;
+            }
+        }
     }
 }

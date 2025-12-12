@@ -35,7 +35,7 @@ namespace DVLD_Buisness
             Mode = enMode.AddNew;
         }
 
-        public clsTestAppointments(int testAppointmentID, int testTypeID, int localDrivingLicenseApplicationID, DateTime appointmentDate, float paidFees, int createdByUserID, bool isLocked)
+        public clsTestAppointments(int testAppointmentID, int testTypeID, int localDrivingLicenseApplicationID, DateTime appointmentDate, float paidFees, int createdByUserID, bool isLocked,int retakeTestApplicationID)
         {
             TestAppointmentID = testAppointmentID;
             TestTypeID = testTypeID;
@@ -44,6 +44,7 @@ namespace DVLD_Buisness
             PaidFees = paidFees;
             CreatedByUserID = createdByUserID;
             IsLocked = isLocked;
+            RetakeTestApplicationID = retakeTestApplicationID;
             Mode = enMode.Update;
         }
 
@@ -63,10 +64,11 @@ namespace DVLD_Buisness
             float paidFees = 0;
             int createdByUserID = 0;
             bool isLocked = false;
+            int retakeTestApplicationID = 0;
 
-            if (DVLD_DataAccess.clsTestAppointmentsData.FindIfTestAppointment(testAppointmentID, ref testTypeID, ref localDrivingLicenseApplicationID, ref appointmentDate, ref paidFees, ref createdByUserID, ref isLocked))
+            if (DVLD_DataAccess.clsTestAppointmentsData.FindIfTestAppointment(testAppointmentID, ref testTypeID, ref localDrivingLicenseApplicationID, ref appointmentDate, ref paidFees, ref createdByUserID, ref isLocked,ref retakeTestApplicationID))
             {
-                return new clsTestAppointments(testAppointmentID, testTypeID, localDrivingLicenseApplicationID, appointmentDate, paidFees, createdByUserID, isLocked);
+                return new clsTestAppointments(testAppointmentID, testTypeID, localDrivingLicenseApplicationID, appointmentDate, paidFees, createdByUserID, isLocked, retakeTestApplicationID);
             }
             else
             {

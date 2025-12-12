@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DVLD.Tests.crlScheduleTest;
 using static DVLD.Tests.frManageTestAppointments;
+using static DVLD_Buisness.clsApplications;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -47,7 +48,7 @@ namespace DVLD.Tests
         public void LoadData(int LocalDrivingLicenseApplicationID, enTest test)
         {
             _TestAppointment=new clsTestAppointments();
-            _RetakeApplication= new clsApplications();
+            //_RetakeApplication= new clsApplications();
 
 
             _Mode = enMode.AddNew;
@@ -60,6 +61,8 @@ namespace DVLD.Tests
             
 
             _chooseGreationType();
+            if(_GreationType == enGreationType.Retake)
+                _RetakeApplication = new clsApplications();
 
             _FillData();
         }
@@ -76,20 +79,33 @@ namespace DVLD.Tests
             _Application = clsApplications.Find(_LocalDrivingLicenseApplication.ApplicationID);
             _TestAppointment = clsTestAppointments.FindIfTestAppointment(_TestAppointmentID);
 
-            _chooseGreationType();
-            if (_GreationType == enGreationType.Retake)
-                _RetakeApplication = clsApplications.Find(_TestAppointment.RetakeTestApplicationID);
-
+            _chooseGreationType(_TestAppointment.TestAppointmentID);
             _FillData();
         }
 
 
-        private void _chooseGreationType()
+        private void _chooseGreationType(int testAppointmentID=-1)
         {
-            if (IsItFallTests())
-                _GreationType = enGreationType.Retake;
+            if(_Mode == enMode.AddNew)
+            { if (IsItFallTests())
+                    _GreationType = enGreationType.Retake;
+                else
+                    _GreationType = enGreationType.FirstTime;
+            }
+
             else
-                _GreationType = enGreationType.FirstTime;
+            {
+                _RetakeApplication = clsApplications.Find(_TestAppointment.RetakeTestApplicationID);
+                if (_RetakeApplication != null)
+                {
+                    _GreationType = enGreationType.Retake;
+                }
+                else
+                {
+                    _GreationType = enGreationType.FirstTime;
+                }
+            }
+
         }
 
 
@@ -205,8 +221,26 @@ namespace DVLD.Tests
 
             if (_GreationType == enGreationType.Retake)
             {
-                _TestAppointment.PaidFees = (_Application.PaidFees + _RetakeApplication.PaidFees);
-                _TestAppointment.RetakeTestApplicationID = _RetakeApplication.ApplicationID;
+                _RetakeApplication.ApplicantPersonID= _Application.ApplicantPersonID;
+                _RetakeApplication.ApplicationTypeID = clsApplicationTypes.FindByTitle("Retake Test").ID;
+                _RetakeApplication.PaidFees = clsApplicationTypes.FindByTitle("Retake Test").Fees;
+                _RetakeApplication.CreatedByUserID = DVLD.Classes.clsGlobal.CurrentUser.UserID;
+                _RetakeApplication.ApplicationDate = DateTime.Now;
+                _RetakeApplication.ApplicationStatus= DVLD_Buisness.clsApplications.enStatus.New;
+                _RetakeApplication.LastStatusDate = DateTime.Now;
+
+
+
+                if (_RetakeApplication.Save())
+                {
+                    _TestAppointment.PaidFees = (_Application.PaidFees + _RetakeApplication.PaidFees);
+                    _TestAppointment.RetakeTestApplicationID = _RetakeApplication.ApplicationID;
+                }
+                else
+                {
+                    MessageBox.Show("Failed to save Retake Application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             else
             {

@@ -11,10 +11,10 @@ namespace DVLD_DataAccess
     public class clsTestAppointmentsData
     {
 
-        public static bool FindIfTestAppointment(int testAppointmentID, ref int testTypeID, ref int localDrivingLicenseApplicationID, ref DateTime appointmentDate, ref float paidFees, ref int createdByUserID, ref bool isLocked)
+        public static bool FindIfTestAppointment(int testAppointmentID, ref int testTypeID, ref int localDrivingLicenseApplicationID, ref DateTime appointmentDate, ref float paidFees, ref int createdByUserID, ref bool isLocked,  ref int retakeTestApplicationID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string sql = "SELECT TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked " +
+            string sql = "SELECT TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked,RetakeTestApplicationID " +
                          "FROM TestAppointments " +
                          "WHERE TestAppointmentID = @TestAppointmentID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -31,6 +31,10 @@ namespace DVLD_DataAccess
                     paidFees = (float)reader.GetDecimal(3);
                     createdByUserID = reader.GetInt32(4);
                     isLocked = reader.GetBoolean(5);
+                    if (!reader.IsDBNull(6))
+                    {
+                        retakeTestApplicationID = reader.GetInt32(6);
+                    }
                     return true;
                 }
                 else

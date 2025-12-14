@@ -49,7 +49,7 @@ namespace DVLD.Licenses
 
         private void ctrlDrivingLicenseApplicationInfo_Load(object sender, EventArgs e)
         {
-            _Reset();
+            //_Reset();
         }
 
 

@@ -46,26 +46,26 @@ namespace DVLD_DataAccess
         {
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string sql =@"UPDATE LocalDrivingLicenseApplications SET ApplicationID = @ApplicationID, LicenseClassID = @LicenseClassID 
+            string sql = @"UPDATE LocalDrivingLicenseApplications SET ApplicationID = @ApplicationID, LicenseClassID = @LicenseClassID 
                          WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID;";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-            bool isUpdated = false ;
+            bool isUpdated = false;
 
             try
             {
                 connection.Open();
                 int num = command.ExecuteNonQuery();
-                isUpdated = num>0;
+                isUpdated = num > 0;
 
             }
             catch (Exception ex)
             {
                 // Log the exception or handle it as needed
                 Console.WriteLine("Error: " + ex.Message);
-               isUpdated = false;
+                isUpdated = false;
             }
             finally
             {
@@ -104,7 +104,7 @@ namespace DVLD_DataAccess
         }
 
 
-        public static bool HasApplicationForLicenseClass(int ApplicantPersonID, int LicenseClassID,int ApplicationStatus)
+        public static bool HasApplicationForLicenseClass(int ApplicantPersonID, int LicenseClassID, int ApplicationStatus)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"select Count(*) from LocalDrivingLicenseApplications inner join Applications on 
@@ -220,7 +220,7 @@ namespace DVLD_DataAccess
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if(reader.HasRows)
+                if (reader.HasRows)
                 {
                     dataTable.Load(reader);
                 }
@@ -244,7 +244,36 @@ namespace DVLD_DataAccess
             return dataTable;
         }
 
-
+        public static int GetLocalDrivingLicenseApplicationPassedTestsCount(int LocalDrivingLicenseApplicationID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string sql = @"select COUNT(*) from TestAppointments inner join Tests on 
+                           Tests.TestAppointmentID = TestAppointments.TestAppointmentID
+                           where TestAppointments.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID
+                           and Tests.TestResult= 1;";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            int passedTestsCount = 0;
+            try
+            {
+                connection.Open();
+                passedTestsCount = (int)command.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                Console.WriteLine("Error: " + ex.Message);
+                passedTestsCount = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return passedTestsCount;
+        }
+    
+        
+        
 
 
 

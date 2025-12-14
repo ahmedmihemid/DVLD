@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DVLD_Buisness
+{
+    public class clsLicenses
+    {
+
+        public int LicenseID { get; set; }
+        public int ApplicationID { get; set; }
+        public int DriverID { get; set; }
+        public LicenseClass LicenseClass { get; set; }
+        public DateTime IssueDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
+        public string Note { get; set; }
+        public float PaidFees { get; set; }
+        public bool IsActive { get; set; }
+        public enReason IssueReason { get; set; }
+        public int CreatedByUserID { get; set; }
+
+
+        public enum enMode { New = 1, Edit = 2}
+        private enMode _Mode ;
+
+        public enum enReason { FirstTime=1, Renew=2, ReplacementForDamaged=3, ReplacementForLost=4 }
+
+
+
+        public clsLicenses()
+        {
+            _Mode = enMode.New;
+        }
+
+        public clsLicenses(int licenseID, int applicationID, int driverID, LicenseClass licenseClass, DateTime issueDate, DateTime expiryDate, string note, float paidFees, bool isActive, enReason issueReason, int createdByUserID, enMode mode)
+        {
+            LicenseID = licenseID;
+            ApplicationID = applicationID;
+            DriverID = driverID;
+            LicenseClass = licenseClass;
+            IssueDate = issueDate;
+            ExpiryDate = expiryDate;
+            Note = note;
+            PaidFees = paidFees;
+            IsActive = isActive;
+            IssueReason = issueReason;
+            CreatedByUserID = createdByUserID;
+            _Mode =enMode.Edit;
+        }
+
+
+
+
+
+
+
+        public static bool IsFirstTimeIssue(int applicationID, int localDrivingLicenseApplicationID, int licenseClassID)
+        {
+            return DVLD_DataAccess.clsLicensesData.IsFirstTimeIssue(applicationID, localDrivingLicenseApplicationID, licenseClassID);
+        }
+
+
+
+
+        private bool _AddNew()
+        {
+           int newLicenseID = DVLD_DataAccess.clsLicensesData.AddNew(ApplicationID, DriverID, LicenseClass.LicenseClassID, IssueDate, ExpiryDate, Note, PaidFees, IsActive,(int)IssueReason, CreatedByUserID);
+           if(newLicenseID > 0)
+            {
+                LicenseID = newLicenseID;
+                return true;
+            }
+              return false;
+        }
+        private bool _Update()
+        {
+            // Update license logic to be implemented
+            return false;
+        }
+
+        public bool save()
+        {
+            switch (_Mode)
+            {
+                case enMode.New:
+                   if(_AddNew())
+                    {
+                        _Mode = enMode.Edit;
+                        return true;
+                    }
+                    return false;
+                case enMode.Edit:
+                    return _Update();
+                default:
+                    return false;
+            }
+        }
+
+
+
+
+
+    }
+}

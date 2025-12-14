@@ -20,6 +20,7 @@ namespace DVLD.Tests
         private int _TestAppointmentID;
         private clsTests _Test = null;
         private clsTestAppointments _TestAppointment = null;
+        private clsLocalDrivingLicenseApplication _LocalDLApplication = null;
 
         public frTakeTest(int testAppointmentID, enTest test)
         {
@@ -56,6 +57,8 @@ namespace DVLD.Tests
                     MessageBox.Show("Error locking the test appointment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+             
 
                 this.Close();
             }

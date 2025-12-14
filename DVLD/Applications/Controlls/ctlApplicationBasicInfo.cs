@@ -72,7 +72,9 @@ namespace DVLD.Applications.Controlls
 
         private void ctlApplicationBasicInfo_Load(object sender, EventArgs e)
         {
-            _ReastDefaultsData();
+
+            //_ReastDefaultsData();
+
         }
 
         private void llViewPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

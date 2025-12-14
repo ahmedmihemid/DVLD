@@ -39,7 +39,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showApplicationDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditeApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteApplicationToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.cancelApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +157,7 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showApplicationDToolStripMenuItem,
             this.editApplicationToolStripMenuItem,
-            this.deleteApplicationToolStripMenuItem,
+            this.EditeApplicationToolStripMenuItem,
             this.deleteApplicationToolStripMenuItem1,
             this.toolStripMenuItem1,
             this.cancelApplicationToolStripMenuItem,
@@ -186,13 +186,13 @@
             this.editApplicationToolStripMenuItem.Name = "editApplicationToolStripMenuItem";
             this.editApplicationToolStripMenuItem.Size = new System.Drawing.Size(293, 6);
             // 
-            // deleteApplicationToolStripMenuItem
+            // EditeApplicationToolStripMenuItem
             // 
-            this.deleteApplicationToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_326;
-            this.deleteApplicationToolStripMenuItem.Name = "deleteApplicationToolStripMenuItem";
-            this.deleteApplicationToolStripMenuItem.Size = new System.Drawing.Size(296, 26);
-            this.deleteApplicationToolStripMenuItem.Text = "Edit Application";
-            this.deleteApplicationToolStripMenuItem.Click += new System.EventHandler(this.deleteApplicationToolStripMenuItem_Click);
+            this.EditeApplicationToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_326;
+            this.EditeApplicationToolStripMenuItem.Name = "EditeApplicationToolStripMenuItem";
+            this.EditeApplicationToolStripMenuItem.Size = new System.Drawing.Size(296, 26);
+            this.EditeApplicationToolStripMenuItem.Text = "Edit Application";
+            this.EditeApplicationToolStripMenuItem.Click += new System.EventHandler(this.deleteApplicationToolStripMenuItem_Click);
             // 
             // deleteApplicationToolStripMenuItem1
             // 
@@ -266,6 +266,7 @@
             this.issueToolStripMenuItem.Name = "issueToolStripMenuItem";
             this.issueToolStripMenuItem.Size = new System.Drawing.Size(296, 26);
             this.issueToolStripMenuItem.Text = "Issue Driving License (First Time)";
+            this.issueToolStripMenuItem.Click += new System.EventHandler(this.issueToolStripMenuItem_Click);
             // 
             // showLicenseToolStripMenuItem
             // 
@@ -388,7 +389,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem showApplicationDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditeApplicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator editApplicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteApplicationToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;

@@ -99,7 +99,10 @@ namespace DVLD_Buisness
             }
         }
 
-
+        public static int GetLocalDrivingLicenseApplicationPassedTestsCount(int localDrivingLicenseApplicationID)
+        {
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.GetLocalDrivingLicenseApplicationPassedTestsCount(localDrivingLicenseApplicationID);
+        }
 
         public static DataTable GetAllLocalDrivingLicenseApplicationInfo()
         {

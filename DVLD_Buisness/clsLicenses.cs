@@ -56,10 +56,10 @@ namespace DVLD_Buisness
 
 
 
-        public static bool IsFirstTimeIssue(int applicationID, int localDrivingLicenseApplicationID, int licenseClassID)
-        {
-            return DVLD_DataAccess.clsLicensesData.IsFirstTimeIssue(applicationID, localDrivingLicenseApplicationID, licenseClassID);
-        }
+        //public static bool IsFirstTimeIssue(int applicationID, int localDrivingLicenseApplicationID, int licenseClassID)
+        //{
+        //    return DVLD_DataAccess.clsLicensesData.IsFirstTimeIssue(applicationID, localDrivingLicenseApplicationID, licenseClassID);
+        //}
 
 
 

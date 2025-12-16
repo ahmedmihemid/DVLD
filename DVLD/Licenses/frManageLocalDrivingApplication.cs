@@ -229,36 +229,62 @@ namespace DVLD.Licenses
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
 
-            shechduleTestsToolStripMenuItem.Enabled = true; // ContextMenuStrip ما يعيد ضبط نفسه.
+            // إعادة ضبط كل العناصر مهم جداً
+            shechduleTestsToolStripMenuItem.Enabled = true;
+            issueToolStripMenuItem.Enabled = true;
+            EditeApplicationToolStripMenuItem.Enabled = true;
+            deleteApplicationToolStripMenuItem1.Enabled = true;
+            cancelApplicationToolStripMenuItem.Enabled = true;
 
+            showLicenseToolStripMenuItem1.Enabled = true;
+            showPersonLicenseToolStripMenuItem.Enabled = true;
 
-            clsLocalDrivingLicenseApplication L_D_application = clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value));
+            sechsuleToolStripMenuItem.Enabled = true;
+            sechsuleToolStripMenuItem1.Enabled = true;
+            sechsuleToolStripMenuItem2.Enabled = true;
 
-            if (L_D_application.application.ApplicationStatus == clsApplications.enStatus.Cancelled || L_D_application.application.ApplicationStatus == clsApplications.enStatus.Completed)
+            //  جلب الطلب
+            var L_D_application = clsLocalDrivingLicenseApplication.Find((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
+
+            //  إذا الطلب ملغي أو مكتمل
+            if (L_D_application.application.ApplicationStatus == clsApplications.enStatus.Cancelled ||
+                L_D_application.application.ApplicationStatus == clsApplications.enStatus.Completed)
             {
                 shechduleTestsToolStripMenuItem.Enabled = false;
-                //showApplicationDToolStripMenuItem.Enabled = false;
-            
+                issueToolStripMenuItem.Enabled = false;
                 EditeApplicationToolStripMenuItem.Enabled = false;
                 deleteApplicationToolStripMenuItem1.Enabled = false;
                 cancelApplicationToolStripMenuItem.Enabled = false;
-                return;
+
+                // لا تُظهر الرخصة إلا إذا مكتمل
+                if (L_D_application.application.ApplicationStatus == clsApplications.enStatus.Cancelled)
+                {
+                    showLicenseToolStripMenuItem1.Enabled = false;
+                    showPersonLicenseToolStripMenuItem.Enabled = false;
+                }
+
+                return; // ⛔ خروج مبكر (مهم)
             }
 
-            sechsuleToolStripMenuItem.Enabled = (clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationPassedTestsCount(L_D_application.LocalDrivingLicenseApplicationID) == 0);
-            sechsuleToolStripMenuItem1.Enabled = (clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationPassedTestsCount(L_D_application.LocalDrivingLicenseApplicationID) == 1);
-            sechsuleToolStripMenuItem2.Enabled = (clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationPassedTestsCount(L_D_application.LocalDrivingLicenseApplicationID) == 2);
+            // الطلب نشط → فحص عدد الاختبارات
+            showLicenseToolStripMenuItem1.Enabled = false;
+            showPersonLicenseToolStripMenuItem.Enabled = false;
 
-            if()
+            int testsPassed =clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationPassedTestsCount(L_D_application.LocalDrivingLicenseApplicationID);
 
-
-
-            if(!clsLicenses.IsFirstTimeIssue(L_D_application.application.ApplicationID, L_D_application.LocalDrivingLicenseApplicationID, L_D_application.LicenseClassID))
+            if (testsPassed == 3)
+            {
+                shechduleTestsToolStripMenuItem.Enabled = false;
+                issueToolStripMenuItem.Enabled = true;
+            }
+            else
             {
                 issueToolStripMenuItem.Enabled = false;
+
+                sechsuleToolStripMenuItem.Enabled = (testsPassed == 0);
+                sechsuleToolStripMenuItem1.Enabled = (testsPassed == 1);
+                sechsuleToolStripMenuItem2.Enabled = (testsPassed == 2);
             }
-
-
 
 
         }

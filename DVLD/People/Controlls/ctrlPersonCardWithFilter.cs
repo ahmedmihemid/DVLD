@@ -146,22 +146,7 @@ namespace DVLD.People.Controlls
             txtFilterValue.Focus();
         }
 
-        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Check if the pressed key is Enter (character code 13)
-            if (e.KeyChar == (char)13)
-            {
-
-                btnFind.PerformClick();
-            }
-
-            //this will allow only digits if person id is selected
-            if (cbFilterBy.Text == "Person ID")
-                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-
-
-
-        }
+        
 
 
 
@@ -197,7 +182,18 @@ namespace DVLD.People.Controlls
             cbFilterBy.SelectedIndex = 1;
         }
 
+        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed key is Enter (character code 13)
+            if (e.KeyChar == (char)13)
+            {
 
+                btnFind.PerformClick();
+            }
 
+            //this will allow only digits if person id is selected
+            if (cbFilterBy.Text == "Person ID")
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

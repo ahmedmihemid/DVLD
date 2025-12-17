@@ -126,39 +126,5 @@ namespace DVLD_DataAccess
 
 
 
-
-
-        //public static bool IsFirstTimeIssue(int applicationID, int localDrivingLicenseApplicationID, int licenseClassID)
-        //{
-        //    SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-        //    string query = @"SELECT COUNT(*) FROM Licenses L
-        //                     INNER JOIN Applications A ON L.ApplicationID = A.ApplicationID
-        //                     INNER JOIN LocalDrivingLicenseApplications LDLA ON A.ApplicationID = LDLA.ApplicationID
-        //                     WHERE L.ApplicationID = @ApplicationID AND LDLA.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID AND LDLA.LicenseClassID = @LicenseClassID";
-        //    SqlCommand command = new SqlCommand(query, connection);
-        //    command.Parameters.AddWithValue("@ApplicationID", applicationID);
-        //    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
-        //    command.Parameters.AddWithValue("@LicenseClassID", licenseClassID);
-        //    int count = 0;
-
-        //    try
-        //    {
-        //        connection.Open();
-        //        count = (int)command.ExecuteScalar();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Error: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        connection.Close();
-        //    }
-        //    return count == 0;
-        //}
-
-
-
-
     }
 }

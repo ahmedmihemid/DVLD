@@ -52,8 +52,11 @@ namespace DVLD.Licenses
             _License.DriverID = _Driver.DriverID;   
             _License.LicenseClass = LicenseClass.Find(_localDrivingLicenseApplication.LicenseClassID);
             _License.IssueDate = DateTime.Now;
-            _License.ExpiryDate = DateTime.Now.AddYears(_License.LicenseClass.DefaultValidityLength); 
-            _License.Note = NotTB.Text.Trim();
+            _License.ExpiryDate = DateTime.Now.AddYears(_License.LicenseClass.DefaultValidityLength);
+            if (!string.IsNullOrWhiteSpace(NotTB.Text))
+            {
+                _License.Note = NotTB.Text.Trim();
+            }
             _License.PaidFees = _localDrivingLicenseApplication.application.PaidFees;
             _License.IsActive = true;
             _License.IssueReason = clsLicenses.enReason.FirstTime;

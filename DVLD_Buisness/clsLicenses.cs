@@ -34,7 +34,7 @@ namespace DVLD_Buisness
             _Mode = enMode.New;
         }
 
-        public clsLicenses(int licenseID, int applicationID, int driverID, LicenseClass licenseClass, DateTime issueDate, DateTime expiryDate, string note, float paidFees, bool isActive, enReason issueReason, int createdByUserID, enMode mode)
+        public clsLicenses(int licenseID, int applicationID, int driverID, LicenseClass licenseClass, DateTime issueDate, DateTime expiryDate, string note, float paidFees, bool isActive, enReason issueReason, int createdByUserID)
         {
             LicenseID = licenseID;
             ApplicationID = applicationID;
@@ -62,7 +62,35 @@ namespace DVLD_Buisness
         //}
 
 
+        public static clsLicenses Find(int licenseID)
+        {
+            int ApplicationID = -1;
+            int DriverID = -1;
+            int licenseClassID = -1;
+            DateTime IssueDate = DateTime.MinValue;
+            DateTime ExpiryDate = DateTime.MinValue;
+            string Note = string.Empty;
+            float PaidFees = -1; 
+            bool IsActive = false;
+            int IssueReasonID = -1;
+            int CreatedByUserID = -1;
 
+
+             bool isFound= DVLD_DataAccess.clsLicensesData.Find(licenseID,ref ApplicationID,ref DriverID,ref licenseClassID,
+                ref IssueDate,ref ExpiryDate,ref Note ,ref PaidFees, ref IsActive , ref IssueReasonID, ref CreatedByUserID);
+
+            if (isFound)
+                {
+                return new clsLicenses(licenseID, ApplicationID, DriverID, LicenseClass.Find(licenseClassID), IssueDate, ExpiryDate, Note, PaidFees, IsActive,
+                    (enReason)IssueReasonID, CreatedByUserID);
+            }
+            return null;
+        }
+
+        public static int GetLicenseIDByApplicationID(int applicationID)
+        {
+            return DVLD_DataAccess.clsLicensesData.GetLicenseIDByApplicationID(applicationID);
+        }
 
         private bool _AddNew()
         {

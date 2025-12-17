@@ -14,6 +14,13 @@ namespace DVLD_Buisness
         public int CreatedByUserID { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        public clsPerson person{
+            get
+            {
+                return clsPerson.Find(PersonID);
+            }
+        }
+
 
         enum enMode { New = 1, Edit = 2 }
         private enMode _Mode;
@@ -57,6 +64,20 @@ namespace DVLD_Buisness
 
         }
 
+
+
+        public static clsDriverscs FindByDriverID(int driverID)
+        {
+            int personID = 0;
+            DateTime createdDate = DateTime.MinValue;
+            int createdByUserID = 0;
+            bool isFound = DVLD_DataAccess.clsDriversData.FindByDriverID(driverID, ref personID, ref createdByUserID, ref createdDate);
+            if (isFound)
+            {
+                return new clsDriverscs(driverID, personID, createdByUserID, createdDate);
+            }
+            return null;
+        }
 
 
         private bool _AddNew()

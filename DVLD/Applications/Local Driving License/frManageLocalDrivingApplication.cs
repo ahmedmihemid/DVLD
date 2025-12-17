@@ -1,4 +1,5 @@
 ﻿using DVLD.Applications;
+using DVLD.Licenses.Local_Licenses;
 using DVLD.Tests;
 using DVLD_Buisness;
 using System;
@@ -294,6 +295,15 @@ namespace DVLD.Licenses
 
             int localDrivingLicenseApplicationID = (int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
             frmIssueDriverLicenseFirstTime fr = new frmIssueDriverLicenseFirstTime(localDrivingLicenseApplicationID);
+            fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
+        }
+
+        private void showLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int localDrivingLicenseApplicationID = (int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
+            var L_D_application = clsLocalDrivingLicenseApplication.Find(localDrivingLicenseApplicationID);
+            frmShowLicenseInfo fr = new frmShowLicenseInfo(clsLicenses.GetLicenseIDByApplicationID(L_D_application.ApplicationID));
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }

@@ -45,7 +45,7 @@ namespace DVLD.Users.Controlls
         {
             ctrlPersonCard1.LoadPersonInfo(_User.PersonID);
             UserIdLEB.Text = _User.UserID.ToString();
-            UserIdLEB.Text = _User.UserName;
+            UserNameLEB.Text = _User.UserName;
             IsActiveLEB.Text = (_User.IsActive) ? "YES" :"NO";
         }
 
@@ -53,7 +53,7 @@ namespace DVLD.Users.Controlls
         {
             ctrlPersonCard1.ResetPersonInfo();
             UserIdLEB.Text = "[???]";
-            UserIdLEB.Text = "[???]";
+            UserNameLEB.Text = "[???]";
             IsActiveLEB.Text = "[???]";
         }
 

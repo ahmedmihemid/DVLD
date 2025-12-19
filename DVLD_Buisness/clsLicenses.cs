@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DVLD_Buisness
 {
@@ -61,6 +62,11 @@ namespace DVLD_Buisness
         //    return DVLD_DataAccess.clsLicensesData.IsFirstTimeIssue(applicationID, localDrivingLicenseApplicationID, licenseClassID);
         //}
 
+
+        public static DataTable GetAllLocalLicenses(int driverID)
+        {
+            return DVLD_DataAccess.clsLicensesData.GetAllLocalLicenses(driverID);
+        }
 
         public static clsLicenses Find(int licenseID)
         {

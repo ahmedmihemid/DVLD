@@ -127,6 +127,36 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
+        public static int GetDriverIDByApplicationID(int applicationID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT D.DriverID 
+                             FROM Drivers D
+                             INNER JOIN Licenses L ON D.DriverID = L.DriverID
+                             WHERE L.ApplicationID = @ApplicationID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicationID", applicationID);
+            int driverID = -1;
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    driverID = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return driverID;
+        }
+
 
     }
 }

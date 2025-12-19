@@ -292,6 +292,7 @@
             this.showPersonLicenseToolStripMenuItem.Name = "showPersonLicenseToolStripMenuItem";
             this.showPersonLicenseToolStripMenuItem.Size = new System.Drawing.Size(296, 26);
             this.showPersonLicenseToolStripMenuItem.Text = "Show Person License History";
+            this.showPersonLicenseToolStripMenuItem.Click += new System.EventHandler(this.showPersonLicenseToolStripMenuItem_Click);
             // 
             // pictureBox2
             // 

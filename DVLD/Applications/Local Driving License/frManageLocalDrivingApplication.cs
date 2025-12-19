@@ -307,5 +307,15 @@ namespace DVLD.Licenses
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }
+
+        private void showPersonLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int localDrivingLicenseApplicationID = (int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
+            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsDriverscs.GetDriverIDByApplicationID(clsLocalDrivingLicenseApplication.Find(localDrivingLicenseApplicationID).ApplicationID));
+            fr.ShowDialog();
+            frManageLocalDrivingApplication_Load(null, null);
+
+
+        }
     }
 }

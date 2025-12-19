@@ -65,6 +65,13 @@ namespace DVLD_Buisness
         }
 
 
+        public static  int GetDriverIDByApplicationID(int applicationID)
+        {
+            return DVLD_DataAccess.clsDriversData.GetDriverIDByApplicationID(applicationID);
+        }
+
+
+
 
         public static clsDriverscs FindByDriverID(int driverID)
         {

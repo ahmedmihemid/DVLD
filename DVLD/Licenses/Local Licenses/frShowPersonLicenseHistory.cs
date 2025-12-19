@@ -18,7 +18,7 @@ namespace DVLD.Licenses.Local_Licenses
             InitializeComponent();
 
             ctrlPersonCardWithFilter1.LoadPersonInfo(clsDriverscs.FindByDriverID(DriverID).PersonID);
-            //ctrlDriverLicensesHstory1.LoadDriverLicenseHistory(DriverID);
+            ctrlDriverLicensesHstory1.LoadDriverLicenseHistory(DriverID);
         }
 
         private void ctrlPersonCardWithFilter1_Load(object sender, EventArgs e)

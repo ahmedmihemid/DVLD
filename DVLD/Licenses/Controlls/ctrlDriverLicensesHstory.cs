@@ -36,7 +36,7 @@ namespace DVLD.Licenses.Controlls
         private void _FillLocalDriverLicenseHistory()
         {
             _dtLocalDriverLicenseHistory = dtLicenses.DefaultView.ToTable(false, "LicenseID", "ApplicationID",
-                                                         "LicenseClass", "IssueDate", "ExpiryDate", "IsActive");
+                                                         "LicenseClass", "IssueDate", "ExpirationDate", "IsActive");
             dgvLocalLicensesHistory.DataSource = _dtLocalDriverLicenseHistory;
 
 

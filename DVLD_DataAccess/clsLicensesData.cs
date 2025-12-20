@@ -147,7 +147,31 @@ namespace DVLD_DataAccess
             return dataTable;
         }
 
-
+        public static DataTable GetAllInternationalLicenses(int driverID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT LicenseID, Licenses.ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, Licenses.PaidFees, IsActive, IssueReason, Licenses.CreatedByUserID 
+                             FROM Licenses inner join Applications on  Licenses.ApplicationID = Applications.ApplicationID
+                              Where Applications.ApplicationTypeID=2 AND DriverID =@driverID ; ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@driverID", driverID);
+            DataTable dataTable = new DataTable();
+            try
+            {
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dataTable;
+        }
 
 
 

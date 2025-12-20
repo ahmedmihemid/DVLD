@@ -68,6 +68,11 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsLicensesData.GetAllLocalLicenses(driverID);
         }
 
+        public static DataTable GetAllInternationalLicenses(int driverID)
+        {
+            return DVLD_DataAccess.clsLicensesData.GetAllInternationalLicenses(driverID);
+        }
+
         public static clsLicenses Find(int licenseID)
         {
             int ApplicationID = -1;

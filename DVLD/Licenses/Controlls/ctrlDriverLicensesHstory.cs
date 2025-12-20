@@ -14,9 +14,11 @@ namespace DVLD.Licenses.Controlls
     public partial class ctrlDriverLicensesHstory : UserControl
     {
         private int _driverID;
-        DataTable dtLicenses;
+        DataTable dtLocalLicenses;
+        DataTable dtInternationalLicenses;
 
         private DataTable _dtLocalDriverLicenseHistory;
+        private DataTable _dtInternationalDriverLicenseHistory;
 
         public ctrlDriverLicensesHstory()
         {
@@ -25,23 +27,29 @@ namespace DVLD.Licenses.Controlls
 
         public void LoadDriverLicenseHistory(int driverID)
         {
-            _driverID= driverID;
-            dtLicenses = clsLicenses.GetAllLocalLicenses(_driverID);
+            _driverID = driverID;
+            dtLocalLicenses = clsLicenses.GetAllLocalLicenses(_driverID);
+            dtInternationalLicenses = clsLicenses.GetAllInternationalLicenses(_driverID);
             _FillLocalDriverLicenseHistory();
-
-
+            _FillInternationalDriverLicenseHistory();
 
         }
 
         private void _FillLocalDriverLicenseHistory()
         {
-            _dtLocalDriverLicenseHistory = dtLicenses.DefaultView.ToTable(false, "LicenseID", "ApplicationID",
+            _dtLocalDriverLicenseHistory = dtLocalLicenses.DefaultView.ToTable(false, "LicenseID", "ApplicationID",
                                                          "LicenseClass", "IssueDate", "ExpirationDate", "IsActive");
             dgvLocalLicensesHistory.DataSource = _dtLocalDriverLicenseHistory;
+            lblLocalLicensesRecords.Text= _dtLocalDriverLicenseHistory.Rows.Count.ToString();
+        }
 
 
+        private void _FillInternationalDriverLicenseHistory()
+        {
+            _dtInternationalDriverLicenseHistory =  dtInternationalLicenses.DefaultView.ToTable(false, "LicenseID", "ApplicationID",
+                                                         "LicenseClass", "IssueDate", "ExpirationDate", "IsActive");
 
-
+            dgvInternationalLicensesHistory.DataSource = _dtInternationalDriverLicenseHistory;
         }
     }
 }

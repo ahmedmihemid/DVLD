@@ -1,4 +1,5 @@
-﻿using DVLD_Buisness;
+﻿using DVLD.People.Controlls;
+using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace DVLD.Licenses.Local_Licenses
             InitializeComponent();
 
             ctrlPersonCardWithFilter1.LoadPersonInfo(clsDriverscs.FindByDriverID(DriverID).PersonID);
+            ctrlPersonCardWithFilter1.FilterEnabled = false;
+
             ctrlDriverLicensesHstory1.LoadDriverLicenseHistory(DriverID);
         }
 

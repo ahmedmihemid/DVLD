@@ -29,9 +29,9 @@ namespace DVLD.Licenses.Local_Licenses
 
         }
 
-
-     
-
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

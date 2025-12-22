@@ -133,18 +133,18 @@ namespace DVLD.Licenses
 
             if (ctrlPersonCardWithFilter1.PersonID != -1)
             {
-                if (DVLD_Buisness.clsUser.IsExistByPersonID(ctrlPersonCardWithFilter1.PersonID))
-                {
-                    MessageBox.Show("This person already has a user account, please choose another person.", "Person Already Exist", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //if (DVLD_Buisness.clsUser.IsExistByPersonID(ctrlPersonCardWithFilter1.PersonID))
+                //{
+                //    MessageBox.Show("This person already has a user account, please choose another person.", "Person Already Exist", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     btnSave.Enabled = true;
                     tabControl1.TabPages[1].Enabled = true;
                     tabControl1.SelectedTab = tabControl1.TabPages[1];
                     _ResetDefualtValuesOfApplicationInfo();
-                }
+                //}
             }
             else
             {

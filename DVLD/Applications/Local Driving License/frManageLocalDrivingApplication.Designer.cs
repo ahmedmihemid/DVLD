@@ -170,7 +170,7 @@
             this.toolStripMenuItem4,
             this.showPersonLicenseToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(297, 276);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(297, 248);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // showApplicationDToolStripMenuItem
@@ -331,6 +331,7 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "  Close";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 

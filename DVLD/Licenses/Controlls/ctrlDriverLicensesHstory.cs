@@ -31,19 +31,9 @@ namespace DVLD.Licenses.Controlls
             dtLocalLicenses = clsLicenses.GetAllLocalLicenses(_driverID);
             dtInternationalLicenses = clsInternationalLicenses.GetAllInternationalLicenses(_driverID);
 
-
             _FillLocalDriverLicenseHistory();
             _FillInternationalDriverLicenseHistory();
-
         }
-
-
-        
-
-
-
-
-
 
 
         private void _FillLocalDriverLicenseHistory()
@@ -63,8 +53,6 @@ namespace DVLD.Licenses.Controlls
                 dgvLocalLicensesHistory.Columns["ExpirationDate"].Width = 150;
                 dgvLocalLicensesHistory.Columns["IsActive"].HeaderText = "Is Active";
             }
-
-
         }
 
 

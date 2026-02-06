@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DVLD_DataAccess;
+using System.Data;
 
 namespace DVLD_Buisness
 {
@@ -42,7 +43,10 @@ namespace DVLD_Buisness
 
 
 
-
+        public static DataTable GetAllDrivers()
+        {
+            return DVLD_DataAccess.clsDriversData.GetAllDrivers();
+        }
 
         public static bool IsExist(int personID)
         {
@@ -69,8 +73,6 @@ namespace DVLD_Buisness
         {
             return DVLD_DataAccess.clsDriversData.GetDriverIDByApplicationID(applicationID);
         }
-
-
 
 
         public static clsDriverscs FindByDriverID(int driverID)

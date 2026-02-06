@@ -63,9 +63,10 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.Update(LocalDrivingLicenseApplicationID, ApplicationID, LicenseClassID);
         }
 
-        public static bool HasApplicationForLicenseClass(int applicationID, int licenseClassID ,int ApplicationStatus)
+
+        public static bool HasApplicationForLicenseClass(int applicationID, int licenseClassID )
         {
-            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.HasApplicationForLicenseClass(applicationID, licenseClassID, ApplicationStatus);
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.HasApplicationForLicenseClass(applicationID, licenseClassID);
         
         }
 

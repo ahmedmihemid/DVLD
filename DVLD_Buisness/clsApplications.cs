@@ -74,7 +74,7 @@ namespace DVLD_Buisness
 
 
         }
-
+       
         public static bool Delete(int ApplicationID)
         {
             return DVLD_DataAccess.clsApplicationsData.Delete(ApplicationID);

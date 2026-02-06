@@ -104,17 +104,17 @@ namespace DVLD_DataAccess
         }
 
 
-        public static bool HasApplicationForLicenseClass(int ApplicantPersonID, int LicenseClassID, int ApplicationStatus)
+        public static bool HasApplicationForLicenseClass(int ApplicantPersonID, int LicenseClassID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"select Count(*) from LocalDrivingLicenseApplications inner join Applications on 
                            Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
                            where LocalDrivingLicenseApplications.LicenseClassID = @LicenseClassID 
-                           and Applications.ApplicantPersonID = @ApplicantPersonID  and Applications.ApplicationStatus = @ApplicationStatus ;";
+                           and Applications.ApplicantPersonID = @ApplicantPersonID and Applications.ApplicationStatus <> 2;";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
             command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
-            command.Parameters.AddWithValue("@ApplicationStatus", ApplicationStatus);
+            //command.Parameters.AddWithValue("@ApplicationStatus", ApplicationStatus);
             bool hasApplication = false;
             try
             {
@@ -135,6 +135,7 @@ namespace DVLD_DataAccess
 
             return hasApplication;
         }
+
 
         public static bool FindByApplicationID(int ApplicationID, ref int LocalDrivingLicenseApplicationID, ref int LicenseClassID)
         {

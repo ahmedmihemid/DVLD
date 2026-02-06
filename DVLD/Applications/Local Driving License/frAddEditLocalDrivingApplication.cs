@@ -156,8 +156,11 @@ namespace DVLD.Licenses
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
 
-            if(DVLD_Buisness.clsLocalDrivingLicenseApplication.HasApplicationForLicenseClass(ctrlPersonCardWithFilter1.PersonID, LicensesClassCB.SelectedIndex+1, (int)applications.ApplicationStatus))
+
+            if(DVLD_Buisness.clsLocalDrivingLicenseApplication.HasApplicationForLicenseClass(ctrlPersonCardWithFilter1.PersonID, LicensesClassCB.SelectedIndex+1) && 
+                localDrivingLicenseApplication.application.ApplicationStatus== clsApplications.enStatus.New )
             {  
                 if(Mode == enMode.Edit && localDrivingLicenseApplication != null && localDrivingLicenseApplication.LicenseClassID == LicensesClassCB.SelectedIndex + 1)
                 {
@@ -169,8 +172,7 @@ namespace DVLD.Licenses
                     return;
                 }
 
-                //MessageBox.Show("This person already has an application for the selected license class.", "Duplicate Application", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //return;
+              
             }
 
            

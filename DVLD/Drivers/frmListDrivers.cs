@@ -12,6 +12,8 @@ namespace DVLD.NewFolder1
 {
     public partial class frmListDrivers : Form
     {
+
+        private DataTable dtDrivers;
         public frmListDrivers()
         {
             InitializeComponent();
@@ -24,7 +26,8 @@ namespace DVLD.NewFolder1
 
         private void LoadDrivers()
         {
-            DataTable dtDrivers = DVLD_Buisness.clsDriverscs.GetAllDrivers();
+            cbFilterBy.SelectedIndex = 0;
+            dtDrivers = DVLD_Buisness.clsDriverscs.GetAllDrivers();
             dgvDrivers.DataSource = dtDrivers;
             lblRecordsCount.Text = dgvDrivers.Rows.Count.ToString();
 
@@ -47,6 +50,79 @@ namespace DVLD.NewFolder1
 
 
         }
+
+        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtFilterValue.Visible=(cbFilterBy.Text != "None");
+
+            if (txtFilterValue.Visible)
+            {
+                txtFilterValue.Text = "";
+                txtFilterValue.Focus();
+            }
+
+
+        }
+
+        private void txtFilterValue_TextChanged(object sender, EventArgs e)
+        {
+            string filterExpression = "";
+
+            switch (cbFilterBy.Text)
+            {
+
+                case "Driver ID":
+                    filterExpression = "DriverID";
+                    break;
+                case "Person ID":
+                    filterExpression = "PersonID";
+                    break;
+                case "National No.":
+                    filterExpression = "NationalNo";
+                    break;
+                case "Full Name":
+                    filterExpression = "FullName";
+                    break;
+                default:
+                    filterExpression = "None";
+                    break;
+
+            }
+
+            if (filterExpression == "None" || txtFilterValue.Text.Trim()=="")
+            {
+                dtDrivers.DefaultView.RowFilter = "";
+                lblRecordsCount.Text = dgvDrivers.Rows.Count.ToString();
+                return;
+            }
+
+            if (filterExpression == "DriverID" || filterExpression == "PersonID")
+            {
+                dtDrivers.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterExpression, txtFilterValue.Text.Trim());
+            }
+            else
+            {
+                dtDrivers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", filterExpression, txtFilterValue.Text.Trim());
+            }
+
+            lblRecordsCount.Text = dgvDrivers.Rows.Count.ToString();
+
+        }
+
+        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cbFilterBy.Text == "Driver ID" || cbFilterBy.Text == "Person ID")
+            {
+                //allow only numbers and control characters (like backspace)
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true; // ignore the input
+                }
+            }
+        }
+
+
+
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using DVLD.People;
+﻿using DVLD.Licenses.Local_Licenses;
+using DVLD.People;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -130,9 +131,17 @@ namespace DVLD.NewFolder1
             LoadDrivers();
         }
 
+        private void issueInternationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is under development.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
-
-
-
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int DriverID = (int)dgvDrivers.CurrentRow.Cells[0].Value;
+            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(DriverID);
+            fr.ShowDialog();
+            LoadDrivers();
+        }
     }
 }

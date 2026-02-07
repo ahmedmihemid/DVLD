@@ -143,5 +143,10 @@ namespace DVLD.NewFolder1
             fr.ShowDialog();
             LoadDrivers();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

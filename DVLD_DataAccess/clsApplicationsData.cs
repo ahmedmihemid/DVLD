@@ -41,7 +41,10 @@ namespace DVLD_DataAccess
 
             return dt;
         }
-        public static bool Find(int ApplicationID, ref int ApplicantPersonID, ref DateTime ApplicationDate, ref int ApplicationTypeID, ref int ApplicationStatus, ref DateTime LastStatusDate, ref float PaidFees, ref int CreatedByUserID)
+
+        public static bool GetApplicationInfoByID(int ApplicationID, ref int ApplicantPersonID,
+            ref DateTime ApplicationDate, ref int ApplicationTypeID, ref int ApplicationStatus,
+            ref DateTime LastStatusDate, ref float PaidFees, ref int CreatedByUserID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string sql = "SELECT * FROM Applications WHERE ApplicationID = @ApplicationID;";
@@ -85,7 +88,10 @@ namespace DVLD_DataAccess
             }
             return isFound;
         }
-        public static int AddNew(int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, int ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
+
+        public static int AddNewApplication(int ApplicantPersonID, DateTime ApplicationDate,
+            int ApplicationTypeID, int ApplicationStatus, DateTime LastStatusDate,
+            float PaidFees, int CreatedByUserID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"INSERT INTO Applications (ApplicantPersonID, ApplicationDate, ApplicationTypeID, ApplicationStatus, LastStatusDate, PaidFees, CreatedByUserID)
@@ -125,7 +131,9 @@ namespace DVLD_DataAccess
         }
 
 
-        public static bool Update(int ApplicationID, int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, int ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
+        public static bool UpdateApplication(int ApplicationID, int ApplicantPersonID,
+            DateTime ApplicationDate, int ApplicationTypeID, int ApplicationStatus,
+            DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"UPDATE Applications
@@ -205,8 +213,7 @@ namespace DVLD_DataAccess
             return isDeleted;
         }
 
-
-        public static bool ChangeStatus(int ApplicationID, int NewStatus, DateTime StatusChangeDate)
+        public static bool UpdateStatus(int ApplicationID, short NewStatus)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"UPDATE Applications
@@ -216,7 +223,7 @@ namespace DVLD_DataAccess
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             cmd.Parameters.AddWithValue("@NewStatus", NewStatus);
-            cmd.Parameters.AddWithValue("@StatusChangeDate", StatusChangeDate);
+            cmd.Parameters.AddWithValue("@StatusChangeDate", DateTime.Now);
             bool isUpdated = false;
 
             try
@@ -239,6 +246,120 @@ namespace DVLD_DataAccess
             return isUpdated;
 
         }
-    }
 
+        public static bool IsApplicationExist(int ApplicationID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT Found=1 FROM Applications WHERE ApplicationID = @ApplicationID;";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            bool exists = false;
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                exists = reader.HasRows;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                exists = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return exists;
+
+        }
+
+
+        public static bool DoesPersonHaveActiveApplication(int personID, int ApplicationTypeID)
+        {
+            return (GetActiveApplicationID(personID, ApplicationTypeID) != -1);
+        }
+
+        public static int GetActiveApplicationID(int personID, int ApplicationTypeID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT ActiveApplicationID=ApplicationID FROM Applications WHERE ApplicantPersonID = @ApplicantPersonID
+                             and ApplicationTypeID=@ApplicationTypeID and ApplicationStatus=1";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ApplicantPersonID", personID);
+            cmd.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+
+            int activeApplicationID = -1;
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader != null && int.TryParse(reader.ToString(), out int AppID))
+                {
+                    activeApplicationID = AppID;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+                activeApplicationID = -1;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return activeApplicationID;
+
+        }
+
+
+        public static int GetActiveApplicationIDForLicenseClass(int PersonID, int ApplicationTypeID, int LicenseClassID)
+        {
+            int ActiveApplicationID = -1;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT ActiveApplicationID=Applications.ApplicationID  
+                            From
+                            Applications INNER JOIN
+                            LocalDrivingLicenseApplications ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+                            WHERE ApplicantPersonID = @ApplicantPersonID 
+                            and ApplicationTypeID=@ApplicationTypeID 
+							and LocalDrivingLicenseApplications.LicenseClassID = @LicenseClassID
+                            and ApplicationStatus=1";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ApplicantPersonID", PersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+
+                if (result != null && int.TryParse(result.ToString(), out int AppID))
+                {
+                    ActiveApplicationID = AppID;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return ActiveApplicationID;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return ActiveApplicationID;
+        }
+
+    }
+     
 }

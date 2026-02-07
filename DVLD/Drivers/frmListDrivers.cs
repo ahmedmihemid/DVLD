@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD.People;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -120,6 +121,15 @@ namespace DVLD.NewFolder1
                 }
             }
         }
+
+        private void showPersonInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int personID = (int)dgvDrivers.CurrentRow.Cells[1].Value;
+            frPersonDetails fr = new frPersonDetails(personID);
+            fr.ShowDialog();
+            LoadDrivers();
+        }
+
 
 
 

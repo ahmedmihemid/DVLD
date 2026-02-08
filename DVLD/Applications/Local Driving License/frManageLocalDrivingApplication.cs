@@ -174,7 +174,7 @@ namespace DVLD.Licenses
             }
 
             int ApplicationID = clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value)).ApplicationID;
-            if (clsApplications.ChangeStatus(ApplicationID, clsApplications.enStatus.Cancelled))
+            if (clsApplications.ChangeStatus(ApplicationID, clsApplications.enApplicationStatus.Cancelled))
             {
                 MessageBox.Show("The application has been cancelled successfully.","Success", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 frManageLocalDrivingApplication_Load(null, null);
@@ -248,8 +248,8 @@ namespace DVLD.Licenses
             var L_D_application = clsLocalDrivingLicenseApplication.Find((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
 
             //  إذا الطلب ملغي أو مكتمل
-            if (L_D_application.application.ApplicationStatus == clsApplications.enStatus.Cancelled ||
-                L_D_application.application.ApplicationStatus == clsApplications.enStatus.Completed)
+            if (L_D_application.application.ApplicationStatus == clsApplications.enApplicationStatus.Cancelled ||
+                L_D_application.application.ApplicationStatus == clsApplications.enApplicationStatus.Completed)
             {
                 shechduleTestsToolStripMenuItem.Enabled = false;
                 issueToolStripMenuItem.Enabled = false;
@@ -258,7 +258,7 @@ namespace DVLD.Licenses
                 cancelApplicationToolStripMenuItem.Enabled = false;
 
                 // لا تُظهر الرخصة إلا إذا مكتمل
-                if (L_D_application.application.ApplicationStatus == clsApplications.enStatus.Cancelled)
+                if (L_D_application.application.ApplicationStatus == clsApplications.enApplicationStatus.Cancelled)
                 {
                     showLicenseToolStripMenuItem1.Enabled = false;
                     showPersonLicenseToolStripMenuItem.Enabled = false;

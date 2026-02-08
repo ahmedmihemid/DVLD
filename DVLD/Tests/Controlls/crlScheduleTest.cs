@@ -226,7 +226,7 @@ namespace DVLD.Tests
                 _RetakeApplication.PaidFees = clsApplicationTypes.FindByTitle("Retake Test").Fees;
                 _RetakeApplication.CreatedByUserID = DVLD.Classes.clsGlobal.CurrentUser.UserID;
                 _RetakeApplication.ApplicationDate = DateTime.Now;
-                _RetakeApplication.ApplicationStatus= DVLD_Buisness.clsApplications.enStatus.New;
+                _RetakeApplication.ApplicationStatus= DVLD_Buisness.clsApplications.enApplicationStatus.New;
                 _RetakeApplication.LastStatusDate = DateTime.Now;
 
 

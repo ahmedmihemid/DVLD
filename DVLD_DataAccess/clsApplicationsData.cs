@@ -176,7 +176,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool Delete(int ApplicationID)
+        public static bool DeleteApplication(int ApplicationID)
         {
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);

@@ -160,7 +160,7 @@ namespace DVLD.Licenses
 
 
             if(DVLD_Buisness.clsLocalDrivingLicenseApplication.HasApplicationForLicenseClass(ctrlPersonCardWithFilter1.PersonID, LicensesClassCB.SelectedIndex+1) && 
-                localDrivingLicenseApplication.application.ApplicationStatus== clsApplications.enStatus.New )
+                localDrivingLicenseApplication.application.ApplicationStatus== clsApplications.enApplicationStatus.New )
             {  
                 if(Mode == enMode.Edit && localDrivingLicenseApplication != null && localDrivingLicenseApplication.LicenseClassID == LicensesClassCB.SelectedIndex + 1)
                 {
@@ -179,7 +179,7 @@ namespace DVLD.Licenses
             applications.ApplicantPersonID = ctrlPersonCardWithFilter1.PersonID;
             applications.ApplicationDate = DateTime.Now;
             applications.ApplicationTypeID = _ApplicationTypeId;
-            applications.ApplicationStatus = clsApplications.enStatus.New;
+            applications.ApplicationStatus = clsApplications.enApplicationStatus.New;
             applications.LastStatusDate = DateTime.Now;
             applications.PaidFees = DVLD_Buisness.clsApplicationTypes.Find(_ApplicationTypeId).Fees;
             applications.CreatedByUserID = Classes.clsGlobal.CurrentUser.UserID;

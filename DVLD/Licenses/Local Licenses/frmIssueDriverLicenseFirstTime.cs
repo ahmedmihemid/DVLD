@@ -64,7 +64,7 @@ namespace DVLD.Licenses
 
             if(_License.save())
             {
-                 _localDrivingLicenseApplication.application.ApplicationStatus = clsApplications.enStatus.Completed;
+                 _localDrivingLicenseApplication.application.ApplicationStatus = clsApplications.enApplicationStatus.Completed;
                   if (!_localDrivingLicenseApplication.application.Save())
                   {
                       MessageBox.Show("Error updating application status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

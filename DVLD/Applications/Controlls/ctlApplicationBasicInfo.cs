@@ -36,7 +36,7 @@ namespace DVLD.Applications.Controlls
             if (_Applications == null)
             {
                 MessageBox.Show("Application Not Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _ReastDefaultsData();
+                ReastDefaultsData();
             }
             else
             {
@@ -58,7 +58,7 @@ namespace DVLD.Applications.Controlls
 
         }
 
-        private void _ReastDefaultsData()
+        public void ReastDefaultsData()
         {
             lblApplicationID.Text = "[???]";
             lblStatus.Text = "[???]";

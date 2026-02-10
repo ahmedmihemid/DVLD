@@ -13,7 +13,7 @@ namespace DVLD_Buisness
         public int LicenseID { get; set; }
         public int ApplicationID { get; set; }
         public int DriverID { get; set; }
-        public LicenseClass LicenseClass { get; set; }
+        public clsLicenseClass LicenseClass { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime ExpiryDate { get; set; }
         public string Note { get; set; }
@@ -35,7 +35,7 @@ namespace DVLD_Buisness
             _Mode = enMode.New;
         }
 
-        public clsLicenses(int licenseID, int applicationID, int driverID, LicenseClass licenseClass, DateTime issueDate, DateTime expiryDate, string note, float paidFees, bool isActive, enReason issueReason, int createdByUserID)
+        public clsLicenses(int licenseID, int applicationID, int driverID, clsLicenseClass licenseClass, DateTime issueDate, DateTime expiryDate, string note, float paidFees, bool isActive, enReason issueReason, int createdByUserID)
         {
             LicenseID = licenseID;
             ApplicationID = applicationID;
@@ -92,7 +92,7 @@ namespace DVLD_Buisness
 
             if (isFound)
                 {
-                return new clsLicenses(licenseID, ApplicationID, DriverID, LicenseClass.Find(licenseClassID), IssueDate, ExpiryDate, Note, PaidFees, IsActive,
+                return new clsLicenses(licenseID, ApplicationID, DriverID, clsLicenseClass.Find(licenseClassID), IssueDate, ExpiryDate, Note, PaidFees, IsActive,
                     (enReason)IssueReasonID, CreatedByUserID);
             }
             return null;

@@ -31,7 +31,7 @@ namespace DVLD.Licenses
         private void _FillDate()
         {
             lblLocalDrivingLicenseApplicationID.Text = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
-            lblAppliedFor.Text = LicenseClass.Find(_LocalDrivingLicenseApplication.LicenseClassID).ClassName;
+            lblAppliedFor.Text = clsLicenseClass.Find(_LocalDrivingLicenseApplication.LicenseClassID).ClassName;
             lblPassedTests.Text = clsTests.GetNumberOfPassedTests(_LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID) +"/3";
             ctlApplicationBasicInfo1.LoadData(_LocalDrivingLicenseApplication.ApplicationID);
         }

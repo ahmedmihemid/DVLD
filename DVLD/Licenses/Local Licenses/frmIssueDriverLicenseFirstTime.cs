@@ -50,7 +50,7 @@ namespace DVLD.Licenses
 
             _License.ApplicationID = _localDrivingLicenseApplication.application.ApplicationID;
             _License.DriverID = _Driver.DriverID;   
-            _License.LicenseClass = LicenseClass.Find(_localDrivingLicenseApplication.LicenseClassID);
+            _License.LicenseClass = clsLicenseClass.Find(_localDrivingLicenseApplication.LicenseClassID);
             _License.IssueDate = DateTime.Now;
             _License.ExpiryDate = DateTime.Now.AddYears(_License.LicenseClass.DefaultValidityLength);
             if (!string.IsNullOrWhiteSpace(NotTB.Text))

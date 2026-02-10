@@ -40,7 +40,7 @@ namespace DVLD.Licenses
 
         private void _FillLicenseClasses()
         {   
-            DataTable dt = DVLD_Buisness.LicenseClass.GetAllLicenseClasses();
+            DataTable dt = DVLD_Buisness.clsLicenseClass.GetAllLicenseClasses();
             foreach (DataRow dr in dt.Rows)
             {
                 LicensesClassCB.Items.Add(dr["ClassName"].ToString());

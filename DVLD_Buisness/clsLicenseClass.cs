@@ -7,7 +7,7 @@ using System.Data;
 
 namespace DVLD_Buisness
 {
-    public class LicenseClass
+    public class clsLicenseClass
     {
         public int LicenseClassID { set; get; }
         public string ClassName { set; get; }
@@ -17,7 +17,7 @@ namespace DVLD_Buisness
         public float ClassFees { set; get; }
 
 
-        public LicenseClass()
+        public clsLicenseClass()
         {
             LicenseClassID = 0;
             ClassName = string.Empty;
@@ -27,7 +27,7 @@ namespace DVLD_Buisness
             ClassFees = 0.0f;
         }
 
-        public LicenseClass(int licenseClassID, string className, string classDescription, int minimumAllowedAge, int defaultValidityLength, float classFees)
+        public clsLicenseClass(int licenseClassID, string className, string classDescription, int minimumAllowedAge, int defaultValidityLength, float classFees)
         {
             LicenseClassID = licenseClassID;
             ClassName = className;
@@ -42,7 +42,7 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsLicenseClassData.GetAllLicenseClasses();
         }
 
-        public static LicenseClass Find(int licenseClassID)
+        public static clsLicenseClass Find(int licenseClassID)
         {
             string className = string.Empty;
             string classDescription = string.Empty;
@@ -52,7 +52,7 @@ namespace DVLD_Buisness
             bool isFound = DVLD_DataAccess.clsLicenseClassData.Find(licenseClassID, ref className, ref classDescription, ref minimumAllowedAge, ref defaultValidityLength, ref classFees);
             if (isFound)
             {
-                return new LicenseClass(licenseClassID, className, classDescription, minimumAllowedAge, defaultValidityLength, classFees);
+                return new clsLicenseClass(licenseClassID, className, classDescription, minimumAllowedAge, defaultValidityLength, classFees);
             }
             return null;
 

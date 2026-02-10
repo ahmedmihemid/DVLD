@@ -27,7 +27,7 @@ namespace DVLD_Buisness
             ClassFees = 0.0f;
         }
 
-        public clsLicenseClass(int licenseClassID, string className, string classDescription, int minimumAllowedAge, int defaultValidityLength, float classFees)
+        public clsLicenseClass(string className, int licenseClassID, string classDescription, int minimumAllowedAge, int defaultValidityLength, float classFees)
         {
             LicenseClassID = licenseClassID;
             ClassName = className;
@@ -42,17 +42,17 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsLicenseClassData.GetAllLicenseClasses();
         }
 
-        public static clsLicenseClass Find(int licenseClassID)
+        public static clsLicenseClass Find(string licenseClassName)
         {
-            string className = string.Empty;
+            int licenseClassID = -1;
             string classDescription = string.Empty;
             int minimumAllowedAge = 0;
             int defaultValidityLength = 0;
             float classFees = 0.0f;
-            bool isFound = DVLD_DataAccess.clsLicenseClassData.Find(licenseClassID, ref className, ref classDescription, ref minimumAllowedAge, ref defaultValidityLength, ref classFees);
+            bool isFound = DVLD_DataAccess.clsLicenseClassData.Find(licenseClassName, ref licenseClassID, ref classDescription, ref minimumAllowedAge, ref defaultValidityLength, ref classFees);
             if (isFound)
             {
-                return new clsLicenseClass(licenseClassID, className, classDescription, minimumAllowedAge, defaultValidityLength, classFees);
+                return new clsLicenseClass(licenseClassName, licenseClassID, classDescription, minimumAllowedAge, defaultValidityLength, classFees);
             }
             return null;
 

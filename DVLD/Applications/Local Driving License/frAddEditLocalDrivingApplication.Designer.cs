@@ -76,7 +76,6 @@
             this.btnClose.TabIndex = 24;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // tabControl1
             // 
@@ -125,6 +124,7 @@
             this.ctrlPersonCardWithFilter1.ShowAddPerson = true;
             this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(867, 436);
             this.ctrlPersonCardWithFilter1.TabIndex = 0;
+            this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected);
             // 
             // tabPage2
             // 
@@ -258,7 +258,7 @@
             this.TitleLEB.TabIndex = 22;
             this.TitleLEB.Text = "Add New Local Driving Application";
             // 
-            // frAddNewLocalDrivingApplication
+            // frAddEditLocalDrivingApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -267,9 +267,10 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.TitleLEB);
-            this.Name = "frAddNewLocalDrivingApplication";
+            this.Name = "frAddEditLocalDrivingApplication";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Activated += new System.EventHandler(this.frAddEditLocalDrivingApplication_Activated);
+            this.Load += new System.EventHandler(this.frAddEditLocalDrivingApplication_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

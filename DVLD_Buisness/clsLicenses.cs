@@ -103,6 +103,11 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsLicensesData.GetLicenseIDByApplicationID(applicationID);
         }
 
+        public static bool IsLicenseExistByPersonID(int personID, int licenseClassID)
+        {
+            return DVLD_DataAccess.clsLicensesData.IsLicenseExistByPersonID(personID, licenseClassID);
+        }
+
         private bool _AddNew()
         {
            int newLicenseID = DVLD_DataAccess.clsLicensesData.AddNew(ApplicationID, DriverID, LicenseClass.LicenseClassID, IssueDate, ExpiryDate, Note, PaidFees, IsActive,(int)IssueReason, CreatedByUserID);

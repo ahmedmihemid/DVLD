@@ -42,20 +42,20 @@ namespace DVLD_DataAccess
         }
 
 
-        public static bool Find(int licenseClassID, ref string className, ref string classDescription, ref int minimumAllowedAge, ref int defaultValidityLength, ref float classFees)
+        public static bool Find(string ClassName, ref int licenseClassID, ref string classDescription, ref int minimumAllowedAge, ref int defaultValidityLength, ref float classFees)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string sql = "SELECT ClassName, ClassDescription, MinimumAllowedAge, DefaultValidityLength, ClassFees FROM LicenseClasses WHERE LicenseClassID = @LicenseClassID";
+            string sql = "SELECT ClassName, ClassDescription, MinimumAllowedAge, DefaultValidityLength, ClassFees FROM LicenseClasses WHERE ClassName = @ClassName";
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@LicenseClassID", licenseClassID);
+            command.Parameters.AddWithValue("@ClassName", ClassName);
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
-                        className = reader["ClassName"].ToString();
+                        licenseClassID = Convert.ToInt32(reader["licenseClassID"]);
                         classDescription = reader["ClassDescription"].ToString();
                         minimumAllowedAge = Convert.ToInt32(reader["MinimumAllowedAge"]);
                         defaultValidityLength = Convert.ToInt32(reader["DefaultValidityLength"]);

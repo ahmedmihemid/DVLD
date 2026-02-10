@@ -173,8 +173,36 @@ namespace DVLD_DataAccess
             return dataTable;
         }
 
+        public static bool IsLicenseExistByPersonID(int personID, int licenseClassID)
+        {
+            using (SqlConnection connection =
+                   new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"SELECT found=1
+                         FROM Licenses 
+                         INNER JOIN Drivers 
+                             ON Licenses.DriverID = Drivers.DriverID
+                         WHERE Drivers.PersonID = @personID
+                         AND Licenses.LicenseClassID = @licenseClassID";
 
+                SqlCommand command = new SqlCommand(query, connection);
 
+                command.Parameters.AddWithValue("@personID", personID);
+                command.Parameters.AddWithValue("@licenseClassID", licenseClassID);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    return result != null;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return false;
+                }
+            }
+        }
 
     }
 }

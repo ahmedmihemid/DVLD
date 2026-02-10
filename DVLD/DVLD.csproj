@@ -71,6 +71,7 @@
     <Compile Include="Applications\Local Driving License\frApplicationDetails.Designer.cs">
       <DependentUpon>frApplicationDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global Classes\clsFormat.cs" />
     <Compile Include="Global Classes\clsGlobal.cs" />
     <Compile Include="Global Classes\clsUtil.cs" />
     <Compile Include="Global Classes\clsValidatoin.cs" />

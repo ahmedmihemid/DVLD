@@ -121,6 +121,38 @@ namespace DVLD_DataAccess
             return licenseID;
         }
 
+        public static int GetLicenseIDByPersonID(int personID,int LicenseClassID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT TOP 1 LicenseID 
+                             FROM Licenses 
+                             INNER JOIN Drivers ON Licenses.DriverID = Drivers.DriverID
+                             WHERE Drivers.PersonID = @PersonID AND Licenses.LicenseClassID = @LicenseClassID
+                             ORDER BY IssueDate DESC";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", personID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+            int licenseID = -1;
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    licenseID = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return licenseID;
+
+        }
         public static DataTable GetAllLocalLicenses(int driverID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);

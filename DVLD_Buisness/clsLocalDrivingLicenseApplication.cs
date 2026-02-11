@@ -70,9 +70,6 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.UpdateLocalDrivingLicenseApplication(LocalDrivingLicenseApplicationID, ApplicationID, LicenseClassID);
         }
 
-
-
-
         public static clsLocalDrivingLicenseApplication FindByApplicationID(int applicationID)
         {
             int localDrivingLicenseApplicationID = -1;
@@ -169,9 +166,26 @@ namespace DVLD_Buisness
         }
 
 
-    
+        public int GetActiveLicenseID()
+        {
+            return clsLicenses.GetLicenseIDByPersonID(ApplicantPersonID, LicenseClassID);
+        }
 
+        public bool IsLicenseIssued()
+        {
+            int licenseID = GetActiveLicenseID();
+            return (licenseID != -1);
+        }
 
+        public static bool DoesPassTestType(int LocalDrivingLicenseApplicationID,int testTypeID)
+        { 
+             return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.DoesPassTestType(LocalDrivingLicenseApplicationID, testTypeID);
+        }
+
+        public  bool DoesPassTestType(int testTypeID)
+        {
+            return DoesPassTestType(this.LocalDrivingLicenseApplicationID, testTypeID);
+        }
 
     }
 

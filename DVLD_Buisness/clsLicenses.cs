@@ -57,10 +57,7 @@ namespace DVLD_Buisness
 
 
 
-        //public static bool IsFirstTimeIssue(int applicationID, int localDrivingLicenseApplicationID, int licenseClassID)
-        //{
-        //    return DVLD_DataAccess.clsLicensesData.IsFirstTimeIssue(applicationID, localDrivingLicenseApplicationID, licenseClassID);
-        //}
+        
 
 
         public static DataTable GetAllLocalLicenses(int driverID)
@@ -101,6 +98,12 @@ namespace DVLD_Buisness
         public static int GetLicenseIDByApplicationID(int applicationID)
         {
             return DVLD_DataAccess.clsLicensesData.GetLicenseIDByApplicationID(applicationID);
+        }
+
+
+        public static int GetLicenseIDByPersonID(int personID, int LicenseClassID)
+        {
+            return DVLD_DataAccess.clsLicensesData.GetLicenseIDByPersonID(personID,  LicenseClassID);
         }
 
         public static bool IsLicenseExistByPersonID(int personID, int licenseClassID)

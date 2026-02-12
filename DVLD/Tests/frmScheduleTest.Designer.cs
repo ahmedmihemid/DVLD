@@ -1,6 +1,6 @@
 ﻿namespace DVLD.Tests
 {
-    partial class Form1
+    partial class frmScheduleTest
     {
         /// <summary>
         /// Required designer variable.
@@ -46,6 +46,7 @@
             this.btnClose.TabIndex = 126;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // crlScheduleTest1
             // 
@@ -55,16 +56,15 @@
             this.crlScheduleTest1.TabIndex = 0;
             this.crlScheduleTest1.Load += new System.EventHandler(this.crlScheduleTest1_Load);
             // 
-            // Form1
+            // frmScheduleTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 780);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.crlScheduleTest1);
-            this.Name = "Form1";
+            this.Name = "frmScheduleTest";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.ResumeLayout(false);
 
         }

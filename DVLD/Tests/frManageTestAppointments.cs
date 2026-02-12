@@ -98,7 +98,7 @@ namespace DVLD.Tests
                 return;
             }
 
-            Form1 fr = new Form1(_LocalDrivingLicenseApplicationID, _Test);
+            frmScheduleTest fr = new frmScheduleTest(_LocalDrivingLicenseApplicationID, _Test);
             fr.ShowDialog();
             Form1_Load(null, null);
 
@@ -107,7 +107,7 @@ namespace DVLD.Tests
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int testAppointmentID = (int)dataGridView1.CurrentRow.Cells[0].Value;
-            Form1 fr = new Form1(_LocalDrivingLicenseApplicationID, _Test, testAppointmentID);
+            frmScheduleTest fr = new frmScheduleTest(_LocalDrivingLicenseApplicationID, _Test, testAppointmentID);
             fr.ShowDialog();
             Form1_Load(null, null);
         }

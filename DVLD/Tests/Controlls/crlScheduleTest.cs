@@ -36,7 +36,7 @@ namespace DVLD.Tests
         private clsTestAppointments _TestAppointment;
         private int _TestAppointmentID = -1;
 
-        public clsTestTypes.enTestType  enTestType
+        public clsTestTypes.enTestType  TestTypeID
         {
             get { return _TestTypeID; }
             set

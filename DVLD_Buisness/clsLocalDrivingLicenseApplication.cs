@@ -177,16 +177,48 @@ namespace DVLD_Buisness
             return (licenseID != -1);
         }
 
-        public static bool DoesPassTestType(int LocalDrivingLicenseApplicationID,int testTypeID)
-        { 
-             return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.DoesPassTestType(LocalDrivingLicenseApplicationID, testTypeID);
+        public static bool DoesPassTestType(int LocalDrivingLicenseApplicationID, clsTestTypes.enTestType testTypeID)
+        {
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.DoesPassTestType(LocalDrivingLicenseApplicationID, (int)testTypeID);
         }
 
-        public  bool DoesPassTestType(int testTypeID)
+        public bool DoesPassTestType(clsTestTypes.enTestType testTypeID)
         {
             return DoesPassTestType(this.LocalDrivingLicenseApplicationID, testTypeID);
         }
 
+        public static bool DoesAttendTestType(int LocalDrivingLicenseApplicationID, clsTestTypes.enTestType testTypeID)
+        {
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.DoesAttendTestType(LocalDrivingLicenseApplicationID, (int)testTypeID);
+        }
+
+        public bool DoesAttendTestType(clsTestTypes.enTestType testTypeID)
+        {
+            return DoesAttendTestType(this.LocalDrivingLicenseApplicationID, testTypeID);
+
+        }
+
+
+        public static bool IsThereAnActiveScheduledTest(int LocalDrivingLicenseApplicationID, clsTestTypes.enTestType testTypeID)
+        {
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.IsThereAnActiveScheduledTest(LocalDrivingLicenseApplicationID, (int)testTypeID);
+        }
+        public bool IsThereAnActiveScheduledTest(clsTestTypes.enTestType testTypeID)
+        {
+            return IsThereAnActiveScheduledTest(this.LocalDrivingLicenseApplicationID, testTypeID);
+        }
+
+
+        public static int TotalTrialsPerTest(int LocalDrivingLicenseApplicationID, clsTestTypes.enTestType testTypeID)
+        {
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.TotalTrialsPerTest(LocalDrivingLicenseApplicationID, (int)testTypeID);
+        }
+
+        public int TotalTrialsPerTest(clsTestTypes.enTestType testTypeID)
+        {
+            return DVLD_DataAccess.clsLocalDrivingLicenseApplicationData.TotalTrialsPerTest(this.LocalDrivingLicenseApplicationID, (int)testTypeID);
+
+        }
     }
 
 }

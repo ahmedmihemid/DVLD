@@ -120,6 +120,11 @@ namespace DVLD_Buisness
         {
             return DVLD_DataAccess.clsApplicationsData.DeleteApplication(ApplicationID);
         }
+        public bool Delete()
+        {
+            return Delete(this.ApplicationID);
+        }
+
 
         private bool _AddNew()
         {

@@ -77,9 +77,6 @@ namespace DVLD_DataAccess
 
             return failedTestsCount > 0;
         }
-
-  
-
         public static int AddNew(int testAppointmentID, bool testResult, string notes, int createdByUserID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -109,6 +106,11 @@ namespace DVLD_DataAccess
             }
 
             return newID;
+        }
+
+        public static bool FindLastTestPerPersonAndLicenseClass(int ApplicantPersonID,int  LicenseClassID, int TestTypeID,ref int  TestID, ref int TestAppointmentID, ref bool TestResult, ref string Notes, ref int CreatedByUserID )
+        {
+          
         }
 
 

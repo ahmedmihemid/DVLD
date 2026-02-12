@@ -41,7 +41,8 @@ namespace DVLD.Tests
             get { return _TestTypeID; }
             set
             {
-                switch (value)
+                _TestTypeID= value;
+                switch (_TestTypeID)
                 {
                     case clsTestTypes.enTestType.VisionTest:
                         {

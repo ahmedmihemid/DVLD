@@ -76,8 +76,25 @@ namespace DVLD_Buisness
         }
 
 
+        //public static clsTests FindLastTestPerPersonAndLicenseClass(int ApplicantPersonID, int LicenseClassID, clsTestTypes.enTestType TestTypeID)
+        //{
+        //    int TestID = -1;
+        //    int TestAppointmentID = -1;
+        //    bool TestResult = false;
+        //    string Notes = string.Empty;
+        //    int CreatedByUserID = -1;
 
+        //    bool found = DVLD_DataAccess.clsTestsData.FindLastTestPerPersonAndLicenseClass(ApplicantPersonID, LicenseClassID, (int)TestTypeID, ref TestID, ref TestAppointmentID, ref TestResult, ref Notes, ref CreatedByUserID);
 
+        //    if (found)
+        //    {
+        //        return new clsTests(TestID, TestAppointmentID, TestResult, Notes, CreatedByUserID);
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
     }
 }

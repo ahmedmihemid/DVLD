@@ -22,7 +22,7 @@ namespace DVLD.Tests
         private clsTestAppointments _TestAppointment = null;
         private clsLocalDrivingLicenseApplication _LocalDLApplication = null;
 
-        public frTakeTest(int testAppointmentID, enTest test)
+        public frTakeTest(int testAppointmentID, clsTestTypes.enTestType test)
         {
             InitializeComponent();
             _Test = new clsTests();

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DVLD.Classes;
+using DVLD.Properties;
+using DVLD_Buisness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,76 +10,130 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DVLD_Buisness;
 
 namespace DVLD.Tests.Controlls
 {
     public partial class ctrlSecheduledTest : UserControl
     {
-        
-        private int _TestType;
-        private int _TestAppointmentID;
-        private int _TestID;
 
-        private clsLocalDrivingLicenseApplication _LocalDrivingLicenseApplication = null;
-        private clsTestAppointments _TestAppointment = null;
-        private clsTests _Test = null;
+
+        private clsTestTypes.enTestType _TestTypeID;
+        private int _TestID = -1;
+
+        private clsLocalDrivingLicenseApplication _LocalDrivingLicenseApplication;
+
+        public clsTestTypes.enTestType TestTypeID
+        {
+            get
+            {
+                return _TestTypeID;
+            }
+            set
+            {
+                _TestTypeID = value;
+
+                switch (_TestTypeID)
+                {
+
+                    case clsTestTypes.enTestType.VisionTest:
+                        {
+                            gbTestType.Text = "Vision Test";
+                            pbTestTypeImage.Image = Resources.Vision_512;
+                            break;
+                        }
+
+                    case clsTestTypes.enTestType.WrittenTest:
+                        {
+                            gbTestType.Text = "Written Test";
+                            pbTestTypeImage.Image = Resources.Written_Test_512;
+                            break;
+                        }
+                    case clsTestTypes.enTestType.StreetTest:
+                        {
+                            gbTestType.Text = "Street Test";
+                            pbTestTypeImage.Image = Resources.Street_Test_322;
+                            break;
+
+
+                        }
+                }
+            }
+        }
+
+        public int TestAppointmentID
+        {
+            get
+            {
+                return _TestAppointmentID;
+            }
+        }
+
+        public int TestID
+        {
+            get
+            {
+                return _TestID;
+            }
+        }
+
+        private int _TestAppointmentID = -1;
+        private int _LocalDrivingLicenseApplicationID = -1;
+        private clsTestAppointments _TestAppointment;
+
 
         public ctrlSecheduledTest()
         {
             InitializeComponent();
         }
 
-        public void LoadData(int testAppointmentID,int testType)
-        {
-            _TestAppointmentID = testAppointmentID;
-            _TestType = testType;
-            _TestAppointment = clsTestAppointments.FindIfTestAppointment(_TestAppointmentID);
-            _LocalDrivingLicenseApplication= clsLocalDrivingLicenseApplication.Find(_TestAppointment.LocalDrivingLicenseApplicationID);
-            _FillData();
-        }
 
-        private void _FillData()
+
+        public void LoadInfo(int TestAppointmentID)
         {
 
+            _TestAppointmentID = TestAppointmentID;
+
+
+            _TestAppointment = clsTestAppointments.Find(_TestAppointmentID);
+
+            //incase we did not find any appointment .
             if (_TestAppointment == null)
             {
-                MessageBox.Show("Error loading test appointment data.");
+                MessageBox.Show("Error: No  Appointment ID = " + _TestAppointmentID.ToString(),
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _TestAppointmentID = -1;
                 return;
             }
 
-            switch (_TestType)
+            _TestID = _TestAppointment.TestID;
+
+            _LocalDrivingLicenseApplicationID = _TestAppointment.LocalDrivingLicenseApplicationID;
+            _LocalDrivingLicenseApplication = clsLocalDrivingLicenseApplication.FindByLocalDrivingAppLicenseID(_LocalDrivingLicenseApplicationID);
+
+            if (_LocalDrivingLicenseApplication == null)
             {
-                case 1:
-                    {
-                        pbTestTypeImage.Image = Properties.Resources.Vision_512;
-                        break;
-                    }
-                case 2:
-                    {
-                        pbTestTypeImage.Image = Properties.Resources.Written_Test_512;
-                        break;
-                    }
-                case 3:
-                    {
-                        pbTestTypeImage.Image = Properties.Resources.Street_Test_322;
-                        break;
-                    }
+                MessageBox.Show("Error: No Local Driving License Application with ID = " + _LocalDrivingLicenseApplicationID.ToString(),
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            lblLocalDrivingLicenseAppID.Text = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
+            lblDrivingClass.Text = _LocalDrivingLicenseApplication.LicenseClassInfo.ClassName;
+            lblFullName.Text = _LocalDrivingLicenseApplication.PersonFullName;
 
-            lblLocalDrivingLicenseAppID.Text = _TestAppointment.LocalDrivingLicenseApplicationID.ToString();
-            lblDrivingClass.Text = _LocalDrivingLicenseApplication.LicenseClassID.ToString();
-            lblFullName.Text = clsPerson.Find(clsApplications.Find(_LocalDrivingLicenseApplication.ApplicationID).ApplicantPersonID).FullName;
-            //lblTrial.Text=
-            lblDate.Text = _TestAppointment.AppointmentDate.ToString("yyyy-MM-dd");
+
+            //this will show the trials for this test before 
+            lblTrial.Text = _LocalDrivingLicenseApplication.TotalTrialsPerTest(_TestTypeID).ToString();
+
+
+
+            lblDate.Text = clsFormat.DateToShort(_TestAppointment.AppointmentDate);
             lblFees.Text = _TestAppointment.PaidFees.ToString();
-            //lblTestID.Text
+            lblTestID.Text = (_TestAppointment.TestID == -1) ? "Not Taken Yet" : _TestAppointment.TestID.ToString();
+
+
 
         }
-
-
-
 
     }
 }

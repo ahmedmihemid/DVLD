@@ -86,9 +86,10 @@ namespace DVLD.Tests
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //frTakeTest frm = new frTakeTest(_LocalDrivingLicenseApplicationID, _TestType);
-            //frm.ShowDialog();
-            //frManageTestAppointments_Load(null, null);
+            int TestAppointmentID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            frTakeTest frm = new frTakeTest(TestAppointmentID, _TestType);
+            frm.ShowDialog();
+            frManageTestAppointments_Load(null, null);
 
         }
 

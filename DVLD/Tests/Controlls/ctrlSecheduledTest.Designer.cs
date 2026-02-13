@@ -31,26 +31,26 @@
             this.gbTestType = new System.Windows.Forms.GroupBox();
             this.lblTestID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lblDate = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.lblDrivingClass = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblLocalDrivingLicenseAppID = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblTrial = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblFees = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pbTestTypeImage = new System.Windows.Forms.PictureBox();
             this.gbTestType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -120,6 +120,17 @@
             this.label4.TabIndex = 189;
             this.label4.Text = "Test ID:";
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox5.Location = new System.Drawing.Point(163, 510);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 190;
+            this.pictureBox5.TabStop = false;
+            // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
@@ -130,6 +141,17 @@
             this.lblDate.Size = new System.Drawing.Size(142, 25);
             this.lblDate.TabIndex = 188;
             this.lblDate.Text = "[dd/mm/yyyy]";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::DVLD.Properties.Resources.License_Type_32;
+            this.pictureBox7.Location = new System.Drawing.Point(163, 303);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 187;
+            this.pictureBox7.TabStop = false;
             // 
             // lblDrivingClass
             // 
@@ -152,6 +174,17 @@
             this.label10.Size = new System.Drawing.Size(101, 25);
             this.label10.TabIndex = 170;
             this.label10.Text = "D. Class:";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox4.Location = new System.Drawing.Point(163, 267);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 169;
+            this.pictureBox4.TabStop = false;
             // 
             // lblLocalDrivingLicenseAppID
             // 
@@ -186,6 +219,17 @@
             this.lblFullName.TabIndex = 165;
             this.lblFullName.Text = "[???????]";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DVLD.Properties.Resources.Person_32;
+            this.pictureBox2.Location = new System.Drawing.Point(163, 342);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 164;
+            this.pictureBox2.TabStop = false;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -219,6 +263,17 @@
             this.label5.TabIndex = 160;
             this.label5.Text = "Trial:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DVLD.Properties.Resources.Count_32;
+            this.pictureBox1.Location = new System.Drawing.Point(163, 384);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 161;
+            this.pictureBox1.TabStop = false;
+            // 
             // lblFees
             // 
             this.lblFees.AutoSize = true;
@@ -241,6 +296,17 @@
             this.label2.TabIndex = 157;
             this.label2.Text = "Fees:";
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::DVLD.Properties.Resources.money_32;
+            this.pictureBox3.Location = new System.Drawing.Point(163, 468);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 158;
+            this.pictureBox3.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -251,6 +317,17 @@
             this.label1.Size = new System.Drawing.Size(64, 25);
             this.label1.TabIndex = 153;
             this.label1.Text = "Date:";
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::DVLD.Properties.Resources.Calendar_32;
+            this.pictureBox8.Location = new System.Drawing.Point(163, 426);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 154;
+            this.pictureBox8.TabStop = false;
             // 
             // lblTitle
             // 
@@ -263,83 +340,6 @@
             this.lblTitle.TabIndex = 153;
             this.lblTitle.Text = "Scheduled Test";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox5.Location = new System.Drawing.Point(163, 510);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 190;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::DVLD.Properties.Resources.License_Type_32;
-            this.pictureBox7.Location = new System.Drawing.Point(163, 303);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 187;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox4.Location = new System.Drawing.Point(163, 267);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 169;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DVLD.Properties.Resources.Person_32;
-            this.pictureBox2.Location = new System.Drawing.Point(163, 342);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 164;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DVLD.Properties.Resources.Count_32;
-            this.pictureBox1.Location = new System.Drawing.Point(163, 384);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 161;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::DVLD.Properties.Resources.money_32;
-            this.pictureBox3.Location = new System.Drawing.Point(163, 468);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 158;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::DVLD.Properties.Resources.Calendar_32;
-            this.pictureBox8.Location = new System.Drawing.Point(163, 426);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 154;
-            this.pictureBox8.TabStop = false;
             // 
             // pbTestTypeImage
             // 

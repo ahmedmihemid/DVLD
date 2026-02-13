@@ -220,7 +220,13 @@ namespace DVLD_Buisness
 
         }
 
-        
-        
+
+        public clsTests GetLastTestPerTestType(clsTestTypes.enTestType testTypeID)
+        {
+          return clsTests.FindLastTestPerPersonAndLicenseClass(ApplicantPersonID, LicenseClassID, testTypeID);
+          
+        }
+
+    }
 
 }

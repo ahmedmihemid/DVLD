@@ -14,7 +14,7 @@ namespace DVLD_DataAccess
     public class clsDriversData
     {
 
-        public static int AddNew(int personID, int createdByUserID,DateTime CreatedDate)
+        public static int AddNewDriver(int personID, int createdByUserID)
         {
           SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"INSERT INTO Drivers (PersonID, CreatedByUserID, CreatedDate) 
@@ -23,15 +23,15 @@ namespace DVLD_DataAccess
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", personID);
             command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
-            command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
+            command.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
             int newDriverID = -1;
             try
             {
                 connection.Open();
                 object result = command.ExecuteScalar();
-                if (result != null)
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
-                    newDriverID = Convert.ToInt32(result);
+                    newDriverID = insertedID;
                 }
             }
             catch (Exception ex)
@@ -45,30 +45,43 @@ namespace DVLD_DataAccess
             return newDriverID;
         }
 
-        public static bool IsExist(int personID)
+        public static bool UpdateDriver(int DriverID, int PersonID, int CreatedByUserID)
         {
+
+            int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT COUNT(*) FROM Drivers WHERE PersonID = @PersonID";
+            //we dont update the createddate for the driver.
+            string query = @"Update  Drivers  
+                            set PersonID = @PersonID,
+                                CreatedByUserID = @CreatedByUserID
+                                where DriverID = @DriverID";
+
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@PersonID", personID);
-            int count = 0;
+
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+
             try
             {
                 connection.Open();
-                count = (int)command.ExecuteScalar();
+                rowsAffected = command.ExecuteNonQuery();
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                //Console.WriteLine("Error: " + ex.Message);
+                return false;
             }
+
             finally
             {
                 connection.Close();
             }
-            return count > 0;
-        }
 
-        public static bool FindByPersonID(int personID, ref int driverID, ref int createdByUserID, ref DateTime createdDate)
+            return (rowsAffected > 0);
+        }
+        public static bool GetDriverInfoByPersonID(int personID, ref int driverID, ref int createdByUserID, ref DateTime createdDate)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT DriverID, CreatedByUserID, CreatedDate FROM Drivers WHERE PersonID = @PersonID";
@@ -100,7 +113,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static bool FindByDriverID(int driverID, ref int personID, ref int createdByUserID, ref DateTime createdDate)
+        public static bool GetDriverInfoByDriverID(int driverID, ref int personID, ref int createdByUserID, ref DateTime createdDate)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT PersonID, CreatedByUserID, CreatedDate FROM Drivers WHERE DriverID = @DriverID";
@@ -129,36 +142,6 @@ namespace DVLD_DataAccess
                 connection.Close();
             }
             return isFound;
-        }
-
-        public static int GetDriverIDByApplicationID(int applicationID)
-        {
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT D.DriverID 
-                             FROM Drivers D
-                             INNER JOIN Licenses L ON D.DriverID = L.DriverID
-                             WHERE L.ApplicationID = @ApplicationID";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ApplicationID", applicationID);
-            int driverID = -1;
-            try
-            {
-                connection.Open();
-                object result = command.ExecuteScalar();
-                if (result != null)
-                {
-                    driverID = Convert.ToInt32(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return driverID;
         }
 
         public static DataTable GetAllDrivers ()
@@ -192,6 +175,8 @@ namespace DVLD_DataAccess
 
             return dt;
         }
+
+
 
     }
 }

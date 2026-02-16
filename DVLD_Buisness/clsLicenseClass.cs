@@ -1,80 +1,129 @@
-﻿using System;
+﻿using DVLD_DataAccess;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
 
 namespace DVLD_Buisness
 {
     public class clsLicenseClass
     {
+        public enum enMode { AddNew = 0, Update = 1 };
+        public enMode Mode = enMode.AddNew;
+
         public int LicenseClassID { set; get; }
         public string ClassName { set; get; }
         public string ClassDescription { set; get; }
-        public int MinimumAllowedAge { set; get; }
-        public int DefaultValidityLength { set; get; }
+        public byte MinimumAllowedAge { set; get; }
+        public byte DefaultValidityLength { set; get; }
         public float ClassFees { set; get; }
 
 
         public clsLicenseClass()
         {
-            LicenseClassID = 0;
-            ClassName = string.Empty;
-            ClassDescription = string.Empty;
-            MinimumAllowedAge = 0;
-            DefaultValidityLength = 0;
-            ClassFees = 0.0f;
+            this.LicenseClassID = -1;
+            this.ClassName = "";
+            this.ClassDescription = "";
+            this.MinimumAllowedAge = 18;
+            this.DefaultValidityLength = 10;
+            this.ClassFees = 0;
+
+            Mode = enMode.AddNew;
         }
 
-        public clsLicenseClass(string className, int licenseClassID, string classDescription, int minimumAllowedAge, int defaultValidityLength, float classFees)
+        public clsLicenseClass(int LicenseClassID, string ClassName,
+         string ClassDescription,
+         byte MinimumAllowedAge, byte DefaultValidityLength, float ClassFees)
+
         {
-            LicenseClassID = licenseClassID;
-            ClassName = className;
-            ClassDescription = classDescription;
-            MinimumAllowedAge = minimumAllowedAge;
-            DefaultValidityLength = defaultValidityLength;
-            ClassFees = classFees;
+            this.LicenseClassID = LicenseClassID;
+            this.ClassName = ClassName;
+            this.ClassDescription = ClassDescription;
+            this.MinimumAllowedAge = MinimumAllowedAge;
+            this.DefaultValidityLength = DefaultValidityLength;
+            this.ClassFees = ClassFees;
+            Mode = enMode.Update;
         }
 
         public static DataTable GetAllLicenseClasses()
         {
             return DVLD_DataAccess.clsLicenseClassData.GetAllLicenseClasses();
         }
+        private bool _AddNewLicenseClass()
+        {
+            //call DataAccess Layer 
+
+            this.LicenseClassID = clsLicenseClassData.AddNewLicenseClass(this.ClassName, this.ClassDescription,
+                this.MinimumAllowedAge, this.DefaultValidityLength, this.ClassFees);
+
+            return (this.LicenseClassID != -1);
+        }
+        private bool _UpdateLicenseClass()
+        {
+            //call DataAccess Layer 
+
+            return clsLicenseClassData.UpdateLicenseClass(this.LicenseClassID, this.ClassName, this.ClassDescription,
+                this.MinimumAllowedAge, this.DefaultValidityLength, this.ClassFees);
+        }
 
         public static clsLicenseClass Find(string licenseClassName)
         {
-            int licenseClassID = -1;
-            string classDescription = string.Empty;
-            int minimumAllowedAge = 0;
-            int defaultValidityLength = 0;
-            float classFees = 0.0f;
-            bool isFound = DVLD_DataAccess.clsLicenseClassData.FindByName(licenseClassName, ref licenseClassID, ref classDescription, ref minimumAllowedAge, ref defaultValidityLength, ref classFees);
-            if (isFound)
-            {
-                return new clsLicenseClass(licenseClassName, licenseClassID, classDescription, minimumAllowedAge, defaultValidityLength, classFees);
-            }
-            return null;
+            int LicenseClassID = -1; string ClassDescription = "";
+            byte MinimumAllowedAge = 18; byte DefaultValidityLength = 10; float ClassFees = 0;
+
+            if (clsLicenseClassData.GetLicenseClassInfoByClassName(licenseClassName, ref LicenseClassID, ref ClassDescription,
+                    ref MinimumAllowedAge, ref DefaultValidityLength, ref ClassFees))
+
+                return new clsLicenseClass(LicenseClassID, licenseClassName, ClassDescription,
+                    MinimumAllowedAge, DefaultValidityLength, ClassFees);
+            else
+                return null;
 
         }
 
 
         public static clsLicenseClass Find(int licenseClassID)
         {
-            string licenseClassName = string.Empty;
-            string classDescription = string.Empty;
-            int minimumAllowedAge = 0;
-            int defaultValidityLength = 0;
-            float classFees = 0.0f;
-            bool isFound = DVLD_DataAccess.clsLicenseClassData.FindByID(licenseClassID, ref licenseClassName, ref classDescription, ref minimumAllowedAge, ref defaultValidityLength, ref classFees);
-            if (isFound)
-            {
-                return new clsLicenseClass(licenseClassName, licenseClassID, classDescription, minimumAllowedAge, defaultValidityLength, classFees);
-            }
-            return null;
+            string ClassName = ""; string ClassDescription = "";
+            byte MinimumAllowedAge = 18; byte DefaultValidityLength = 10; float ClassFees = 0;
+
+            if (clsLicenseClassData.GetLicenseClassInfoByID(licenseClassID, ref ClassName, ref ClassDescription,
+                    ref MinimumAllowedAge, ref DefaultValidityLength, ref ClassFees))
+
+                return new clsLicenseClass(licenseClassID, ClassName, ClassDescription,
+                    MinimumAllowedAge, DefaultValidityLength, ClassFees);
+            else
+                return null;
 
         }
 
+
+        public bool Save()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+                    if (_AddNewLicenseClass())
+                    {
+
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+
+                    return _UpdateLicenseClass();
+
+            }
+
+            return false;
+        }
 
     }
 }

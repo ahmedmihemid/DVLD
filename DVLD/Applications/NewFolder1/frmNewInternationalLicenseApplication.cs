@@ -1,4 +1,5 @@
-﻿using DVLD.Licenses.Local_Licenses;
+﻿using DVLD.Licenses.International_Licenses;
+using DVLD.Licenses.Local_Licenses;
 using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,8 @@ namespace DVLD.Applications.NewFolder1
             _LicenseID = obj;
             _InternationalLicenses = new clsInternationalLicenses();
             _InternationalLicenses = clsInternationalLicenses.GetInternationalLicenseByLocalLicenseIDint(_LicenseID);
+
+          
             LoadLicenseInfo();
 
         }
@@ -79,7 +82,7 @@ namespace DVLD.Applications.NewFolder1
             if(!clsLicenses.Find(_LicenseID).IsActive)
             { 
                 btnIssueLicense.Enabled = false;
-                MessageBox.Show("The selected local license is not active. Please select an active local license to issue an international license.");
+                //MessageBox.Show("The selected local license is not active. Please select an active local license to issue an international license.");
             }
             else
                 btnIssueLicense.Enabled = false;
@@ -161,7 +164,14 @@ namespace DVLD.Applications.NewFolder1
 
         private void llShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            frmShowInternationalLicenseInfo fr = new frmShowInternationalLicenseInfo(_InternationalLicenses.InternationalLicenseID);
+            fr.ShowDialog();
+            LoadLicenseInfo();
+        }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

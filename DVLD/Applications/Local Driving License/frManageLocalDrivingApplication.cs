@@ -198,21 +198,21 @@ namespace DVLD.Licenses
 
         private void sechsuleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.VisionTest);
+            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, clsTestTypes.enTestType.VisionTest);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }
 
         private void sechsuleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.WrittenTest);
+            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, clsTestTypes.enTestType.WrittenTest);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }
 
         private void sechsuleToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, frManageTestAppointments.enTest.StreetTest);
+            frManageTestAppointments fr = new frManageTestAppointments((int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value, clsTestTypes.enTestType.StreetTest);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }
@@ -247,9 +247,9 @@ namespace DVLD.Licenses
 
 
             //Enable Disable Schedule menue and it's sub menue
-            bool PassedVisionTest = localDrivingLicenseApplication.DoesPassTestType((int)clsTestTypes.enTestType.VisionTest);
-            bool PassedWrittenTest = localDrivingLicenseApplication.DoesPassTestType((int)clsTestTypes.enTestType.WrittenTest);
-            bool PassedStreetTest = localDrivingLicenseApplication.DoesPassTestType((int)clsTestTypes.enTestType.StreetTest);
+            bool PassedVisionTest = localDrivingLicenseApplication.DoesPassTestType(clsTestTypes.enTestType.VisionTest);
+            bool PassedWrittenTest = localDrivingLicenseApplication.DoesPassTestType(clsTestTypes.enTestType.WrittenTest);
+            bool PassedStreetTest = localDrivingLicenseApplication.DoesPassTestType(clsTestTypes.enTestType.StreetTest);
 
 
             shechduleTestsToolStripMenuItem.Enabled = (!PassedVisionTest || !PassedWrittenTest || !PassedStreetTest) && (localDrivingLicenseApplication.ApplicationStatus == clsApplications.enApplicationStatus.New);
@@ -290,7 +290,7 @@ namespace DVLD.Licenses
         private void showPersonLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int localDrivingLicenseApplicationID = (int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
-            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsDriverscs.GetDriverIDByApplicationID(clsLocalDrivingLicenseApplication.Find(localDrivingLicenseApplicationID).ApplicationID));
+            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsDriverscs.FindByPersonID(clsLocalDrivingLicenseApplication.Find(localDrivingLicenseApplicationID).ApplicantPersonID).DriverID);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
 

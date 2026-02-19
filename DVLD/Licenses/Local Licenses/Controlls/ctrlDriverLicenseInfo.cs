@@ -39,11 +39,11 @@ namespace DVLD.Licenses.Local_Licenses.Controlls
         private void _FillLicenseInfo()
         {
             lblLicenseID.Text = _license.LicenseID.ToString();
-            lblNationalNo.Text = _Driverscs.person.NationalNo;
-            lblGendor.Text = _Driverscs.person.Gendor == 0 ? "Male" : "Female";
-            lblDateOfBirth.Text = _Driverscs.person.DateOfBirth.ToShortDateString();
+            lblNationalNo.Text = _Driverscs.PersonInfo.NationalNo;
+            lblGendor.Text = _Driverscs.PersonInfo.Gendor == 0 ? "Male" : "Female";
+            lblDateOfBirth.Text = _Driverscs.PersonInfo.DateOfBirth.ToShortDateString();
             lblDriverID.Text = _license.DriverID.ToString();
-            lblFullName.Text = _Driverscs.person.FullName;
+            lblFullName.Text = _Driverscs.PersonInfo.FullName;
             lblClass.Text = _license.LicenseClass.ClassName;
             lblIssueDate.Text = _license.IssueDate.ToShortDateString();
             lblExpirationDate.Text = _license.ExpiryDate.ToShortDateString();
@@ -56,12 +56,12 @@ namespace DVLD.Licenses.Local_Licenses.Controlls
 
         private void _LoadPersonImage()
         {
-            if (_Driverscs.person.Gendor == 0)
+            if (_Driverscs.PersonInfo.Gendor == 0)
                 pbPersonImage.Image = Resources.Male_512;
             else
                 pbPersonImage.Image = Resources.Female_512;
 
-            string ImagePath = _Driverscs.person.ImagePath;
+            string ImagePath = _Driverscs.PersonInfo.ImagePath;
             if (ImagePath != "")
                 if (File.Exists(ImagePath))
                     pbPersonImage.ImageLocation = ImagePath;

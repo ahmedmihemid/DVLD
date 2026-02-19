@@ -18,7 +18,7 @@ namespace DVLD_Buisness
         public int DriverID { set; get; }
         public int PersonID { set; get; }
         public int CreatedByUserID { set; get; }
-        public DateTime CreatedDate { get; }
+        public DateTime CreatedDate { set; get; }
 
         public clsDriverscs()
         {
@@ -113,15 +113,15 @@ namespace DVLD_Buisness
 
 
 
-        public static DataTable GetLicenses(int DriverID)
-        {
-            return clsLicenses.GetDriverLicenses(DriverID);
-        }
+        //public static DataTable GetLicenses(int DriverID)
+        //{
+        //    return clsLicenses.GetDriverLicenses(DriverID);
+        //}
 
-        public static DataTable GetInternationalLicenses(int DriverID)
-        {
-            return clsInternationalLicenses.GetDriverInternationalLicenses(DriverID);
-        }
+        //public static DataTable GetInternationalLicenses(int DriverID)
+        //{
+        //    return clsInternationalLicenses.GetDriverInternationalLicenses(DriverID);
+        //}
 
     }
 }

@@ -9,6 +9,8 @@ namespace DVLD_Buisness
 {
     public class clsInternationalLicenses
     {
+
+
         public int InternationalLicenseID { get; set; }
         public int ApplicationID { get; set; }
         public int DriverID { get; set; }
@@ -18,7 +20,7 @@ namespace DVLD_Buisness
         public bool IsActive { get; set; }
         public int CreatedByUserID { get; set; }
 
-        enum enMode { AddNew = 1, Edit = 2 }
+        enum enMode { AddNew = 1, Update = 2 }
         private enMode _Mode;
 
 
@@ -47,10 +49,8 @@ namespace DVLD_Buisness
             ExpirationDate = pExpirationDate;
             IsActive = pIsActive;
             CreatedByUserID = pCreatedByUserID;
-            _Mode = enMode.Edit;
+            _Mode = enMode.Update;
         }
-
-
 
 
         public static DataTable GetAllInternationalLicenses(int driverID)
@@ -58,6 +58,93 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsInternationalLicensesData.GetAllInternationalLicensesByDriverID(driverID);
         }
 
+        public static clsInternationalLicenses GetInternationalLicenseByID(int internationalLicenseID)
+        {
+            int applicationID = -1;
+            int driverID = -1;
+            int issuedUsingLocalLicenseID = -1;
+            DateTime issueDate = DateTime.Now;
+            DateTime expirationDate = DateTime.Now;
+            bool isActive = false;
+            int createdByUserID = -1;
+
+            if (DVLD_DataAccess.clsInternationalLicensesData.GetInternationalLicenseByID(internationalLicenseID, ref applicationID,
+                  ref driverID, ref issuedUsingLocalLicenseID, ref issueDate, ref expirationDate, ref isActive, ref createdByUserID))
+            {
+                return new clsInternationalLicenses(internationalLicenseID, applicationID, driverID, issuedUsingLocalLicenseID, issueDate, expirationDate, isActive, createdByUserID);
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
+
+
+        public static clsInternationalLicenses GetInternationalLicenseByLocalLicenseIDint(int localLicenseID)
+        {
+            int internationalLicenseID = -1;
+            int applicationID = -1;
+            int driverID = -1;
+            DateTime issueDate = DateTime.Now;
+            DateTime expirationDate = DateTime.Now;
+            bool isActive = false;
+            int createdByUserID = -1;
+            if (DVLD_DataAccess.clsInternationalLicensesData.GetInternationalLicenseByLocalLicenseIDint(localLicenseID, ref internationalLicenseID, ref applicationID,
+                  ref driverID, ref issueDate, ref expirationDate, ref isActive, ref createdByUserID))
+            {
+                return new clsInternationalLicenses(internationalLicenseID, applicationID, driverID, localLicenseID, issueDate, expirationDate, isActive, createdByUserID);
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
+
+        private bool AddNew()
+        {
+            int newID = DVLD_DataAccess.clsInternationalLicensesData.AddNewInternationalLicense(ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive, CreatedByUserID);
+            if (newID > 0)
+            {
+                InternationalLicenseID = newID;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool Update()
+        {
+            return DVLD_DataAccess.clsInternationalLicensesData.UpdateInternationalLicense(InternationalLicenseID, ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive, CreatedByUserID);
+        }
+
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enMode.AddNew:
+                    {
+                        if (AddNew())
+                        {
+                            _Mode = enMode.Update;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                case enMode.Update:
+                    return Update();
+                default:
+                    return false;
+            }
+        }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using DVLD.ApplicationsTypes;
+﻿using DVLD.Applications.NewFolder1;
+using DVLD.ApplicationsTypes;
 using DVLD.Licenses;
 using DVLD.NewFolder1;
 using DVLD.People;
@@ -94,6 +95,12 @@ namespace DVLD
         private void driveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmListDrivers fr = new frmListDrivers();
+            fr.ShowDialog();
+        }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNewInternationalLicenseApplication fr = new frmNewInternationalLicenseApplication();
             fr.ShowDialog();
         }
     }

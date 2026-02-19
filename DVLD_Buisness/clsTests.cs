@@ -131,7 +131,6 @@ namespace DVLD_Buisness
 
         }
 
-
         public static byte GetPassedTestCount(int LocalDrivingLicenseApplicationID)
         {
             return clsTestsData.GetPassedTestCount(LocalDrivingLicenseApplicationID);

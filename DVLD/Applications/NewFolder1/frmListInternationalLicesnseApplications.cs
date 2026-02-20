@@ -161,6 +161,11 @@ namespace DVLD.Applications.NewFolder1
                 txtFilterValue.Focus();
         }
 
-
+        private void btnNewApplication_Click(object sender, EventArgs e)
+        {
+            frmNewInternationalLicenseApplication fr = new frmNewInternationalLicenseApplication();
+            fr.ShowDialog();
+            frmListInternationalLicesnseApplications_Load(null, null);
+        }
     }
 }

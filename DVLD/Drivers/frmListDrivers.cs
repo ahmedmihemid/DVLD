@@ -91,6 +91,7 @@ namespace DVLD.NewFolder1
 
             }
 
+
             if (filterExpression == "None" || txtFilterValue.Text.Trim()=="")
             {
                 dtDrivers.DefaultView.RowFilter = "";

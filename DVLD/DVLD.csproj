@@ -71,6 +71,12 @@
     <Compile Include="Applications\Local Driving License\frApplicationDetails.Designer.cs">
       <DependentUpon>frApplicationDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\NewFolder1\frmListInternationalLicesnseApplications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\NewFolder1\frmListInternationalLicesnseApplications.Designer.cs">
+      <DependentUpon>frmListInternationalLicesnseApplications.cs</DependentUpon>
+    </Compile>
     <Compile Include="Applications\NewFolder1\frmNewInternationalLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\Local Driving License\frApplicationDetails.resx">
       <DependentUpon>frApplicationDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\NewFolder1\frmListInternationalLicesnseApplications.resx">
+      <DependentUpon>frmListInternationalLicesnseApplications.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\NewFolder1\frmNewInternationalLicenseApplication.resx">
       <DependentUpon>frmNewInternationalLicenseApplication.cs</DependentUpon>
@@ -741,6 +750,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LicenseView 400.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\International 322.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

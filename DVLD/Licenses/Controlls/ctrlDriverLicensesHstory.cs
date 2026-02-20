@@ -29,7 +29,7 @@ namespace DVLD.Licenses.Controlls
         {
             _driverID = driverID;
             dtLocalLicenses = clsLicenses.GetAllLocalLicenses(_driverID);
-            dtInternationalLicenses = clsInternationalLicenses.GetAllInternationalLicenses(_driverID);
+            dtInternationalLicenses = clsInternationalLicenses.GetAllInternationalLicensesForDriver(_driverID);
 
             _FillLocalDriverLicenseHistory();
             _FillInternationalDriverLicenseHistory();

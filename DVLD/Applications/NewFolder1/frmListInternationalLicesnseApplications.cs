@@ -167,5 +167,10 @@ namespace DVLD.Applications.NewFolder1
             fr.ShowDialog();
             frmListInternationalLicesnseApplications_Load(null, null);
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

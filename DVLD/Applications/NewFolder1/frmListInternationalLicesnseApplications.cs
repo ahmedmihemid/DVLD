@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DVLD.Licenses.International_Licenses;
+using DVLD.Licenses.Local_Licenses;
+using DVLD.People;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -172,5 +175,32 @@ namespace DVLD.Applications.NewFolder1
         {
             this.Close();
         }
+
+        private void PesonDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int personID = DVLD_Buisness.clsDriverscs.FindByDriverID((int)dgvInternationalLicenses.CurrentRow.Cells["DriverID"].Value).PersonID;
+            frPersonDetails fr = new frPersonDetails(personID);
+            fr.ShowDialog();
+            frmListInternationalLicesnseApplications_Load(null, null);
+
+        }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int internationalLicenseID = (int)dgvInternationalLicenses.CurrentRow.Cells["InternationalLicenseID"].Value;
+            frmShowInternationalLicenseInfo fr = new frmShowInternationalLicenseInfo(internationalLicenseID);
+            fr.ShowDialog();
+            frmListInternationalLicesnseApplications_Load(null, null);
+        }
+
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int driverID = (int)dgvInternationalLicenses.CurrentRow.Cells["DriverID"].Value;
+            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(driverID);
+            fr.ShowDialog();
+            frmListInternationalLicesnseApplications_Load(null, null);
+        }
+
+
     }
 }

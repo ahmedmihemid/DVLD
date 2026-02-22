@@ -49,6 +49,13 @@ namespace DVLD.Licenses.Controlls
                 return;
             }
 
+            //if(!_LicenseInfo.IsActive)
+            //{
+            //   MessageBox.Show("License Not Active");
+            //    return;
+            //}
+
+
             ctrlDriverLicenseInfo1.LoadLicenseInfo(_LicenseInfo);
             if(OnLicenseSelected != null)
             {

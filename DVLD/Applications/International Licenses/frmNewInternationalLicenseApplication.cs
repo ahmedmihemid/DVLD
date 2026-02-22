@@ -79,8 +79,8 @@ namespace DVLD.Applications.NewFolder1
             lblFees.Text = clsApplicationTypes.Find(6).Fees.ToString();
             lblCreatedByUser.Text = DVLD.Classes.clsGlobal.CurrentUser.UserName;
 
-            if(!clsLicenses.Find(_LicenseID).IsActive)
-            { 
+            if (!clsLicenses.Find(_LicenseID).IsActive)
+            {
                 btnIssueLicense.Enabled = false;
                 //MessageBox.Show("The selected local license is not active. Please select an active local license to issue an international license.");
             }
@@ -158,7 +158,7 @@ namespace DVLD.Applications.NewFolder1
             frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsLicenses.Find(_LicenseID).DriverID);
             fr.ShowDialog();
 
-            LoadLicenseInfo();
+            //LoadLicenseInfo();
 
         }
 
@@ -166,7 +166,7 @@ namespace DVLD.Applications.NewFolder1
         {
             frmShowInternationalLicenseInfo fr = new frmShowInternationalLicenseInfo(_InternationalLicenses.InternationalLicenseID);
             fr.ShowDialog();
-            LoadLicenseInfo();
+            //LoadLicenseInfo();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

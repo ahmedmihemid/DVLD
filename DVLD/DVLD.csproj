@@ -71,17 +71,23 @@
     <Compile Include="Applications\Local Driving License\frApplicationDetails.Designer.cs">
       <DependentUpon>frApplicationDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\NewFolder1\frmListInternationalLicesnseApplications.cs">
+    <Compile Include="Applications\International Licenses\frmListInternationalLicesnseApplications.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\NewFolder1\frmListInternationalLicesnseApplications.Designer.cs">
+    <Compile Include="Applications\International Licenses\frmListInternationalLicesnseApplications.Designer.cs">
       <DependentUpon>frmListInternationalLicesnseApplications.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\NewFolder1\frmNewInternationalLicenseApplication.cs">
+    <Compile Include="Applications\International Licenses\frmNewInternationalLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\NewFolder1\frmNewInternationalLicenseApplication.Designer.cs">
+    <Compile Include="Applications\International Licenses\frmNewInternationalLicenseApplication.Designer.cs">
       <DependentUpon>frmNewInternationalLicenseApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\NewFolder1\frmRenewLocalDrivingLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\NewFolder1\frmRenewLocalDrivingLicenseApplication.Designer.cs">
+      <DependentUpon>frmRenewLocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="Global Classes\clsFormat.cs" />
     <Compile Include="Global Classes\clsGlobal.cs" />
@@ -293,11 +299,14 @@
     <EmbeddedResource Include="Applications\Local Driving License\frApplicationDetails.resx">
       <DependentUpon>frApplicationDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\NewFolder1\frmListInternationalLicesnseApplications.resx">
+    <EmbeddedResource Include="Applications\International Licenses\frmListInternationalLicesnseApplications.resx">
       <DependentUpon>frmListInternationalLicesnseApplications.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\NewFolder1\frmNewInternationalLicenseApplication.resx">
+    <EmbeddedResource Include="Applications\International Licenses\frmNewInternationalLicenseApplication.resx">
       <DependentUpon>frmNewInternationalLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\NewFolder1\frmRenewLocalDrivingLicenseApplication.resx">
+      <DependentUpon>frmRenewLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\Controlls\ctrlDriverLicenseInfoWithFilter.resx">
       <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>

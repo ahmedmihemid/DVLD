@@ -50,6 +50,41 @@ namespace DVLD_DataAccess
             return newLicenseID;
         }
 
+        public static bool Update(int licenseID, int applicationID, int driverID, int licenseClass, DateTime issueDate, DateTime expirationDate, string notes, float paidFees, bool isActive, int issueReason , int createdByUserID)
+        {
+           SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Licenses SET ApplicationID = @ApplicationID, DriverID = @DriverID, LicenseClass = @LicenseClass, IssueDate = @IssueDate, ExpirationDate = @ExpirationDate, Notes = @Notes, PaidFees = @PaidFees, IsActive = @IsActive, IssueReason = @IssueReason, CreatedByUserID = @CreatedByUserID
+                             WHERE LicenseID = @LicenseID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LicenseID", licenseID);
+            command.Parameters.AddWithValue("@ApplicationID", applicationID);
+            command.Parameters.AddWithValue("@DriverID", driverID);
+            command.Parameters.AddWithValue("@LicenseClass", licenseClass);
+            command.Parameters.AddWithValue("@IssueDate", issueDate);
+            command.Parameters.AddWithValue("@ExpirationDate", expirationDate);
+            command.Parameters.AddWithValue("@Notes", string.IsNullOrWhiteSpace(notes) ? (object)DBNull.Value : notes);
+            command.Parameters.AddWithValue("@PaidFees", paidFees);
+            command.Parameters.AddWithValue("@IsActive", isActive);
+            command.Parameters.AddWithValue("@IssueReason", issueReason);
+            command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
+            bool isUpdated = false;
+            try
+            {
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                isUpdated = rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isUpdated;
+        }
+
         public static bool Find (int licenseID, ref int applicationID, ref int driverID, ref int licenseClass, ref DateTime issueDate, ref DateTime expirationDate, ref string notes, ref float paidFees, ref bool isActive, ref int issueReason, ref int createdByUserID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);

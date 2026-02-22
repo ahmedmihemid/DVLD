@@ -123,8 +123,7 @@ namespace DVLD_Buisness
         }
         private bool _Update()
         {
-            // Update license logic to be implemented
-            return false;
+           return DVLD_DataAccess.clsLicensesData.Update(LicenseID, ApplicationID, DriverID, LicenseClass.LicenseClassID, IssueDate, ExpiryDate, Note, PaidFees, IsActive, (int)IssueReason, CreatedByUserID);
         }
 
         public bool save()

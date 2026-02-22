@@ -109,5 +109,11 @@ namespace DVLD
             frmListInternationalLicesnseApplications fr = new frmListInternationalLicesnseApplications();
             fr.ShowDialog();
         }
+
+        private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRenewLocalDrivingLicenseApplication fr = new frmRenewLocalDrivingLicenseApplication();
+            fr.ShowDialog();
+        }
     }
 }

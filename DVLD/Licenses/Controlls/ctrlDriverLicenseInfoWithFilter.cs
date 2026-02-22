@@ -71,5 +71,14 @@ namespace DVLD.Licenses.Controlls
                 e.Handled = true;
             }
         }
+
+
+        public void EnableFilter(bool enable)
+        {
+            txtLicenseID.Enabled = enable;
+            btnFind.Enabled = enable;
+        }
+
+
     }
 }

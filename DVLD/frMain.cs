@@ -1,4 +1,5 @@
 ﻿using DVLD.Applications.NewFolder1;
+using DVLD.Applications.ReplaceLostOrDamagedLicense;
 using DVLD.ApplicationsTypes;
 using DVLD.Licenses;
 using DVLD.NewFolder1;
@@ -113,6 +114,12 @@ namespace DVLD
         private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmRenewLocalDrivingLicenseApplication fr = new frmRenewLocalDrivingLicenseApplication();
+            fr.ShowDialog();
+        }
+
+        private void ReplacementLostOrDamagedDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReplaceLostOrDamagedLicenseApplication fr = new frmReplaceLostOrDamagedLicenseApplication();
             fr.ShowDialog();
         }
     }

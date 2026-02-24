@@ -69,5 +69,26 @@ namespace DVLD.Licenses.Local_Licenses.Controlls
                     MessageBox.Show("Could not find this image: = " + ImagePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
+
+
+        public void clear()
+        {
+            lblLicenseID.Text = "[???]";
+            lblNationalNo.Text = "[???]"; 
+            lblGendor.Text = "[???]"; 
+            lblDateOfBirth.Text = "[??/??/????]";
+            lblDriverID.Text = "[???]"; 
+            lblFullName.Text = "[???]";
+            lblClass.Text = "[???]";
+            lblIssueDate.Text = "[??/??/????]";
+            lblExpirationDate.Text = "[??/??/????]";
+            lblNotes.Text = "[???]";
+            lblIsActive.Text ="[???]";
+            lblIssueReason.Text = "[??/??/????]";
+            lblIsDetained.Text = "[???]";
+        }
+
+
+
     }
 }

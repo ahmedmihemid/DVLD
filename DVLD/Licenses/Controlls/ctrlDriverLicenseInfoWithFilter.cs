@@ -1,4 +1,5 @@
-﻿using DVLD_Buisness;
+﻿using DVLD.Licenses.Local_Licenses.Controlls;
+using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,7 @@ namespace DVLD.Licenses.Controlls
 
             if(_LicenseInfo == null)
             {
+                //ctrlDriverLicenseInfo1.clear();
                 MessageBox.Show("License Not Found");
                 return;
             }
@@ -77,6 +79,11 @@ namespace DVLD.Licenses.Controlls
         {
             txtLicenseID.Enabled = enable;
             btnFind.Enabled = enable;
+        }
+
+        public void clear()
+        {
+
         }
 
 

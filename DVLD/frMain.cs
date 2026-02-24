@@ -2,6 +2,7 @@
 using DVLD.Applications.ReplaceLostOrDamagedLicense;
 using DVLD.ApplicationsTypes;
 using DVLD.Licenses;
+using DVLD.Licenses.Detain_License;
 using DVLD.NewFolder1;
 using DVLD.People;
 using DVLD.Test_Types;
@@ -121,6 +122,17 @@ namespace DVLD
         {
             frmReplaceLostOrDamagedLicenseApplication fr = new frmReplaceLostOrDamagedLicenseApplication();
             fr.ShowDialog();
+        }
+
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDetainLicenseApplication fr = new frmDetainLicenseApplication();
+            fr.ShowDialog();
+        }
+
+        private void releaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }

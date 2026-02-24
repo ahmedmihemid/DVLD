@@ -54,6 +54,7 @@
     <Compile Include="clsCountry.cs" />
     <Compile Include="clsPerson.cs" />
     <Compile Include="clsUser.cs" />
+    <Compile Include="clsDetainedLicens.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

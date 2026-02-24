@@ -200,8 +200,6 @@ namespace DVLD.People
             {
                 e.Cancel = false;
                 errorProvider1.SetError(tb, "");
-
-
             }
         }
 

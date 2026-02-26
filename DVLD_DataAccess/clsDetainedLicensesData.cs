@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,8 +32,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                // Handle exception (e.g., log it)
-                throw new Exception("An error occurred while retrieving detained licenses.", ex);
+
             }
             finally
             {
@@ -43,18 +43,18 @@ namespace DVLD_DataAccess
 
         }
 
-        public static int AddDetainedLicense(int driverID, DateTime detentionDate, string reason, int createdByUserID, bool isReleased = false)
+        public static int AddDetainedLicense(int LicenseID, DateTime DetainDate, int FineFees, int CreatedByUserID, bool isReleased = false)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "INSERT INTO DetainedLicenses (DriverID, DetentionDate, Reason, CreatedByUserID, isReleased) " +
-                           "VALUES (@DriverID, @DetentionDate, @Reason, @CreatedByUserID, @isReleased); " +
+            string query = "INSERT INTO DetainedLicenses (LicenseID, DetainDate,FineFees, CreatedByUserID, isReleased) " +
+                           "VALUES (@LicenseID, @DetainDate, @FineFees, @CreatedByUserID, @isReleased); " +
                            "SELECT SCOPE_IDENTITY();"; // Get the ID of the newly inserted record
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@DriverID", driverID);
-            command.Parameters.AddWithValue("@DetentionDate", detentionDate);
-            command.Parameters.AddWithValue("@Reason", reason);
-            command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
+            command.Parameters.AddWithValue("@DetainDate", DetainDate);
+            command.Parameters.AddWithValue("@FineFees", FineFees);
+            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
             command.Parameters.AddWithValue("@isReleased", isReleased);
             int newID = -1; // Default value in case of failure
             try
@@ -70,7 +70,6 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 // Handle exception (e.g., log it)
-                throw new Exception("An error occurred while adding a detained license.", ex);
             }
             finally
             {
@@ -99,8 +98,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                // Handle exception (e.g., log it)
-                throw new Exception("An error occurred while releasing a detained license.", ex);
                 return false;
             }
             finally
@@ -111,7 +108,7 @@ namespace DVLD_DataAccess
             return rowsAffected > 0;
         }
 
-        public static bool FineDetainedLicense(int detainID, ref int LicenseID, ref DateTime DetainDate, ref int FineFees,
+        public static bool FineByDetainedID(int detainID, ref int LicenseID, ref DateTime DetainDate, ref int FineFees,
             ref int CreatedByUserID, ref bool IsReleased, ref DateTime ReleaseDate, ref int ReleasedByUserID, ref int ReleaseApplicationID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -146,7 +143,6 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 // Handle exception (e.g., log it)
-                throw new Exception("An error occurred while retrieving detained license details.", ex);
             }
             finally
             {
@@ -156,52 +152,127 @@ namespace DVLD_DataAccess
             return true;
         }
 
+        public static bool GetDetainedLicenseInfoByLicenseID(int LicenseID, ref int DetainID, ref DateTime DetainDate, ref int FineFees,
+           ref int CreatedByUserID, ref bool IsReleased, ref DateTime ReleaseDate, ref int ReleasedByUserID, ref int ReleaseApplicationID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM DetainedLicenses WHERE LicenseID = @LicenseID AND IsReleased = 0";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read()) 
+                {
+                    isFound = true;
+
+                    DetainID = (int)reader["DetainID"]; 
+                    DetainDate = (DateTime)reader["DetainDate"];
+                    FineFees = Convert.ToInt32(reader["FineFees"]); 
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    IsReleased = (bool)reader["IsReleased"];
+
+                    if (reader["ReleaseDate"] == DBNull.Value)
+                        ReleaseDate = DateTime.MinValue;
+                    else
+                        ReleaseDate = (DateTime)reader["ReleaseDate"];
+
+                    if (reader["ReleasedByUserID"] == DBNull.Value)
+                        ReleasedByUserID = -1;
+                    else
+                        ReleasedByUserID = (int)reader["ReleasedByUserID"];
+
+                    if (reader["ReleaseApplicationID"] == DBNull.Value)
+                        ReleaseApplicationID = -1;
+                    else
+                        ReleaseApplicationID = (int)reader["ReleaseApplicationID"];
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
+
         public static bool IsLicenseDetained(int detainID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT COUNT(*) FROM DetainedLicenses WHERE DetainID = @DetainID AND IsReleased = 0";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@DetainID", detainID);
-            int count = -1;
+            bool isFound = false;
             try
             {
                 connection.Open();
-                count = (int)command.ExecuteScalar();
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                {
+                    isFound = true;
+
+                }
             }
             catch (Exception ex)
             {
                 // Handle exception (e.g., log it)
-                throw new Exception("An error occurred while checking if the license is detained.", ex);
             }
             finally
             {
                 connection.Close();
             }
-            return count > 0; // If count is greater than 0, the license is detained
+            return isFound; 
         }
 
         public static bool LicenseIsExist(int LicenseID)
         {
+         
+            bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT Found=1 FROM DetainedLicenses WHERE LicenseID = @LicenseID AND IsReleased = 1;";
+
+            string query = "SELECT Found=1 FROM DetainedLicenses WHERE LicenseID = @LicenseID AND IsReleased = 0;";
+
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LicenseID", LicenseID);
-            int count = -1;
+
             try
             {
                 connection.Open();
-                count = (int)command.ExecuteScalar();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                {
+                    isFound = true;
+                }
             }
             catch (Exception ex)
             {
-                // Handle exception (e.g., log it)
-           
+                isFound = false;
             }
             finally
             {
                 connection.Close();
             }
-            return count > 0;
+
+            return isFound;
+        
         }
 
 

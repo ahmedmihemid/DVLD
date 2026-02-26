@@ -68,11 +68,13 @@
             // 
             // ctrlDriverLicenseInfoWithFilter1
             // 
+            this.ctrlDriverLicenseInfoWithFilter1.FilterEnabled = true;
             this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(12, 47);
             this.ctrlDriverLicenseInfoWithFilter1.Name = "ctrlDriverLicenseInfoWithFilter1";
             this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(872, 490);
             this.ctrlDriverLicenseInfoWithFilter1.TabIndex = 0;
             this.ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += new System.Action<int>(this.ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected);
+            this.ctrlDriverLicenseInfoWithFilter1.Load += new System.EventHandler(this.ctrlDriverLicenseInfoWithFilter1_Load);
             // 
             // llShowLicenseInfo
             // 

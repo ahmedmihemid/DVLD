@@ -1,4 +1,5 @@
-﻿using DVLD_Buisness;
+﻿using DVLD.Licenses.Controlls;
+using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,6 +96,7 @@ namespace DVLD.Licenses.Detain_License
             {
                 lblDetainID.Text = _DetainedLicens.DetainID.ToString();
                 llShowLicenseInfo.Enabled = true;
+                ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;
 
                 btnDetain.Enabled = false;
                 MessageBox.Show("License Detained Successfully with ID = " + _DetainedLicens.DetainID.ToString(),

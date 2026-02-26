@@ -73,7 +73,7 @@ namespace DVLD.Applications.ReplaceLostOrDamagedLicense
         {
             lblApplicationID.Text = "[???]";
             lblRreplacedLicenseID.Text = "[???]";
-            lblApplicationDate.Text = "[??/??/????]";
+            lblApplicationDate.Text = DateTime.Now.ToShortDateString();
             //lblApplicationFees.Text = "[$$$]";
             lblOldLicenseID.Text = "[???]";
             lblCreatedByUser.Text = DVLD.Classes.clsGlobal.CurrentUser.UserName;
@@ -158,7 +158,7 @@ namespace DVLD.Applications.ReplaceLostOrDamagedLicense
 
                     lblApplicationID.Text = _replacementApplication.ApplicationID.ToString();
                     lblRreplacedLicenseID.Text = _replacementLicense.LicenseID.ToString();
-                    ctrlDriverLicenseInfoWithFilter1.EnableFilter(false);
+                    ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false ;
                     gbReplacementFor.Enabled = false;
                     llShowLicenseInfo.Enabled = true;
                     MessageBox.Show("Replacement License Issued Successfully. New License ID: " + _replacementLicense.LicenseID.ToString());
@@ -190,9 +190,9 @@ namespace DVLD.Applications.ReplaceLostOrDamagedLicense
             fr.ShowDialog();
         }
 
+        private void ctrlDriverLicenseInfoWithFilter1_Load(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }

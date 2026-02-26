@@ -1,5 +1,6 @@
 ﻿using DVLD.Applications.NewFolder1;
 using DVLD.Applications.ReplaceLostOrDamagedLicense;
+using DVLD.Applications.Rlease_Detained_License;
 using DVLD.ApplicationsTypes;
 using DVLD.Licenses;
 using DVLD.Licenses.Detain_License;
@@ -132,7 +133,8 @@ namespace DVLD
 
         private void releaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+            frmReleaseDetainedLicenseApplication fr = new frmReleaseDetainedLicenseApplication();
+            fr.ShowDialog();
         }
     }
 }

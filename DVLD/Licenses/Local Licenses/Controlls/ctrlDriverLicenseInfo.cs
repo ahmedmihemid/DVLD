@@ -17,6 +17,13 @@ namespace DVLD.Licenses.Local_Licenses.Controlls
     {
         private clsDriverscs _Driverscs;
         private clsLicenses _license;
+        private int _licenseID;
+
+        public int licenseID
+        {
+            get { return _licenseID; }
+        }
+
         public ctrlDriverLicenseInfo()
         {
             InitializeComponent();
@@ -24,15 +31,17 @@ namespace DVLD.Licenses.Local_Licenses.Controlls
             _license = new clsLicenses();
         }
 
-        public void LoadLicenseInfo(clsLicenses license)
+        public void LoadLicenseInfo(int licenseID)
         {
-            _license = license;
-            _Driverscs = clsDriverscs.FindByDriverID(_license.DriverID);
+            _licenseID=licenseID;
+            _license = clsLicenses.Find(_licenseID);
             if(_license == null)
             {
-                MessageBox.Show("No License with LicenseID = " + license.LicenseID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No License with LicenseID = " + licenseID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                return;
             }
+
+            _Driverscs = clsDriverscs.FindByDriverID(_license.DriverID);
             _FillLicenseInfo();
         }
 
@@ -50,7 +59,7 @@ namespace DVLD.Licenses.Local_Licenses.Controlls
             lblNotes.Text = _license.Note;
             lblIsActive.Text = _license.IsActive ? "Yes" : "No";
             lblIssueReason.Text = _license.IssueReason.ToString();
-            lblIsDetained.Text = (false) ? "Yes" : "No";// To be implemented
+            lblIsDetained.Text = (clsDetainedLicens.LicenseIsExist(_license.LicenseID)) ? "Yes" : "No";// To be implemented
             _LoadPersonImage();
         }
 

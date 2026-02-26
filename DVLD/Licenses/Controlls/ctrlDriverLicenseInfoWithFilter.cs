@@ -29,6 +29,21 @@ namespace DVLD.Licenses.Controlls
 
         private int _LicensesID;
         private clsLicenses _LicenseInfo;
+        private bool _FilterEnabled = true;
+
+        public bool FilterEnabled
+        {
+            get
+            {
+                return _FilterEnabled;
+            }
+            set
+            {
+                _FilterEnabled = value;
+                gbFilters.Enabled = _FilterEnabled;
+            }
+
+        }
 
         public int LicensesID { get => _LicensesID;  }
 
@@ -41,29 +56,16 @@ namespace DVLD.Licenses.Controlls
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            _LicensesID= Convert.ToInt32(txtLicenseID.Text);
-            _LicenseInfo = clsLicenses.Find(_LicensesID);
-
-            if(_LicenseInfo == null)
+            if (!this.ValidateChildren())
             {
-                //ctrlDriverLicenseInfo1.clear();
-                MessageBox.Show("License Not Found");
+                //Here we dont continue becuase the form is not valid
+                MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtLicenseID.Focus();
                 return;
+
             }
-
-            //if(!_LicenseInfo.IsActive)
-            //{
-            //   MessageBox.Show("License Not Active");
-            //    return;
-            //}
-
-
-            ctrlDriverLicenseInfo1.LoadLicenseInfo(_LicenseInfo);
-            if(OnLicenseSelected != null)
-            {
-                PersonSelected(_LicensesID);
-            }
-
+            _LicensesID = int.Parse(txtLicenseID.Text);
+            LoadLicenseInfo(_LicensesID);
         }
 
         private void txtLicenseID_KeyPress(object sender, KeyPressEventArgs e)
@@ -81,8 +83,17 @@ namespace DVLD.Licenses.Controlls
             btnFind.Enabled = enable;
         }
 
-        public void clear()
-        {
+        public void LoadLicenseInfo(int LicenseID)
+        { 
+
+            txtLicenseID.Text = LicenseID.ToString();
+            ctrlDriverLicenseInfo1.LoadLicenseInfo(LicenseID);
+            _LicensesID = LicenseID;
+            _LicensesID = ctrlDriverLicenseInfo1.licenseID;
+            if (OnLicenseSelected != null && FilterEnabled)
+                // Raise the event with a parameter
+                OnLicenseSelected(_LicensesID);
+
 
         }
 

@@ -61,7 +61,7 @@ namespace DVLD_Buisness
 
         public bool Detain()
         {
-            int newID = DVLD_DataAccess.clsDetainedLicensesData.AddDetainedLicense(LicenseID, DetainDate, "Detained by system", CreatedByUserID, IsReleased);
+            int newID = DVLD_DataAccess.clsDetainedLicensesData.AddDetainedLicense(LicenseID, DetainDate, FineFees, CreatedByUserID, IsReleased);
             if (newID != 0)
             {
                 DetainID = newID;
@@ -80,10 +80,10 @@ namespace DVLD_Buisness
 
         }
 
-        public static clsDetainedLicens Find(int detainID)
+        public static clsDetainedLicens GetDetainedLicenseInfoByLicenseID(int LicenseID)
         {
             DateTime DetainDate = DateTime.MinValue;
-            int LicenseID = -1;
+            int detainID = -1;
             int FineFees = -1;
             int CreatedByUserID = -1;
             bool IsReleased = false;
@@ -92,7 +92,7 @@ namespace DVLD_Buisness
             int ReleaseApplicationID = -1;
 
 
-            bool isSuccess = DVLD_DataAccess.clsDetainedLicensesData.FineDetainedLicense(detainID, ref LicenseID, ref DetainDate, ref FineFees,
+            bool isSuccess = DVLD_DataAccess.clsDetainedLicensesData.GetDetainedLicenseInfoByLicenseID(LicenseID, ref detainID, ref DetainDate, ref FineFees,
             ref CreatedByUserID, ref IsReleased, ref ReleaseDate, ref ReleasedByUserID, ref ReleaseApplicationID);
 
 
@@ -114,7 +114,7 @@ namespace DVLD_Buisness
 
         public static bool LicenseIsExist(int licenseID)
         {
-            return DVLD_DataAccess.clsDetainedLicensesData.IsLicenseDetained(licenseID);
+            return DVLD_DataAccess.clsDetainedLicensesData.LicenseIsExist(licenseID);
         }
 
 

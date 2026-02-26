@@ -1,4 +1,5 @@
 ﻿using DVLD.Licenses.Controlls;
+using DVLD.Licenses.Local_Licenses;
 using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
@@ -130,7 +131,21 @@ namespace DVLD.Applications.Rlease_Detained_License
 
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void llShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmShowLicenseInfo fr = new frmShowLicenseInfo(_DetainedLicens.LicenseID);
+            fr.ShowDialog();
+        }
 
+        private void llShowLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsLicenses.Find(_DetainedLicens.LicenseID).DriverID);
+            fr.ShowDialog();
+        }
     }
 }

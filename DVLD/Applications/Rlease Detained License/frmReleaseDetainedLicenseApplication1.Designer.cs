@@ -81,6 +81,7 @@
             this.llShowLicenseHistory.TabIndex = 195;
             this.llShowLicenseHistory.TabStop = true;
             this.llShowLicenseHistory.Text = "Show Licenses History";
+            this.llShowLicenseHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowLicenseHistory_LinkClicked);
             // 
             // llShowLicenseInfo
             // 
@@ -93,6 +94,7 @@
             this.llShowLicenseInfo.TabIndex = 196;
             this.llShowLicenseInfo.TabStop = true;
             this.llShowLicenseInfo.Text = "Show Licenses Info";
+            this.llShowLicenseInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowLicenseInfo_LinkClicked);
             // 
             // gpDetain
             // 
@@ -417,6 +419,7 @@
             this.btnClose.TabIndex = 193;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnRelease
             // 
@@ -433,7 +436,7 @@
             this.btnRelease.UseVisualStyleBackColor = true;
             this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
             // 
-            // frmListDetainedLicensess
+            // frmReleaseDetainedLicenseApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -445,7 +448,7 @@
             this.Controls.Add(this.llShowLicenseInfo);
             this.Controls.Add(this.gpDetain);
             this.Controls.Add(this.ctrlDriverLicenseInfoWithFilter1);
-            this.Name = "frmListDetainedLicensess";
+            this.Name = "frmReleaseDetainedLicenseApplication";
             this.Text = "frmListDetainedLicenses";
             this.gpDetain.ResumeLayout(false);
             this.gpDetain.PerformLayout();

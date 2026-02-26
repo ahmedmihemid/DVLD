@@ -256,6 +256,7 @@
             this.btnClose.TabIndex = 197;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // llShowLicenseInfo
             // 
@@ -268,6 +269,7 @@
             this.llShowLicenseInfo.TabIndex = 200;
             this.llShowLicenseInfo.TabStop = true;
             this.llShowLicenseInfo.Text = "Show Licenses Info";
+            this.llShowLicenseInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowLicenseInfo_LinkClicked);
             // 
             // btnDetain
             // 
@@ -295,6 +297,7 @@
             this.llShowLicenseHistory.TabIndex = 199;
             this.llShowLicenseHistory.TabStop = true;
             this.llShowLicenseHistory.Text = "Show Licenses History";
+            this.llShowLicenseHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowLicenseHistory_LinkClicked);
             // 
             // lblTitle
             // 
@@ -313,6 +316,7 @@
             // 
             // ctrlDriverLicenseInfoWithFilter1
             // 
+            this.ctrlDriverLicenseInfoWithFilter1.FilterEnabled = true;
             this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(12, 44);
             this.ctrlDriverLicenseInfoWithFilter1.Name = "ctrlDriverLicenseInfoWithFilter1";
             this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(872, 490);

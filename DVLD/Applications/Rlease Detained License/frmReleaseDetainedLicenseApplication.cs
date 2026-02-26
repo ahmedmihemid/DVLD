@@ -17,6 +17,7 @@ namespace DVLD.Applications.Rlease_Detained_License
     {
 
         private int _selectedLicensId = -1;
+        private int _DetainedLicensId = -1;
         private clsDetainedLicens _DetainedLicens;
         private clsApplications _RleaseDetainedApplication;
 
@@ -25,6 +26,26 @@ namespace DVLD.Applications.Rlease_Detained_License
         public frmReleaseDetainedLicenseApplication()
         {
             InitializeComponent();
+        }
+
+        public frmReleaseDetainedLicenseApplication(int DetainedLicensId)
+        {
+            InitializeComponent();
+
+            _DetainedLicensId = DetainedLicensId;
+            _DetainedLicens = clsDetainedLicens.GetDetainedLicenseInfoByDetainID(_DetainedLicensId);
+            if (_DetainedLicens == null)
+            {
+                MessageBox.Show("Selected Detained Licens with ID = " + _DetainedLicensId.ToString() + " is not found in the detained licenses list.",
+                       "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            _selectedLicensId = _DetainedLicens.LicenseID;
+            ctrlDriverLicenseInfoWithFilter1.LoadLicenseInfo(_selectedLicensId);
+            ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;
+
+            _LoadInfo();
+
         }
 
         private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int obj)
@@ -66,7 +87,7 @@ namespace DVLD.Applications.Rlease_Detained_License
                 MessageBox.Show("Selected License with ID = " + _selectedLicensId.ToString() + " is not found in the detained licenses list.",
                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                  return; 
-             }
+            }
 
             llShowLicenseHistory.Enabled = true;
 

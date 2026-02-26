@@ -94,7 +94,6 @@ namespace DVLD.Licenses.Controlls
                 // Raise the event with a parameter
                 OnLicenseSelected(_LicensesID);
 
-
         }
 
 

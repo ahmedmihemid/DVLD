@@ -95,11 +95,11 @@
     <Compile Include="Applications\ReplaceLostOrDamagedLicense\frmReplaceLostOrDamagedLicenseApplication.Designer.cs">
       <DependentUpon>frmReplaceLostOrDamagedLicenseApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication1.cs">
+    <Compile Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication1.Designer.cs">
-      <DependentUpon>frmReleaseDetainedLicenseApplication1.cs</DependentUpon>
+    <Compile Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication.Designer.cs">
+      <DependentUpon>frmReleaseDetainedLicenseApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="Applications\Rlease Detained License\frmListDetainedLicenses.cs">
       <SubType>Form</SubType>
@@ -335,8 +335,8 @@
     <EmbeddedResource Include="Applications\ReplaceLostOrDamagedLicense\frmReplaceLostOrDamagedLicenseApplication.resx">
       <DependentUpon>frmReplaceLostOrDamagedLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication1.resx">
-      <DependentUpon>frmReleaseDetainedLicenseApplication1.cs</DependentUpon>
+    <EmbeddedResource Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication.resx">
+      <DependentUpon>frmReleaseDetainedLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\Rlease Detained License\frmListDetainedLicenses.resx">
       <DependentUpon>frmListDetainedLicenses.cs</DependentUpon>

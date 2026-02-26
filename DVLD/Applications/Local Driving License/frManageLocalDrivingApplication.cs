@@ -39,12 +39,13 @@ namespace DVLD.Licenses
 
         private void frManageLocalDrivingApplication_Load(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndex = 0;
             dtLocalDrivingApplications = DVLD_Buisness.clsLocalDrivingLicenseApplication.GetAllLocalDrivingLicenseApplicationInfo();
             LocalDrivingLicenseApplicationDGV.DataSource = dtLocalDrivingApplications;
             RecordsLEB.Text = LocalDrivingLicenseApplicationDGV.Rows.Count.ToString();
             if (dtLocalDrivingApplications != null)
             {
+                comboBox1.SelectedIndex = 0;
+
                 LocalDrivingLicenseApplicationDGV.Columns[0].HeaderText = "L.D.L.AppID";
                 LocalDrivingLicenseApplicationDGV.Columns[0].Width=85;
                 LocalDrivingLicenseApplicationDGV.Columns[1].HeaderText = "Calss Name";

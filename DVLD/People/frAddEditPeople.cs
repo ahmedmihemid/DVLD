@@ -123,6 +123,12 @@ namespace DVLD.People
             if (_Person.ImagePath != "")
             {
                 PersonImagePB.ImageLocation = _Person.ImagePath;
+            } else
+            {
+               if (MaleRB.Checked)
+                    PersonImagePB.Image = Resources.Male_512;
+                else
+                    PersonImagePB.Image = Resources.Female_512;
             }
 
 
@@ -199,8 +205,9 @@ namespace DVLD.People
             else
             {
                 e.Cancel = false;
-                errorProvider1.SetError(tb, "");
+                errorProvider1.SetError(tb, null);
             }
+
         }
 
         private void txtEmail_Validating(object sender, CancelEventArgs e)
@@ -307,7 +314,6 @@ namespace DVLD.People
                 //Here we dont continue becuase the form is not valid
                 MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-
             }
 
             if (!_HandlePersonImage())
@@ -352,12 +358,11 @@ namespace DVLD.People
 
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+     
+        private void Closebtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
 
 
     }

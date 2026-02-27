@@ -42,7 +42,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.AddressTB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,6 +63,7 @@
             this.LastNameTB = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Closebtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PersonImagePB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -102,6 +102,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Closebtn);
             this.groupBox1.Controls.Add(this.RemoveLL);
             this.groupBox1.Controls.Add(this.SetImageLL);
             this.groupBox1.Controls.Add(this.label12);
@@ -111,7 +112,6 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.AddressTB);
             this.groupBox1.Controls.Add(this.label5);
@@ -231,18 +231,6 @@
             this.label6.Size = new System.Drawing.Size(65, 22);
             this.label6.TabIndex = 59;
             this.label6.Text = "Phone:";
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.White;
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(486, 350);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(93, 36);
-            this.btnClose.TabIndex = 58;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -442,12 +430,23 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // AddEditPeople
+            // Closebtn
+            // 
+            this.Closebtn.BackColor = System.Drawing.Color.White;
+            this.Closebtn.CausesValidation = false;
+            this.Closebtn.Location = new System.Drawing.Point(489, 350);
+            this.Closebtn.Name = "Closebtn";
+            this.Closebtn.Size = new System.Drawing.Size(93, 36);
+            this.Closebtn.TabIndex = 68;
+            this.Closebtn.Text = "Close";
+            this.Closebtn.UseVisualStyleBackColor = false;
+            this.Closebtn.Click += new System.EventHandler(this.Closebtn_Click);
+            // 
+            // frAddEditPeople
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(949, 533);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.PersonIdLE);
@@ -455,7 +454,7 @@
             this.Controls.Add(this.TitleLEB);
             this.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "AddEditPeople";
+            this.Name = "frAddEditPeople";
             this.Text = "AddEditPeople";
             this.Load += new System.EventHandler(this.AddEditPeople_Load);
             this.groupBox1.ResumeLayout(false);
@@ -480,7 +479,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox AddressTB;
         private System.Windows.Forms.Label label5;
@@ -503,5 +501,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.LinkLabel RemoveLL;
+        private System.Windows.Forms.Button Closebtn;
     }
 }

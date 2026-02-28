@@ -60,6 +60,7 @@ namespace DVLD.Tests
                 lblUserMessage.Visible = true;
                 FailRB.Enabled = false;
                 PassRB.Enabled = false;
+                btnSave.Enabled = false;
             }
 
             else

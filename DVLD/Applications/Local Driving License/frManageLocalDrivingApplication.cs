@@ -233,7 +233,8 @@ namespace DVLD.Licenses
             //Enabled only if person passed all tests and Does not have license. 
             issueToolStripMenuItem.Enabled = (TotalPassedTests == 3) && !LicenseExists;
 
-            showLicenseToolStripMenuItem.Enabled = LicenseExists;
+            showPersonLicenseToolStripMenuItem.Enabled = LicenseExists;
+            showLicenseToolStripMenuItem1.Enabled = LicenseExists;
             EditeApplicationToolStripMenuItem.Enabled = !LicenseExists && (localDrivingLicenseApplication.ApplicationStatus == clsApplications.enApplicationStatus.New);
             shechduleTestsToolStripMenuItem.Enabled = !LicenseExists;
 

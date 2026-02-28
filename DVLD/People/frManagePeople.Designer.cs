@@ -153,10 +153,9 @@
             "Second Name",
             "Third Name",
             "Last Name",
-            "Date Of Birth, ",
+            "Nationality",
             "Gendor ",
             "Phone",
-            "Country Name",
             "Email  "});
             this.comboBox1.Location = new System.Drawing.Point(109, 199);
             this.comboBox1.Name = "comboBox1";

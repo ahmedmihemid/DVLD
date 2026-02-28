@@ -129,6 +129,53 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
+
+        public static bool FindByDriverID(int DriverID ,int licenseClass , ref int applicationID, ref int licenseID, ref DateTime issueDate, ref DateTime expirationDate, ref string notes, ref float paidFees, ref bool isActive, ref int issueReason, ref int createdByUserID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT ApplicationID, licenseID, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID 
+                             FROM Licenses WHERE DriverID = @DriverID AND LicenseClass = licenseClass";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+            bool isFound = false;
+            try 
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    applicationID = reader.GetInt32(0);
+                    licenseID = reader.GetInt32(1);
+                    issueDate = reader.GetDateTime(2);
+                    expirationDate = reader.GetDateTime(3);
+
+                    if (!reader.IsDBNull(4))
+                        notes = reader.GetString(4);
+                    else
+                        notes = string.Empty;
+
+                    paidFees = Convert.ToSingle(reader["PaidFees"]);
+                    isActive = reader.GetBoolean(6);
+                    issueReason = reader.GetByte(7);
+                    createdByUserID = reader.GetInt32(8);
+                    isFound = true;
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
+
+
+
         public static int GetLicenseIDByApplicationID(int applicationID)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);

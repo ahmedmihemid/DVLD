@@ -194,7 +194,7 @@ namespace DVLD.People
                     break;
 
                 case "Nationality":
-                    FilterColumn = "CountryName";
+                    FilterColumn = "Nationality";
                     break;
 
                 case "Gendor":
@@ -267,5 +267,9 @@ namespace DVLD.People
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         
         }
+
+
+
+
     }
 }

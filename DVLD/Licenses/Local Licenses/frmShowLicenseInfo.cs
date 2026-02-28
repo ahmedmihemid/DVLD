@@ -17,7 +17,12 @@ namespace DVLD.Licenses.Local_Licenses
         {
             InitializeComponent();
             _License = clsLicenses.Find(LicenseID);
-            ctrlDriverLicenseInfo1.LoadLicenseInfo(_License.LicenseID);
+            if (_License != null)
+            {
+                ctrlDriverLicenseInfo1.LoadLicenseInfo(_License.LicenseID);
+                return;
+            }
+           
         }
 
         private void btnClose_Click(object sender, EventArgs e)

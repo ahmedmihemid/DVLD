@@ -19,12 +19,25 @@ namespace DVLD.Applications.NewFolder1
 
         private int _LicenseID;
         private clsInternationalLicenses _InternationalLicenses;
-      
+
 
 
         public frmNewInternationalLicenseApplication()
         {
             InitializeComponent();
+        }
+
+
+
+        public frmNewInternationalLicenseApplication(int LicenseID  )
+        {
+            InitializeComponent();
+            _LicenseID = LicenseID;
+            _InternationalLicenses = new clsInternationalLicenses();
+            _InternationalLicenses = clsInternationalLicenses.GetInternationalLicenseByLocalLicenseIDint(_LicenseID);
+            ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;
+            ctrlDriverLicenseInfoWithFilter1.LoadLicenseInfo(LicenseID);
+            LoadLicenseInfo();
         }
 
         private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int obj)
@@ -82,10 +95,10 @@ namespace DVLD.Applications.NewFolder1
             if (!clsLicenses.Find(_LicenseID).IsActive)
             {
                 btnIssueLicense.Enabled = false;
-                //MessageBox.Show("The selected local license is not active. Please select an active local license to issue an international license.");
+                MessageBox.Show("The selected local license is not active. Please select an active local license to issue an international license.");
             }
             else
-                btnIssueLicense.Enabled = false;
+                btnIssueLicense.Enabled = true;
 
             llShowLicenseInfo.Enabled = false;
             llShowLicenseHistory.Enabled = true;
@@ -138,7 +151,7 @@ namespace DVLD.Applications.NewFolder1
                     lblApplicationID.Text = _InternationalLicenses.ApplicationID.ToString();
                     lblInternationalLicenseID.Text = _InternationalLicenses.InternationalLicenseID.ToString();
                     llShowLicenseInfo.Enabled = true;
-
+                    btnIssueLicense.Enabled = false;
 
                     MessageBox.Show("International License Issued Successfully");
                     return;

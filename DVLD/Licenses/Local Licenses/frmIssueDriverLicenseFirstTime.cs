@@ -66,7 +66,7 @@ namespace DVLD.Licenses
                       return;
                   }
 
-               
+                ctrlDrivingLicenseApplicationInfo1.ShowLicenceInfoEnabled = true;
                 MessageBox.Show("Driver License issued successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
@@ -77,6 +77,9 @@ namespace DVLD.Licenses
 
         }
 
+        private void ctrlDrivingLicenseApplicationInfo1_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

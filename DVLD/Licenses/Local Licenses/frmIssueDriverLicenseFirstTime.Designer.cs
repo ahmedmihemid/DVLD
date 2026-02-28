@@ -28,21 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlDrivingLicenseApplicationInfo1 = new DVLD.Licenses.ctrlDrivingLicenseApplicationInfo();
             this.btnClose = new System.Windows.Forms.Button();
             this.NotTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnIssueLicense = new System.Windows.Forms.Button();
+            this.ctrlDrivingLicenseApplicationInfo1 = new DVLD.Licenses.ctrlDrivingLicenseApplicationInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctrlDrivingLicenseApplicationInfo1
-            // 
-            this.ctrlDrivingLicenseApplicationInfo1.Location = new System.Drawing.Point(2, 1);
-            this.ctrlDrivingLicenseApplicationInfo1.Name = "ctrlDrivingLicenseApplicationInfo1";
-            this.ctrlDrivingLicenseApplicationInfo1.Size = new System.Drawing.Size(932, 418);
-            this.ctrlDrivingLicenseApplicationInfo1.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -106,6 +99,15 @@
             this.btnIssueLicense.Text = "Issue";
             this.btnIssueLicense.UseVisualStyleBackColor = true;
             this.btnIssueLicense.Click += new System.EventHandler(this.btnIssueLicense_Click);
+            // 
+            // ctrlDrivingLicenseApplicationInfo1
+            // 
+            this.ctrlDrivingLicenseApplicationInfo1.Location = new System.Drawing.Point(2, 1);
+            this.ctrlDrivingLicenseApplicationInfo1.Name = "ctrlDrivingLicenseApplicationInfo1";
+            this.ctrlDrivingLicenseApplicationInfo1.ShowLicenceInfoEnabled = false;
+            this.ctrlDrivingLicenseApplicationInfo1.Size = new System.Drawing.Size(932, 418);
+            this.ctrlDrivingLicenseApplicationInfo1.TabIndex = 0;
+            this.ctrlDrivingLicenseApplicationInfo1.Load += new System.EventHandler(this.ctrlDrivingLicenseApplicationInfo1_Load);
             // 
             // frmIssueDriverLicenseFirstTime
             // 

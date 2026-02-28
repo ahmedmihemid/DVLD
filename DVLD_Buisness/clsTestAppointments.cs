@@ -41,6 +41,7 @@ namespace DVLD_Buisness
             PaidFees = 0;
             CreatedByUserID = -1;
             IsLocked = false;
+            RetakeTestApplicationID = -1;
             Mode = enMode.AddNew;
         }
 

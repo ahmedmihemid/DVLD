@@ -404,6 +404,7 @@
             this.lblTitle.TabIndex = 198;
             this.lblTitle.Text = "Release Detained License";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // btnClose
             // 

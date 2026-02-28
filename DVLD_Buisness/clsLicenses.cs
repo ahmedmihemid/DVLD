@@ -95,6 +95,33 @@ namespace DVLD_Buisness
             return null;
         }
 
+
+        public static clsLicenses FindByDriverID(int DriverID, int LicensesClassID=3)
+        {
+            int ApplicationID = -1;
+            int licenseID = -1;
+            int licenseClassID = -1;
+            DateTime IssueDate = DateTime.MinValue;
+            DateTime ExpiryDate = DateTime.MinValue;
+            string Note = string.Empty;
+            float PaidFees = -1;
+            bool IsActive = false;
+            int IssueReasonID = -1;
+            int CreatedByUserID = -1;
+
+
+            bool isFound = DVLD_DataAccess.clsLicensesData.FindByDriverID(DriverID, LicensesClassID, ref ApplicationID, ref licenseID,
+               ref IssueDate, ref ExpiryDate, ref Note, ref PaidFees, ref IsActive, ref IssueReasonID, ref CreatedByUserID);
+
+            if (isFound)
+            {
+                return new clsLicenses(licenseID, ApplicationID, DriverID, clsLicenseClass.Find(licenseClassID), IssueDate, ExpiryDate, Note, PaidFees, IsActive,
+                    (enReason)IssueReasonID, CreatedByUserID);
+            }
+            return null;
+        }
+
+
         public static int GetLicenseIDByApplicationID(int applicationID)
         {
             return DVLD_DataAccess.clsLicensesData.GetLicenseIDByApplicationID(applicationID);

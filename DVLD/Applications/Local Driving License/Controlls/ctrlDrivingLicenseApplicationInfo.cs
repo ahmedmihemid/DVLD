@@ -22,11 +22,27 @@ namespace DVLD.Licenses
 
         private int _LicenseID;
 
+        private bool _showLicenceInfoEnabled;
         public int LocalDrivingLicenseApplicationID
         {
             get { return _LocalDrivingLicenseApplicationID; }
         }
 
+
+
+        public bool ShowLicenceInfoEnabled
+        {
+            get
+            {
+                return _showLicenceInfoEnabled;
+            }
+            set
+            {
+                _showLicenceInfoEnabled = value;
+                llShowLicenceInfo.Enabled = _showLicenceInfoEnabled;
+            }
+
+        }
 
         public ctrlDrivingLicenseApplicationInfo()
         {
@@ -46,8 +62,10 @@ namespace DVLD.Licenses
                 return;
             }
 
-            _FillLocalDrivingLicenseApplicationInfo();
+            llShowLicenceInfo.Enabled = (clsLicenses.GetLicenseIDByApplicationID(_LocalDrivingLicenseApplication.ApplicationID) != -1);
+           
 
+            _FillLocalDrivingLicenseApplicationInfo();
         }
 
         public void LoadApplicationInfoByApplicationID(int ApplicationID)
@@ -61,6 +79,9 @@ namespace DVLD.Licenses
                 MessageBox.Show("No Application with ApplicationID = " + LocalDrivingLicenseApplicationID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            llShowLicenceInfo.Enabled = (clsLicenses.GetLicenseIDByApplicationID(_LocalDrivingLicenseApplication.ApplicationID) != -1);
+
 
             _FillLocalDrivingLicenseApplicationInfo();
         }
@@ -80,7 +101,7 @@ namespace DVLD.Licenses
         {
             lblLocalDrivingLicenseApplicationID.Text = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
             lblAppliedFor.Text = clsLicenseClass.Find(_LocalDrivingLicenseApplication.LicenseClassID).ClassName;
-            lblPassedTests.Text = "0??";
+            lblPassedTests.Text = clsTests.GetPassedTestCount(_LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID).ToString();
             ctlApplicationBasicInfo1.LoadData(_LocalDrivingLicenseApplication.ApplicationID);
         }
 

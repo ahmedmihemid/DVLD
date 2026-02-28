@@ -168,5 +168,10 @@ namespace DVLD.Applications.Rlease_Detained_License
             frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsLicenses.Find(_DetainedLicens.LicenseID).DriverID);
             fr.ShowDialog();
         }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

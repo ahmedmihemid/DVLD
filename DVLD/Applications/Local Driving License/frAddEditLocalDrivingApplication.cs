@@ -19,13 +19,14 @@ namespace DVLD.Licenses
         private enMode _Mode;
         private int _LocalDrivingLicenseApplicationID = -1;
         private int _SelectedPersonID = -1;
+        private int oldLicenseClassID = -1;
         clsLocalDrivingLicenseApplication _LocalDrivingLicenseApplication;
 
         public frAddEditLocalDrivingApplication()
         {
             InitializeComponent();
             _Mode = enMode.AddNew;
-            _LocalDrivingLicenseApplication = new clsLocalDrivingLicenseApplication();
+
         }
 
         public frAddEditLocalDrivingApplication(int LocalDrivingLicenseApplicationID)
@@ -65,6 +66,7 @@ namespace DVLD.Licenses
             {
                 TitleLEB.Text = "New Local Driving License Application";
                 this.Text = "New Local Driving License Application";
+                _LocalDrivingLicenseApplication = new clsLocalDrivingLicenseApplication();
                 ctrlPersonCardWithFilter1.FilterFocus();
                 tabPage2.Enabled = false;
 
@@ -100,9 +102,12 @@ namespace DVLD.Licenses
                 return;
             }
 
+            oldLicenseClassID = _LocalDrivingLicenseApplication.LicenseClassID;
+
             ctrlPersonCardWithFilter1.LoadPersonInfo(_LocalDrivingLicenseApplication.ApplicantPersonID);
             ApplicationIdLEB.Text = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
             ApplicationDateLEB.Text = clsFormat.DateToShort(_LocalDrivingLicenseApplication.ApplicationDate);
+            LicensesClassCB.SelectedIndex = LicensesClassCB.FindString(clsLicenseClass.Find(_LocalDrivingLicenseApplication.LicenseClassID).ClassName);
             LicensesFeesLEB.Text = _LocalDrivingLicenseApplication.PaidFees.ToString();
             CreateByLEB.Text = clsUser.Find(_LocalDrivingLicenseApplication.CreatedByUserID).UserName;
 
@@ -136,13 +141,13 @@ namespace DVLD.Licenses
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-
+         
 
             int lecenseClassID = clsLicenseClass.Find(LicensesClassCB.Text).LicenseClassID;
 
             int ActiveApplicationID = clsApplications.GetActiveApplicationIDForLicenseClass(ctrlPersonCardWithFilter1.PersonID, clsApplications.enApplicationType.NewDrivingLicense, lecenseClassID);
 
-            if(ActiveApplicationID != -1)
+            if(ActiveApplicationID != -1 && oldLicenseClassID != lecenseClassID)
             {
                 MessageBox.Show("Choose another License Class, the selected Person Already have an active application for the selected class with id=" + ActiveApplicationID, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tabControl1.Focus();

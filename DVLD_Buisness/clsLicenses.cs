@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DVLD_DataAccess;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
 
 namespace DVLD_Buisness
 {
@@ -133,9 +134,16 @@ namespace DVLD_Buisness
             return DVLD_DataAccess.clsLicensesData.GetLicenseIDByPersonID(personID,  LicenseClassID);
         }
 
-        public static bool IsLicenseExistByPersonID(int personID, int licenseClassID)
+        public static bool IsLicenseExistByPersonID(int PersonID, int LicenseClassID)
         {
-            return DVLD_DataAccess.clsLicensesData.IsLicenseExistByPersonID(personID, licenseClassID);
+            return (GetActiveLicenseIDByPersonID(PersonID, LicenseClassID) != -1);
+        }
+
+        public static int GetActiveLicenseIDByPersonID(int PersonID, int LicenseClassID)
+        {
+
+            return clsLicensesData.GetActiveLicenseIDByPersonID(PersonID, LicenseClassID);
+
         }
 
         private bool _AddNew()

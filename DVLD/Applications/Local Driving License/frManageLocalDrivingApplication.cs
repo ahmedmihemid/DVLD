@@ -131,8 +131,8 @@ namespace DVLD.Licenses
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // it is the update option but i forget to change the name of the menu item
-            int ApplicationID = clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value)).ApplicationID;
-            frAddEditLocalDrivingApplication fr = new frAddEditLocalDrivingApplication(ApplicationID);
+            int LocalDrivingApplicationID = (int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
+            frAddEditLocalDrivingApplication fr = new frAddEditLocalDrivingApplication(LocalDrivingApplicationID);
              fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }

@@ -153,10 +153,10 @@
             "Second Name",
             "Third Name",
             "Last Name",
-            "Nationality",
-            "Gendor ",
+            "CountryName",
+            "Gendor",
             "Phone",
-            "Email  "});
+            "Email"});
             this.comboBox1.Location = new System.Drawing.Point(109, 199);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(247, 30);

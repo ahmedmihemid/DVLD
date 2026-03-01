@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD_Buisness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DVLD_Buisness;
+using static DVLD.People.frAddEditPeople;
 
 namespace DVLD.People
 {
@@ -149,7 +150,7 @@ namespace DVLD.People
                 PeopleDGV.Columns[7].HeaderText = "Date Of Birth";
                 PeopleDGV.Columns[7].Width = 130;
 
-                PeopleDGV.Columns[8].HeaderText = "Nationality";
+                PeopleDGV.Columns[8].HeaderText = "CountryName";
                 PeopleDGV.Columns[8].Width = 100;
 
 
@@ -161,6 +162,8 @@ namespace DVLD.People
                 PeopleDGV.Columns[10].Width = 160;
             }
         }
+        
+
 
         private void FilterValueTB_TextChanged(object sender, EventArgs e)
         {
@@ -193,12 +196,12 @@ namespace DVLD.People
                     FilterColumn = "LastName";
                     break;
 
-                case "Nationality":
-                    FilterColumn = "Nationality";
+                case "CountryName":
+                    FilterColumn = "CountryName";
                     break;
 
                 case "Gendor":
-                    FilterColumn = "GendorCaption";
+                    FilterColumn = "GenderString";
                     break;
 
                 case "Phone":

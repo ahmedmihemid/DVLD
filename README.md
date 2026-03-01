@@ -24,5 +24,4 @@ The project follows the **3-Tier Architecture** pattern to ensure separation of 
 2.  **Business Logic Layer (BLL):** Enforces business rules and processes data.
 3.  **Data Access Layer (DAL):** Manages direct communication with the SQL database.
 
-## 📸 Screenshots
-*(Add your screenshots or video link here)*
+

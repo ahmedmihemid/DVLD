@@ -60,6 +60,8 @@ namespace DVLD.Licenses.Detain_License
                 return;
 
             llShowLicenseHistory.Enabled = true;
+            llShowLicenseInfo.Enabled = true;
+
 
             if (clsDetainedLicens.LicenseIsExist(_selectedLicenseId))
             {
@@ -96,7 +98,6 @@ namespace DVLD.Licenses.Detain_License
             if(_DetainedLicens.Detain())
             {
                 lblDetainID.Text = _DetainedLicens.DetainID.ToString();
-                llShowLicenseInfo.Enabled = true;
                 ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;
 
                 btnDetain.Enabled = false;

@@ -90,7 +90,7 @@ namespace DVLD.Applications.Rlease_Detained_License
             }
 
             llShowLicenseHistory.Enabled = true;
-
+            llShowLicenseInfo.Enabled = true;
             btnRelease.Enabled = true;
 
             lblDetainID.Text = _DetainedLicens.DetainID.ToString();
@@ -131,7 +131,7 @@ namespace DVLD.Applications.Rlease_Detained_License
 
                 if(_DetainedLicens.Release())
                 {
-                    llShowLicenseInfo.Enabled = true;
+                    
                     ctrlDriverLicenseInfoWithFilter1.FilterEnabled=false;
                     btnRelease.Enabled = false;
 

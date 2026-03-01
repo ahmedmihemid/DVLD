@@ -62,8 +62,9 @@ namespace DVLD.Licenses
                 return;
             }
 
-            llShowLicenceInfo.Enabled = (clsLicenses.GetLicenseIDByApplicationID(_LocalDrivingLicenseApplication.ApplicationID) != -1);
-           
+            _LicenseID = clsLicenses.GetLicenseIDByApplicationID(_LocalDrivingLicenseApplication.ApplicationID);
+            llShowLicenceInfo.Enabled = (_LicenseID != -1);
+
 
             _FillLocalDrivingLicenseApplicationInfo();
         }
@@ -80,7 +81,8 @@ namespace DVLD.Licenses
                 return;
             }
 
-            llShowLicenceInfo.Enabled = (clsLicenses.GetLicenseIDByApplicationID(_LocalDrivingLicenseApplication.ApplicationID) != -1);
+            _LicenseID = clsLicenses.GetLicenseIDByApplicationID(_LocalDrivingLicenseApplication.ApplicationID);
+            llShowLicenceInfo.Enabled = (_LicenseID != -1);
 
 
             _FillLocalDrivingLicenseApplicationInfo();

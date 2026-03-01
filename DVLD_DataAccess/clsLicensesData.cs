@@ -203,17 +203,17 @@ namespace DVLD_DataAccess
             return licenseID;
         }
 
-        public static int GetLicenseIDByPersonID(int personID,int LicenseClassID)
+        public static int GetLicenseIDByPersonID(int personID,int LicenseClass)
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"SELECT TOP 1 LicenseID 
                              FROM Licenses 
                              INNER JOIN Drivers ON Licenses.DriverID = Drivers.DriverID
-                             WHERE Drivers.PersonID = @PersonID AND Licenses.LicenseClassID = @LicenseClassID
+                             WHERE Drivers.PersonID = @PersonID AND Licenses.LicenseClass = @LicenseClass
                              ORDER BY IssueDate DESC";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", personID);
-            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+            command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
             int licenseID = -1;
             try
             {

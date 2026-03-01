@@ -17,6 +17,7 @@ namespace DVLD_Buisness
         };
 
         public enum enApplicationStatus { New = 1, Cancelled = 2, Completed = 3 };
+
         public enMode Mode = enMode.AddNew;
 
         public int ApplicationID { get; set; }
@@ -156,26 +157,20 @@ namespace DVLD_Buisness
         {
             switch (Mode)
             {
-               case enMode.AddNew:
-                  if(_AddNew())
-                  {
-                       Mode = enMode.Update;
+                case enMode.AddNew:
+                    if (_AddNew())
+                    {
+                        Mode = enMode.Update;
                         return true;
-                  }
-                  else
-                  {
-                        return false;
-                  }
-                  break;
+                    }
+                    return false;
 
-               case enMode.Update:
-               { 
-                  return _Update(); 
-               }
+                case enMode.Update:
+                    return _Update();
 
-
+                default:
+                    return false;
             }
-            return false;
         }
 
         public static bool IsApplicationExist(int ApplicationID)

@@ -12,11 +12,11 @@ namespace DVLD.Applications
 {
     public partial class frApplicationDetails : Form
     {
-        private int _ApplicationID = -1;
-        public frApplicationDetails(int ApplicationID)
+        private int LocalDrivingAppID = -1;
+        public frApplicationDetails(int localDrivingAppID)
         {
             InitializeComponent();
-            _ApplicationID = ApplicationID;
+            LocalDrivingAppID = localDrivingAppID;
         }
 
 
@@ -27,7 +27,7 @@ namespace DVLD.Applications
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ctrlDrivingLicenseApplicationInfo1.LoadApplicationInfoByApplicationID(_ApplicationID);
+            ctrlDrivingLicenseApplicationInfo1.LoadApplicationInfoByLocalDrivingAppID(LocalDrivingAppID);
         }
 
 

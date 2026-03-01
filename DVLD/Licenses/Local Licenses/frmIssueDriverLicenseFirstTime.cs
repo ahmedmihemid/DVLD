@@ -1,4 +1,5 @@
-﻿using DVLD_Buisness;
+﻿using DVLD.Classes;
+using DVLD_Buisness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,51 +31,22 @@ namespace DVLD.Licenses
 
         private void btnIssueLicense_Click(object sender, EventArgs e)
         {
-            _Driver = clsDriverscs.FindByPersonID(_localDrivingLicenseApplication.ApplicantPersonID);
-            if (_Driver == null)
-            {
-                _Driver = new clsDriverscs();
-                _Driver.PersonID = _localDrivingLicenseApplication.ApplicantPersonID;
-                _Driver.CreatedByUserID = Classes.clsGlobal.CurrentUser.UserID;
-                _Driver.CreatedDate = DateTime.Now;
-                if (!_Driver.save())
-                {
-                    MessageBox.Show("Error in saving Driver information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
 
-            _License.ApplicationID = _localDrivingLicenseApplication.ApplicationID;
-            _License.DriverID = _Driver.DriverID;   
-            _License.LicenseClass = clsLicenseClass.Find(_localDrivingLicenseApplication.LicenseClassID);
-            _License.IssueDate = DateTime.Now;
-            _License.ExpiryDate = DateTime.Now.AddYears(_License.LicenseClass.DefaultValidityLength);
-            if (!string.IsNullOrWhiteSpace(NotTB.Text))
-            {
-                _License.Note = NotTB.Text.Trim();
-            }
-            _License.PaidFees = _localDrivingLicenseApplication.PaidFees;
-            _License.IsActive = true;
-            _License.IssueReason = clsLicenses.enReason.FirstTime;
-            _License.CreatedByUserID = Classes.clsGlobal.CurrentUser.UserID;
 
-            if(_License.save())
-            {
-                 _localDrivingLicenseApplication.ApplicationStatus = clsApplications.enApplicationStatus.Completed;
-                  if (!_localDrivingLicenseApplication.Save())
-                  {
-                      MessageBox.Show("Error updating application status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                      return;
-                  }
+            int LicenseID = _localDrivingLicenseApplication.IssueLicenseForTheFirtTime(NotTB.Text.Trim(), clsGlobal.CurrentUser.UserID);
 
-                ctrlDrivingLicenseApplicationInfo1.ShowLicenceInfoEnabled = true;
-                MessageBox.Show("Driver License issued successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (LicenseID != -1)
+            {
+                MessageBox.Show("License Issued Successfully with License ID = " + LicenseID.ToString(),
+                    "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Error in issuing Driver License.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("License Was not Issued ! ",
+                 "Faild", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void ctrlDrivingLicenseApplicationInfo1_Load(object sender, EventArgs e)

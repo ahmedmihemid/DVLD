@@ -227,6 +227,62 @@ namespace DVLD_Buisness
           
         }
 
+        public int IssueLicenseForTheFirtTime(string Notes, int UserID)
+        {
+            int DriverID = -1;
+
+            clsDriverscs Driver = clsDriverscs.FindByPersonID(this.ApplicantPersonID);
+
+            if (Driver == null)
+            {
+                //we check if the driver already there for this person.
+                Driver = new clsDriverscs();
+
+                Driver.PersonID = this.ApplicantPersonID;
+                Driver.CreatedByUserID = CreatedByUserID;
+                if (Driver.save())
+                {
+                    DriverID = Driver.DriverID;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                DriverID = Driver.DriverID;
+            }
+            //now we diver is there, so we add new licesnse
+
+            clsLicenses License = new clsLicenses();
+            License.ApplicationID = this.ApplicationID;
+            License.DriverID = DriverID;
+            License.LicenseClass = this.LicenseClassInfo;
+            License.IssueDate = DateTime.Now;
+            License.ExpiryDate = DateTime.Now.AddYears(this.LicenseClassInfo.DefaultValidityLength);
+            License.Note = Notes;
+            License.PaidFees = this.LicenseClassInfo.ClassFees;
+            License.IsActive = true;
+            License.IssueReason = clsLicenses.enReason.FirstTime;
+            License.CreatedByUserID = CreatedByUserID;
+
+            if (License.save())
+            {
+                //now we should set the application status to complete.
+                this.SetComplete();
+
+                return License.LicenseID;
+            }
+
+            else
+                return -1;
+        }
+
+
+
+
+
     }
 
 }

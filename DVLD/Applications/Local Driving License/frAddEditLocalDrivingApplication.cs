@@ -147,11 +147,16 @@ namespace DVLD.Licenses
 
             int ActiveApplicationID = clsApplications.GetActiveApplicationIDForLicenseClass(ctrlPersonCardWithFilter1.PersonID, clsApplications.enApplicationType.NewDrivingLicense, lecenseClassID);
 
-            if(ActiveApplicationID != -1 && oldLicenseClassID != lecenseClassID)
+            if(ActiveApplicationID != -1)
             {
-                MessageBox.Show("Choose another License Class, the selected Person Already have an active application for the selected class with id=" + ActiveApplicationID, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tabControl1.Focus();
-                return;
+
+              if (!(_Mode == enMode.Update && oldLicenseClassID == lecenseClassID))
+              {
+                  MessageBox.Show("Choose another License Class, the selected Person Already have an active application for the selected class with id=" + ActiveApplicationID, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  tabControl1.Focus();
+                  return;
+              }
+                
             }
 
 

@@ -139,22 +139,29 @@ namespace DVLD.Licenses
 
         private void deleteApplicationToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this user?", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-            {
+            if (MessageBox.Show("Are you sure do want to delete this application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
+
+            int LocalDrivingLicenseApplicationID = (int)LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value;
+
+            clsLocalDrivingLicenseApplication LocalDrivingLicenseApplication =
+                clsLocalDrivingLicenseApplication.FindByLocalDrivingAppLicenseID(LocalDrivingLicenseApplicationID);
+
+            if (LocalDrivingLicenseApplication != null)
+            {
+                if (LocalDrivingLicenseApplication.Delete())
+                {
+                    MessageBox.Show("Application Deleted Successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //refresh the form again.
+                    frManageLocalDrivingApplication_Load(null, null);
+                }
+                else
+                {
+                    MessageBox.Show("Could not delete applicatoin, other data depends on it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
-            if(clsApplications.Delete(clsLocalDrivingLicenseApplication.Find((int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value)).ApplicationID))
-            {
-                MessageBox.Show("Applications deleted successfully.", "Delete Applications", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                frManageLocalDrivingApplication_Load(null, null);
-            }
-            else
-            {
-                MessageBox.Show("Error deleting Applications.", "Delete Applications", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-         
         }
 
         private void cancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)

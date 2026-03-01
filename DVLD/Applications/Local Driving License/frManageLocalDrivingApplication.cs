@@ -295,9 +295,9 @@ namespace DVLD.Licenses
             frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsDriverscs.FindByPersonID(clsLocalDrivingLicenseApplication.Find(localDrivingLicenseApplicationID).ApplicantPersonID).DriverID);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
-
-
         }
+
+        
 
         private void button2_Click(object sender, EventArgs e)
         {

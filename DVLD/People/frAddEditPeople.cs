@@ -63,6 +63,8 @@ namespace DVLD.People
 
             }
 
+            MaleRB.Checked = true;
+
             if (MaleRB.Checked)
                 PersonImagePB.Image = Resources.Male_512;
             else
@@ -84,7 +86,6 @@ namespace DVLD.People
             ThirdNameTB.Text = "";
             LastNameTB.Text = "";
             NationalNoTB.Text = "";
-            MaleRB.Checked = true;
             AddressTB.Text = "";
             PhoneTB.Text = "";
             EmailTB.Text = "";

@@ -1,4 +1,5 @@
 ﻿using DVLD_Buisness;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,39 +20,22 @@ namespace DVLD.Classes
 
         public static bool RememberUsernameAndPassword(string Username, string Password)
         {
+            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\DVLD";
+            string valueName1 = "UserName";
+            string valueName2 = "Password";
+            string valueData1 = Username;
+            string valueData2 = Password;
 
             try
             {
-                //this will get the current project directory folder.
-                string currentDirectory = System.IO.Directory.GetCurrentDirectory();
-
-
-                // Define the path to the text file where you want to save the data
-                string filePath = currentDirectory + "\\data.txt";
-
-                //incase the username is empty, delete the file
-                if (Username == "" && File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                    return true;
-
-                }
-
-                // concatonate username and passwrod withe seperator.
-                string dataToSave = Username + "#//#" + Password;
-
-                // Create a StreamWriter to write to the file
-                using (StreamWriter writer = new StreamWriter(filePath))
-                {
-                    // Write the data to the file
-                    writer.WriteLine(dataToSave);
-
-                    return true;
-                }
+                // Set the registry value
+                Registry.SetValue(keyPath, valueName1, valueData1, RegistryValueKind.String);
+                Registry.SetValue(keyPath, valueName2, valueData2, RegistryValueKind.String);
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                Console.WriteLine("Error setting registry value: " + ex.Message);
                 return false;
             }
 
@@ -59,42 +43,30 @@ namespace DVLD.Classes
 
         public static bool GetStoredCredential(ref string Username, ref string Password)
         {
-            //this will get the stored username and password and will return true if found and false if not found.
+
+            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\DVLD";
+            string valueName1 = "UserName";
+            string valueName2 = "Password";
+      
             try
             {
-                //gets the current project's directory
-                string currentDirectory = System.IO.Directory.GetCurrentDirectory();
-
-                // Path for the file that contains the credential.
-                string filePath = currentDirectory + "\\data.txt";
-
-                // Check if the file exists before attempting to read it
-                if (File.Exists(filePath))
+                string valueData1 = Registry.GetValue(keyPath, valueName1, null) as string;
+                string valueData2 = Registry.GetValue(keyPath, valueName2, null) as string;
+                if (valueData1 != null && valueData2 != null)
                 {
-                    // Create a StreamReader to read from the file
-                    using (StreamReader reader = new StreamReader(filePath))
-                    {
-                        // Read data line by line until the end of the file
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            Console.WriteLine(line); // Output each line of data to the console
-                            string[] result = line.Split(new string[] { "#//#" }, StringSplitOptions.None);
-
-                            Username = result[0];
-                            Password = result[1];
-                        }
-                        return true;
-                    }
+                    Username = valueData1;
+                    Password = valueData2;
+                    return true;
                 }
                 else
                 {
+                    Console.WriteLine("Registry value not found.");
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                Console.WriteLine("Error reading registry value: " + ex.Message);
                 return false;
             }
 

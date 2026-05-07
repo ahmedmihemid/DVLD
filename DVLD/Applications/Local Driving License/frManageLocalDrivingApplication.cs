@@ -290,7 +290,7 @@ namespace DVLD.Licenses
         private void showLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             int localDrivingLicenseApplicationID = (int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
-            var L_D_application = clsLocalDrivingLicenseApplication.Find(localDrivingLicenseApplicationID);
+            var L_D_application = clsLocalDrivingLicenseApplication.FindByLocalDrivingAppLicenseID(localDrivingLicenseApplicationID);
             frmShowLicenseInfo fr = new frmShowLicenseInfo(clsLicenses.GetLicenseIDByApplicationID(L_D_application.ApplicationID));
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
@@ -299,7 +299,7 @@ namespace DVLD.Licenses
         private void showPersonLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int localDrivingLicenseApplicationID = (int)(LocalDrivingLicenseApplicationDGV.CurrentRow.Cells[0].Value);
-            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsDriverscs.FindByPersonID(clsLocalDrivingLicenseApplication.Find(localDrivingLicenseApplicationID).ApplicantPersonID).DriverID);
+            frShowPersonLicenseHistory fr = new frShowPersonLicenseHistory(clsDriverscs.FindByPersonID(clsLocalDrivingLicenseApplication.FindByLocalDrivingAppLicenseID(localDrivingLicenseApplicationID).ApplicantPersonID).DriverID);
             fr.ShowDialog();
             frManageLocalDrivingApplication_Load(null, null);
         }

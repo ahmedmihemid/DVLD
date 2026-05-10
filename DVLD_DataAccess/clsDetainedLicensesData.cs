@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD_Shared;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -32,7 +33,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -70,6 +71,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 // Handle exception (e.g., log it)
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -98,6 +100,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 return false;
             }
             finally
@@ -155,6 +158,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 isFound = false;
             }
             finally
@@ -211,7 +215,8 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                isFound=false;
+                EventLogger.LogEvent(ex);
+                isFound =false;
             }
             finally
             {
@@ -243,6 +248,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 // Handle exception (e.g., log it)
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -276,6 +282,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 isFound = false;
             }
             finally

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD_Shared;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -32,6 +33,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 // Handle exception (log it, rethrow it, etc.)
+                EventLogger.LogEvent(ex);
                 throw new Exception("An error occurred while retrieving test types.", ex);
             }
             finally
@@ -69,7 +71,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-               
+                EventLogger.LogEvent(ex);
                 throw new Exception("An error occurred while finding the test type.", ex);
                 isFound = false;
             }
@@ -103,6 +105,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -133,6 +136,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 throw new Exception("An error occurred while updating the test type.", ex);
             }
             finally

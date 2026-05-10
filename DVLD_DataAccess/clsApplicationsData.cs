@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DVLD_Shared;
 
 namespace DVLD_DataAccess
 {
@@ -33,6 +34,7 @@ namespace DVLD_DataAccess
             {
                 // Log the exception or handle it as needed
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -80,6 +82,7 @@ namespace DVLD_DataAccess
             {
                 // Log the exception or handle it as needed
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
                 isFound = false;
             }
             finally
@@ -119,6 +122,7 @@ namespace DVLD_DataAccess
             {
                 // Log the exception or handle it as needed
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
                 newID = -1;
             }
             finally
@@ -165,6 +169,7 @@ namespace DVLD_DataAccess
             {
                 // Log the exception or handle it as needed
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
                 isUpdated = false;
             }
             finally
@@ -204,6 +209,7 @@ namespace DVLD_DataAccess
             {
                 // Log the exception or handle it as needed
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
                 isDeleted = false;
             }
             finally
@@ -235,6 +241,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                EventLogger.LogEvent(ex);
                 isUpdated = false;
 
             }
@@ -263,6 +270,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                EventLogger.LogEvent(ex);
                 exists = false;
             }
             finally
@@ -304,7 +312,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                
+                EventLogger.LogEvent(ex);
                 activeApplicationID = -1;
             }
             finally
@@ -350,6 +358,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
                 return ActiveApplicationID;
             }
             finally

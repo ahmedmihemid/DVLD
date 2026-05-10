@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD_Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,6 +38,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -71,6 +73,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
                 return false;
             }
 
@@ -105,6 +108,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -136,6 +140,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -167,6 +172,7 @@ namespace DVLD_DataAccess
              catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {

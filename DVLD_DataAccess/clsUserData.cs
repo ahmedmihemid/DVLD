@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DVLD_Shared;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
 
 namespace DVLD_DataAccess
 {
@@ -41,6 +42,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 IsFound = false;
             }
             finally
@@ -80,6 +82,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 IsFound = false;
             }
             finally
@@ -119,6 +122,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 IsFound = false;
             }
             finally
@@ -158,6 +162,7 @@ namespace DVLD_DataAccess
             }
             catch(Exception ex)
             {
+                EventLogger.LogEvent(ex);
                 IsFound = false;
             }
             finally
@@ -195,6 +200,7 @@ namespace DVLD_DataAccess
             {
                 // Log the exception or handle it as needed
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -224,6 +230,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -253,6 +260,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -282,6 +290,7 @@ namespace DVLD_DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -315,6 +324,7 @@ namespace DVLD_DataAccess
             {
                 newUserID = -1;
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -349,6 +359,7 @@ namespace DVLD_DataAccess
             {
                 rowsAffected = 0;
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -375,6 +386,7 @@ namespace DVLD_DataAccess
             {
                 rowsAffected = 0;
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {
@@ -403,6 +415,7 @@ namespace DVLD_DataAccess
             {
                 rowsAffected = 0;
                 Console.WriteLine("Error: " + ex.Message);
+                EventLogger.LogEvent(ex);
             }
             finally
             {

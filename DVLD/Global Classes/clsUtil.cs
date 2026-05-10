@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace DVLD.Classes
 {
-     public class clsUtil
-     {
+    public class clsUtil
+    {
 
         public static string GenerateGUID()
         {
@@ -81,5 +82,20 @@ namespace DVLD.Classes
 
 
         }
-     }
+
+
+        public static void saveExceptionToEventLog(Exception ex)
+        {
+            string sourceName = "DVLD Application";
+
+            if(!EventLog.SourceExists(sourceName))
+            {
+                EventLog.CreateEventSource(sourceName, "Application");
+            }
+            EventLog.WriteEntry(sourceName, ex.ToString(), EventLogEntryType.Error);
+        }
+
+
+
+    }
 }

@@ -84,16 +84,7 @@ namespace DVLD.Classes
         }
 
 
-        public static void saveExceptionToEventLog(Exception ex)
-        {
-            string sourceName = "DVLD Application";
-
-            if(!EventLog.SourceExists(sourceName))
-            {
-                EventLog.CreateEventSource(sourceName, "Application");
-            }
-            EventLog.WriteEntry(sourceName, ex.ToString(), EventLogEntryType.Error);
-        }
+        
 
 
 

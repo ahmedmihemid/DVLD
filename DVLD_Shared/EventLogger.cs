@@ -9,10 +9,9 @@ namespace DVLD_Shared
 {
     public class EventLogger
     {
-        string source = "DVLD Application";
+        static string source = "DVLD Application";
         public static void LogEvent(Exception ex)
         {
-            string source = "DVLD Application";
             if (!EventLog.SourceExists(source))
             {
                 EventLog.CreateEventSource(source, "Application");

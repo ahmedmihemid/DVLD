@@ -501,6 +501,10 @@
       <Project>{90f5e0f5-c60a-4619-8dd1-aed31269cad6}</Project>
       <Name>DVLD_Buisness</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DVLD_Shared\DVLD_Shared.csproj">
+      <Project>{cd43665b-1318-4b0a-9cf2-ddeba1e2390d}</Project>
+      <Name>DVLD_Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Female 512.png" />

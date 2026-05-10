@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using DVLD_Shared;
+
 
 namespace DVLD.Classes
 {
@@ -33,6 +35,8 @@ namespace DVLD.Classes
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error creating folder: " + ex.Message);
+                    EventLogger.LogEvent(ex);
+
                     return false;
                 }
             }
@@ -74,6 +78,7 @@ namespace DVLD.Classes
             catch (IOException iox)
             {
                 MessageBox.Show(iox.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                EventLogger.LogEvent(iox);
                 return false;
             }
 

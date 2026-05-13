@@ -37,7 +37,8 @@ namespace DVLD
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
+
+
             clsUser user = clsUser.GetUserInfoByUsernameAndPassword(UserNameTB.Text.Trim(), PasswordTB.Text.Trim());
           if(user!=null)
             {

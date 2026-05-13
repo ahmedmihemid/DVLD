@@ -85,6 +85,12 @@ namespace DVLD_Buisness
         }
 
 
+        public static bool IsEqualPassword(string password, string HashedPassword)
+        {
+            string HashedInputPassword = DVLD_Buisness.clsUtil.HashPassword(password);
+            return HashedInputPassword == HashedPassword;
+        }
+
         public static clsUser GetUserInfoByUsernameAndPassword(string UserName,string Password)
         {
 
@@ -92,7 +98,10 @@ namespace DVLD_Buisness
             int personID = 0;
             bool isActive = false;
 
-          bool  IsFound= DVLD_DataAccess.clsUserData.GetUserInfoByUsernameAndPassword(UserName,  Password, ref userID, ref personID, ref isActive);
+            string HashedPassword = DVLD_Buisness.clsUtil.HashPassword(Password);
+
+
+            bool IsFound = DVLD_DataAccess.clsUserData.GetUserInfoByUsernameAndPassword(UserName, HashedPassword, ref userID, ref personID, ref isActive);
 
             if (IsFound)
             return new clsUser(userID, personID, UserName, Password, isActive);
@@ -122,15 +131,19 @@ namespace DVLD_Buisness
 
         private bool _AddNewUser()
         {
-          this.UserID= DVLD_DataAccess.clsUserData.addNewUser
-                (this.PersonID, this.UserName, this.Password, this.IsActive);
+            string HashedPassword = DVLD_Buisness.clsUtil.HashPassword(this.Password);
+
+            this.UserID= DVLD_DataAccess.clsUserData.addNewUser
+                (this.PersonID, this.UserName, HashedPassword, this.IsActive);
             return (this.UserID != -1);
         }
 
         private bool _UpdateUser()
         {
+            string HashedPassword = DVLD_Buisness.clsUtil.HashPassword(this.Password);
+
             return DVLD_DataAccess.clsUserData.UpdateUser
-                (this.UserID, this.UserName, this.Password, this.IsActive);
+                (this.UserID, this.UserName, HashedPassword, this.IsActive);
         }
 
         public static bool DeleteUser(int UserID)

@@ -40,7 +40,8 @@ namespace DVLD.Users
 
         private void CurrentPasswordTB_Validating(object sender, CancelEventArgs e)
         {
-            if (CurrentPasswordTB.Text == "" || CurrentPasswordTB.Text != _User.Password) 
+
+            if (CurrentPasswordTB.Text == "" || !clsUser.IsEqualPassword(CurrentPasswordTB.Text.Trim(), _User.Password)) 
             {
                 e.Cancel = true;
                 errorProvider1.SetError(CurrentPasswordTB, "Current Password is required.");
@@ -54,6 +55,7 @@ namespace DVLD.Users
 
         private void NewPasswordTB_Validating(object sender, CancelEventArgs e)
         {
+
             if (NewPasswordTB.Text == "")
             {
                 e.Cancel = true;
@@ -100,6 +102,7 @@ namespace DVLD.Users
                 return;
 
             }
+
 
             _User.Password = NewPasswordTB.Text;
 

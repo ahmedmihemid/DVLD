@@ -1,4 +1,4 @@
-# DVLD - Driving & Vehicles Licensing Department System
+# DVLD 
 
 A comprehensive desktop application designed to manage the entire lifecycle of driving licenses, applications, tests, and users. Built with a focus on data integrity, security, and scalable architecture.
 
